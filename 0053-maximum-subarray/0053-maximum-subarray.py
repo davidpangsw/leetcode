@@ -1,14 +1,12 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        n = len(nums)
-
         left = 0
         right = 1
         
         s = nums[0]
         result = nums[0]
 
-        while right < n:
+        while right < len(nums):
             if s <= 0 and left < right:
                 s -= nums[left]
                 left += 1
