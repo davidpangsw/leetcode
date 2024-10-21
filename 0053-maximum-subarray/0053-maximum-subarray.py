@@ -9,7 +9,7 @@ class Solution:
         result = nums[0]
 
         while right < n:
-            if s <= 0 and left <= right - 1:
+            if s <= 0 and left < right:
                 s -= nums[left]
                 left += 1
                 continue
