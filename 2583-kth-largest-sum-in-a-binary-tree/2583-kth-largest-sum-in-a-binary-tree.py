@@ -9,13 +9,15 @@ class Solution:
         sums = []
 
         # bfs stores the sums
-        queue = collections.deque()
+        queue = []
         queue.append((root, 0))
 
         s = 0
         curLevel = 0
-        while queue:
-            node, level = queue.popleft()
+        ind = 0
+        n = 1
+        while ind < n:
+            node, level = queue[ind]
             # print(node.val, level)
             if level == curLevel:
                 s += node.val
@@ -26,9 +28,12 @@ class Solution:
 
             if node.left:
                 queue.append((node.left, level + 1))
+                n += 1
             
             if node.right:
                 queue.append((node.right, level + 1))
+                n += 1
+            ind += 1
             
         sums.append(s)
 
