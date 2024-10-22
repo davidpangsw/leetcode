@@ -9,14 +9,12 @@ class Solution:
         sums = []
 
         # bfs stores the sums
-        queue = []
-        queue.append((root, 0))
+        queue = [(root, 0)]
 
         s = 0
         curLevel = 0
         ind = 0
-        n = 1
-        while ind < n:
+        while ind < len(queue):
             node, level = queue[ind]
             # print(node.val, level)
             if level == curLevel:
@@ -28,11 +26,9 @@ class Solution:
 
             if node.left:
                 queue.append((node.left, level + 1))
-                n += 1
             
             if node.right:
                 queue.append((node.right, level + 1))
-                n += 1
             ind += 1
             
         sums.append(s)
