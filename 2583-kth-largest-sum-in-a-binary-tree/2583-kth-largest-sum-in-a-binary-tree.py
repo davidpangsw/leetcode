@@ -9,36 +9,24 @@ class Solution:
         sums = []
 
         # bfs stores the sums
-        queue = [(root, 0)]
-
-        s = 0
-        curLevel = 0
-        ind = 0
-        while ind < len(queue):
-            node, level = queue[ind]
-            # print(node.val, level)
-            if level == curLevel:
+        queue = [root]
+        count = 1
+        while queue:
+            s = 0
+            newQueue = []
+            for node in queue:
                 s += node.val
-            else:
-                sums.append(s)
-                s = node.val
-                curLevel = level
-
-            if node.left:
-                queue.append((node.left, level + 1))
-            
-            if node.right:
-                queue.append((node.right, level + 1))
-            ind += 1
-            
-        sums.append(s)
+                if node.left: newQueue.append(node.left)
+                if node.right: newQueue.append(node.right)
+            sums.append(s)
+            queue = newQueue
 
         if len(sums) < k:
             return -1
 
-        sums.sort()
+        sums.sort() # can use priority queue, but doesn't help much
 
-        # print(sums)
+        print(sums)
         return sums[-k]
 
 
