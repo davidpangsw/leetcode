@@ -1,5 +1,5 @@
 def insert(tree, path, start):
-    print(tree, path, start)
+    # print(tree, path, start)
     if "data" in tree:
         return False # early stop, not mandatory
     
