@@ -15,8 +15,7 @@ class Solution:
         queue = []
         qStart = 0
 
-        result = 0, len(s)
-        resultLength = None
+        result = None # (startInc, length)
         for i, c in enumerate(s):
             # print(i, c, counts)
             if c not in counts:
@@ -43,15 +42,14 @@ class Solution:
             if countMatched == total:
                 frontI, frontC = queue[qStart]
                 backI, backC = queue[-1]
-                if resultLength is None or backI - frontI + 1 < resultLength:
-                    result = frontI, backI + 1
-                    resultLength = result[1] - result[0]
+                if result is None or backI - frontI + 1 < result[1]:
+                    result = frontI, backI + 1 - frontI
                     # print("updated", frontI, backI)
 
-        if resultLength is None:
+        if result is None:
             return ""
         else:
-            return s[result[0]: result[1]]
+            return s[result[0]: result[0] + result[1]]
 
 
 
