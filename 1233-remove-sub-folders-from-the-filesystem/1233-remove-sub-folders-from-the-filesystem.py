@@ -1,35 +1,31 @@
-def collect(tree):
-    # print(tree)
-    if "data" in tree:
-        yield tree["data"]
-        return
-
-    for key in tree:
-        for x in collect(tree[key]):
-            yield x
-
 class Solution:
     def removeSubfolders(self, folder: List[str]) -> List[str]:
+        result = []
         tree = {}
-        for f in folder:
+        for f in sorted(folder):
+            # print(tree, f)
             start = 0
             cur = tree
             while start < len(f):
+                # print("    " + str(tree))
                 if "data" in cur:
                     break
-                    
+
                 end = f.find('/', start+1)
                 if end == -1:
                     end = len(f)
+
+
                 key = f[start:end]
                 if key not in cur:
                     cur[key] = {}
                 cur = cur[key]
 
                 start = end
+
             if "data" not in cur:
                 cur["data"] = f
+                result.append(f)
 
-        # print("Printing")
-        return [x for x in collect(tree)]
+        return result
         
