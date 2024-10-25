@@ -15,12 +15,13 @@ class Solution:
             start = 0
             cur = tree
             while start < len(f):
+                if "data" in cur:
+                    break
+                    
                 end = f.find('/', start+1)
                 if end == -1:
                     end = len(f)
                 key = f[start:end]
-                if "data" in cur:
-                    break
                 if key not in cur:
                     cur[key] = {}
                 cur = cur[key]
