@@ -5,8 +5,8 @@ class Solution:
         for i in range(1, len(folder)):
             f = folder[i]
             # print(result, f)
-            ind = f.rfind('/')
-            if f[:ind+1].startswith(result[-1]):
+            # ind = f.rfind('/')
+            if f.startswith(result[-1] + "/"):
                 continue
             result.append(f)
 
