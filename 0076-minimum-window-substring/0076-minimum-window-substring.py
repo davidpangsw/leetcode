@@ -4,9 +4,9 @@ class Solution:
         counts = {}
         for c in t:
             if c not in counts:
-                counts[c] = 0, 0
-            count, expected = counts[c]
-            counts[c] = 0, expected + 1
+                counts[c] = 0
+            expected = counts[c]
+            counts[c] = expected + 1
         # print("t: ", t, counts)
 
         total = len(counts)
@@ -23,18 +23,18 @@ class Solution:
 
             queue.append((i, c))
 
-            count, expected = counts[c]
-            if count == expected - 1:
+            expected = counts[c]
+            if 0 == expected - 1:
                 countMatched += 1
-            counts[c] = count + 1, expected
+            counts[c] = expected - 1
             
             # dequeue as much as possible
             while qStart < len(queue):
                 frontI, frontC = queue[qStart]
-                count, expected = counts[frontC]
-                if count > expected:
+                expected = counts[frontC]
+                if 0 > expected:
                     # dequeue
-                    counts[frontC] = count - 1, expected
+                    counts[frontC] = expected + 1
                     qStart += 1
                 else:
                     break
