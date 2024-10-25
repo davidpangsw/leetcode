@@ -40,10 +40,6 @@ class Solution:
                 else:
                     break
 
-            if qStart >= len(queue):
-                raise "Impossible!"
-
-
             if countMatched == total:
                 frontI, frontC = queue[qStart]
                 backI, backC = queue[-1]
