@@ -30,21 +30,17 @@ class Solution:
             
             # dequeue as much as possible
             while queue:
-                front = queue[0]
-                frontC = s[front]
-                if counts[frontC] < 0:
+                if counts[s[queue[0]]] < 0:
                     # dequeue
-                    counts[frontC] += 1
+                    counts[s[queue[0]]] += 1
                     queue.popleft()
                 else:
                     break
 
             # if valid window, try to update the result
             if matchedCount == len(counts):
-                frontI = queue[0]
-                backI = queue[-1]
-                if result is None or backI - frontI + 1 < result[1]:
-                    result = frontI, backI + 1 - frontI
+                if result is None or queue[-1] - queue[0] + 1 < result[1]:
+                    result = queue[0], queue[-1] + 1 - queue[0]
                     # print("updated", frontI, backI)
 
         if result is None:
