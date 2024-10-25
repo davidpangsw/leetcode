@@ -8,7 +8,6 @@ class Solution:
             counts[c] += 1
         # print("t: ", t, counts)
 
-        total = len(counts)
         matchedCount = 0
 
         queue = []
@@ -29,7 +28,7 @@ class Solution:
             
             # dequeue as much as possible
             while qStart < len(queue):
-                frontI, frontC = queue[qStart]
+                _, frontC = queue[qStart]
                 if counts[frontC] < 0:
                     # dequeue
                     counts[frontC] += 1
@@ -37,9 +36,10 @@ class Solution:
                 else:
                     break
 
-            if matchedCount == total:
-                frontI, frontC = queue[qStart]
-                backI, backC = queue[-1]
+            # if valid window, try to update the result
+            if matchedCount == len(counts):
+                frontI, _ = queue[qStart]
+                backI, _ = queue[-1]
                 if result is None or backI - frontI + 1 < result[1]:
                     result = frontI, backI + 1 - frontI
                     # print("updated", frontI, backI)
