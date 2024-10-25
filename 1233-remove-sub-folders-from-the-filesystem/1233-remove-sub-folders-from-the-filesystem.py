@@ -1,21 +1,3 @@
-def insert(tree, path, start):
-    # print(tree, path, start)
-    if "data" in tree:
-        return False # early stop, not mandatory
-    
-    if start == len(path):
-        tree["data"] = path
-        return True
-
-    ind = path.find('/', start + 1)
-    if ind == -1:
-        ind = len(path)
-    key = path[start:ind]
-    if key not in tree:
-        tree[key] = {}
-    
-    return insert(tree[key], path, ind)
-
 def collect(tree):
     # print(tree)
     if "data" in tree:
@@ -30,7 +12,23 @@ class Solution:
     def removeSubfolders(self, folder: List[str]) -> List[str]:
         tree = {}
         for f in folder:
-            insert(tree, f, 0)
+            start = 0
+            cur = tree
+            while start < len(f):
+                end = f.find('/', start+1)
+                if end == -1:
+                    end = len(f)
+                key = f[start:end]
+                if "data" in cur:
+                    break
+                if key not in cur:
+                    cur[key] = {}
+                cur = cur[key]
+
+                start = end
+            if "data" not in cur:
+                cur["data"] = f
+
         # print("Printing")
         return [x for x in collect(tree)]
         
