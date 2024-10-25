@@ -1,16 +1,15 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        # store all character in t into set
+        # counts all character in t
         counts = {}
         for c in t:
             if c not in counts:
                 counts[c] = 0
-            expected = counts[c]
-            counts[c] = expected + 1
+            counts[c] += 1
         # print("t: ", t, counts)
 
         total = len(counts)
-        countMatched = 0
+        matchedCount = 0
 
         queue = []
         qStart = 0
@@ -23,23 +22,22 @@ class Solution:
 
             queue.append((i, c))
 
-            expected = counts[c]
-            if 0 == expected - 1:
-                countMatched += 1
-            counts[c] = expected - 1
+            counts[c] -= 1
+            if counts[c] == 0:
+                matchedCount += 1
+            
             
             # dequeue as much as possible
             while qStart < len(queue):
                 frontI, frontC = queue[qStart]
-                expected = counts[frontC]
-                if 0 > expected:
+                if counts[frontC] < 0:
                     # dequeue
-                    counts[frontC] = expected + 1
+                    counts[frontC] += 1
                     qStart += 1
                 else:
                     break
 
-            if countMatched == total:
+            if matchedCount == total:
                 frontI, frontC = queue[qStart]
                 backI, backC = queue[-1]
                 if result is None or backI - frontI + 1 < result[1]:
