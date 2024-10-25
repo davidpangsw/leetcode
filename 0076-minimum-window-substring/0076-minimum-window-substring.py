@@ -6,30 +6,32 @@ class Solution:
             if c not in counts:
                 counts[c] = 0
             counts[c] += 1
+        matchedCount = 0
         # print("t: ", t, counts)
 
-        matchedCount = 0
-
+        # stores matched index (thus the char) in s
+        # dequeue when the front item is not necessary
         queue = collections.deque()
 
-        result = None # (startInc, length)
+        result = None # (startIndex, length)
         for i, c in enumerate(s):
             # print(i, c, counts)
             if c not in counts:
                 continue
 
             # enqueue
-            queue.append((i, c))
+            queue.append(i)
+            c = s[i]
 
             # if JUST complete the count, inc the matchedCount
             counts[c] -= 1
             if counts[c] == 0:
                 matchedCount += 1
             
-            
             # dequeue as much as possible
             while queue:
-                _, frontC = queue[0]
+                front = queue[0]
+                frontC = s[front]
                 if counts[frontC] < 0:
                     # dequeue
                     counts[frontC] += 1
@@ -39,8 +41,8 @@ class Solution:
 
             # if valid window, try to update the result
             if matchedCount == len(counts):
-                frontI, _ = queue[0]
-                backI, _ = queue[-1]
+                frontI = queue[0]
+                backI = queue[-1]
                 if result is None or backI - frontI + 1 < result[1]:
                     result = frontI, backI + 1 - frontI
                     # print("updated", frontI, backI)
