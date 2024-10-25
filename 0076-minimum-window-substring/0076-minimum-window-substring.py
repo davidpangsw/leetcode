@@ -21,11 +21,10 @@ class Solution:
 
             # enqueue
             queue.append(i)
-            c = s[i]
 
             # if JUST complete the count, inc the matchedCount
-            counts[c] -= 1
-            if counts[c] == 0:
+            counts[s[i]] -= 1
+            if counts[s[i]] == 0:
                 matchedCount += 1
             
             # dequeue as much as possible
