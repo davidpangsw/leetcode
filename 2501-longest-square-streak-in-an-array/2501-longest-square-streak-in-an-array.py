@@ -330,16 +330,17 @@ class Solution:
         # return
 
         nums.sort()
-        
         streaks = {}
-        result = 0
+
+
         for x in nums:
-            square = x**2
-            if x in streaks:
-                s = streaks[x]
-                streaks[square] = s+1
+            if x in TABLE and TABLE[x] in streaks:
+                streaks[x] = streaks[TABLE[x]]+1
             else:
-                streaks[square] = 1
-            # result = max(result, streaks[square])
+                streaks[x] = 1
+            # print(streaks, sqrt, streaks[sqrt])
+        if not streaks:
+            return -1
+
         result = max(streaks.values())
         return result if result > 1 else -1
