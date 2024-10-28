@@ -1,5 +1,16 @@
+# TABLE = 
 class Solution:
     def longestSquareStreak(self, nums: List[int]) -> int:
+        print("{")
+        for i in range(1000):
+            sq = i**2
+            if sq > 100000:
+                break
+            print(f"{sq}: {i},")
+        print("}")
+        # {sq : i for i in range(1000) if }
+        return
+
         nums.sort()
         
         streaks = {}
