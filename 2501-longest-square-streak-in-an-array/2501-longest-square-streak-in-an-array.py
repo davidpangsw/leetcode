@@ -340,5 +340,6 @@ class Solution:
                 streaks[square] = s+1
             else:
                 streaks[square] = 1
-            result = max(result, streaks[square])
+            # result = max(result, streaks[square])
+        result = max(streaks.values())
         return result if result > 1 else -1
