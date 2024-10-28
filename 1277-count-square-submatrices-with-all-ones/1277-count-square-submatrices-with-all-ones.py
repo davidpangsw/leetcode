@@ -7,13 +7,7 @@ class Solution:
             for j in range(1, n):
                 if matrix[i][j] == 0:
                     continue
-                l = matrix[i-1][j-1]
-                l_up = matrix[i-1][j]
-                l = min(l, l_up)
-                l_left = matrix[i][j-1]
-                l = min(l, l_left)
-                l += 1
-                matrix[i][j] = l
+                matrix[i][j] = min(matrix[i-1][j-1], matrix[i-1][j], matrix[i][j-1]) + 1
                 
         total = 0
         for i in range(0, m):
