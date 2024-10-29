@@ -14,10 +14,11 @@ class Solution:
                     if grid[newRow][col+1] > x:
                         newQueue.add(newRow)
                         # print(newRow)
-            if newQueue:
-                col += 1
             queue = newQueue
+            col += 1
         
+        if not queue:
+            col -= 1 # step back if the loop exits because of empty queue
         return col
 
                 
