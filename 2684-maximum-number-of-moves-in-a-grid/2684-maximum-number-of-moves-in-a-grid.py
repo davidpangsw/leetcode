@@ -1,7 +1,7 @@
-
+# BFS and DFS are both O(mn)
+# DFS: potentially early return if we meet the end
 class Solution:
-
-    # DFS potentially early quit if we meet the end
+    # DFS 
     def maxMoves(self, grid: List[List[int]]) -> int:
         m = len(grid)
         n = len(grid[0])
@@ -25,7 +25,7 @@ class Solution:
 
 
 
-    # BFS, O(mn)
+    # BFS
     def maxMovesBFS(self, grid: List[List[int]]) -> int:
         # BFS with layers, use a set as the queue
         m = len(grid)
