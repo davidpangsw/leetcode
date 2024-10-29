@@ -5,7 +5,7 @@ class Solution:
         n = len(grid[0])
 
         col = 0
-        queue = set([0]) # set of row index
+        queue = set(range(m)) # set of row index
         while queue and col < n - 1:
             newQueue = set()
             for row in queue:
@@ -14,9 +14,9 @@ class Solution:
                     if grid[newRow][col+1] > x:
                         newQueue.add(newRow)
                         # print(newRow)
-            queue = newQueue
-            if queue:
+            if newQueue:
                 col += 1
+            queue = newQueue
         
         return col
 
