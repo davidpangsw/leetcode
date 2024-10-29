@@ -2,7 +2,7 @@
 # DFS: potentially early return if we meet the end
 class Solution:
     # DFS 
-    def maxMovesDFS(self, grid: List[List[int]]) -> int:
+    def maxMoves(self, grid: List[List[int]]) -> int:
         m = len(grid)
         n = len(grid[0])
 
@@ -26,7 +26,7 @@ class Solution:
 
 
     # BFS
-    def maxMoves(self, grid: List[List[int]]) -> int:
+    def maxMovesBFS(self, grid: List[List[int]]) -> int:
         # BFS with layers, use a set as the queue
         m = len(grid)
         n = len(grid[0])
