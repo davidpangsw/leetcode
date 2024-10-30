@@ -26,10 +26,7 @@ class Solution:
 
         result = 3
         for i in range(1, len(nums)-1):
-        # for i, (u, d) in enumerate(zip(up, down)):
             # take nums[i] as mountain, and form uphill and downhill
-            # if i == 0 or i == len(nums) - 1:
-                # continue
             u, d = up[i], down[i]
             # print(f"mountain: nums[{i}] = {nums[i]}")
             # print(f"uphill={u}")
