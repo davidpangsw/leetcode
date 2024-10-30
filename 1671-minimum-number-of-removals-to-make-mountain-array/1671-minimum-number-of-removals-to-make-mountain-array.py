@@ -7,7 +7,7 @@ class Solution:
         n = len(nums)
         result = n
 
-        # search the place to insert
+        # search the place to insert x
         def binarySearch(arr, x):
             left = 0
             right = len(arr)
@@ -21,20 +21,22 @@ class Solution:
                     return mid
             return left
 
-        # result[i] = the length of the longest increasing subsequence formed from arr[:i]
+        # result[i] = the length of the longest increasing subsequence formed by arr[:i]
         # nums[i] must be included in that subsequence
         def uphill(arr):
             # subseq stored the longest subsequence (sorted)
             # the elements inside may not be true, but the length would be true
             subseq = []
-            result = [] 
+            result = []
             for i, x in enumerate(arr):
                 insertAt = binarySearch(subseq, x)
                 if insertAt == len(subseq):
                     subseq.append(x)
                 else:
                     subseq[insertAt] = x
-                result.append(insertAt + 1) # as arr[i] must be included, the result would be the insertAt+1
+                
+                # as arr[i] must be included, the result would be the insertAt+1
+                result.append(insertAt + 1)
             return result
         
         up = uphill(nums)
