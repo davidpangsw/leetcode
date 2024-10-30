@@ -48,10 +48,7 @@ class Solution:
             # print(f"downhill={d}")
 
             # if the subsequence is only nums[i], skip
-            if u == 1:
-                continue
-            if d == 1:
-                continue
-            result = max(result, u + d - 1)
+            if u > 1 and d > 1:
+                result = max(result, u + d - 1)
         
         return len(nums) - result
