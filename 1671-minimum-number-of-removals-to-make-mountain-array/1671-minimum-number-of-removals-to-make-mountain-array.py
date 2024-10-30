@@ -1,3 +1,4 @@
+# TODO: using bisection, can form uphill / downhill faster?
 class Solution:
 
     def minimumMountainRemovals(self, nums: List[int]) -> int:
