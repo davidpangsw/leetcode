@@ -27,7 +27,7 @@ class Solution:
             subseq = []
             result = []
             for x in arr:
-                insertAt = binarySearch(subseq, x)
+                insertAt = bisect_left(subseq, x)
                 if insertAt == len(subseq):
                     subseq.append(x)
                 else:
