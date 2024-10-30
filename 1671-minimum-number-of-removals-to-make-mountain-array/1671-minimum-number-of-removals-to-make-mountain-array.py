@@ -37,12 +37,25 @@ class Solution:
             return result
         
         result = 3
+        subseq_uphill = [nums[0]]
         for i in range(1, n-1):
             # take nums[i] as mountain
             # form uphill and downhill
             # print(f"mountain: nums[{i}] = {nums[i]}")
 
-            u = uphill(nums[:i+1])
+            x = nums[i]
+            insertAt = binarySearch(subseq_uphill, x)
+            if insertAt == len(subseq_uphill):
+                subseq_uphill.append(x)
+            else:
+                subseq_uphill[insertAt] = x
+            u = insertAt + 1
+
+
+
+
+
+            # u = uphill(nums[:i+1])
             # print(f"uphill={u}")
             if u == 1:
                 continue
