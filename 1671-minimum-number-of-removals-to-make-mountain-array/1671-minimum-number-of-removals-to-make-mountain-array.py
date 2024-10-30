@@ -21,13 +21,10 @@ class Solution:
                 result[i] = insertAt
             return result
         
-        # up = uphill(nums)
-        # down = reversed(list(uphill(reversed(nums))))
         up = uphill(nums)
         down = uphill(nums[::-1])[::-1]
 
-
-        result = 0
+        result = 3
         for i in range(1, n-1):
             # take nums[i] as mountain, and form uphill and downhill
             u, d = up[i], down[i]
