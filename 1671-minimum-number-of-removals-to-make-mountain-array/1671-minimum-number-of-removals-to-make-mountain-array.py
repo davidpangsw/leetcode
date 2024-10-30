@@ -1,11 +1,8 @@
-# TODO: how to make it faster?
 # itertools.islice(iterable, start, stop[, step])
 # from itertools import islice
 class Solution:
 
     def minimumMountainRemovals(self, nums: List[int]) -> int:
-        n = len(nums)
-        result = n
 
         # search the place to insert x
         def binarySearch(arr, x):
@@ -23,12 +20,13 @@ class Solution:
 
         # result[i] = the length of the longest increasing subsequence formed by arr[:i]
         # nums[i] must be included in that subsequence
+        # accept iterator
         def uphill(arr):
             # subseq stored the longest subsequence (sorted)
             # the elements inside may not be true, but the length would be true
             subseq = []
             result = []
-            for i, x in enumerate(arr):
+            for x in arr:
                 insertAt = binarySearch(subseq, x)
                 if insertAt == len(subseq):
                     subseq.append(x)
@@ -43,20 +41,19 @@ class Solution:
         down = reversed(uphill(reversed(nums)))
 
         result = 3
-        for i, (u, d) in enumerate(zip(up, down)):
-            if i == 0 or i == n-1:
+        for i, (u, d) in enumerate(zip(up, down), 1):
+            # take nums[i] as mountain, and form uphill and downhill
+            if i == len(nums) - 1:
                 continue
-            # take nums[i] as mountain
-            # form uphill and downhill
             # print(f"mountain: nums[{i}] = {nums[i]}")
-            # u, d = up[i], down[i]
             # print(f"uphill={u}")
             # print(f"downhill={d}")
+
+            # if the subsequence is only nums[i], skip
             if u == 1:
                 continue
             if d == 1:
                 continue
-
             result = max(result, u + d - 1)
         
-        return n - result
+        return len(nums) - result
