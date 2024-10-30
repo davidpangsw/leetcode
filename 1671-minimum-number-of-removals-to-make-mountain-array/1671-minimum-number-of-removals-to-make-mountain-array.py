@@ -3,25 +3,9 @@
 class Solution:
 
     def minimumMountainRemovals(self, nums: List[int]) -> int:
-        # # search the place to insert x
-        # # use bisect_left
-        # def binarySearch(arr, x):
-        #     left = 0
-        #     right = len(arr)
-        #     while left < right:
-        #         mid = (left + right) // 2
-        #         if arr[mid] < x:
-        #             left = mid + 1
-        #         elif arr[mid] > x:
-        #             right = mid
-        #         else:
-        #             return mid
-        #     return left
-
-        # result[i] = the length of the longest increasing subsequence formed by arr[:i]
-        # nums[i] must be included in that subsequence
-        # accept iterator
-        def uphill(arr):
+        # result[i] = the length of the longest increasing subsequence formed by nums[:i-1],
+        #             strictly bounded above by nums[i]
+        def uphill(arr: Iterator[int]) -> Iterator[int]:
             # subseq stored the longest subsequence (sorted)
             # the elements inside may not be true, but the length would be true
             subseq = []
@@ -32,8 +16,7 @@ class Solution:
                 else:
                     subseq[insertAt] = x
                 
-                # as arr[i] must be included, the result would be the insertAt+1
-                yield insertAt + 1
+                yield insertAt
         
         up = uphill(nums)
         down = reversed(list(uphill(reversed(nums))))
@@ -47,8 +30,7 @@ class Solution:
             # print(f"uphill={u}")
             # print(f"downhill={d}")
 
-            # if the subsequence is only nums[i], skip
-            if u > 1 and d > 1:
-                result = max(result, u + d - 1)
+            if u > 0 and d > 0:
+                result = max(result, u + d + 1)
         
         return len(nums) - result
