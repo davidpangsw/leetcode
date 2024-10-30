@@ -3,25 +3,28 @@
 class Solution:
 
     def minimumMountainRemovals(self, nums: List[int]) -> int:
+        n = len(nums)
         # result[i] = the length of the longest increasing subsequence formed by nums[:i-1],
         #             strictly bounded above by nums[i]
-        def uphill(arr: Iterator[int]) -> Iterator[int]:
+        def uphill(arr):
             # subseq stored the longest subsequence (sorted)
             # the elements inside may not be true, but the length would be true
             subseq = []
-            for x in arr:
+            result = [None] * n
+            for i, x in enumerate(arr):
                 insertAt = bisect_left(subseq, x)
                 if insertAt == len(subseq):
                     subseq.append(x)
                 else:
                     subseq[insertAt] = x
                 
-                yield insertAt
+                result[i] = insertAt
+            return result
         
         # up = uphill(nums)
         # down = reversed(list(uphill(reversed(nums))))
-        up = list(uphill(nums))
-        down = list(uphill(reversed(nums)))[::-1]
+        up = uphill(nums)
+        down = uphill(reversed(nums))[::-1]
 
 
         result = 3
