@@ -38,15 +38,16 @@ class Solution:
             return result
         
         up = uphill(nums)
-        down = uphill(reversed(nums))
-        down.reverse()
+        down = reversed(uphill(reversed(nums)))
 
         result = 3
-        for i in range(1, n-1):
+        for i, (u, d) in enumerate(zip(up, down)):
+            if i == 0 or i == n-1:
+                continue
             # take nums[i] as mountain
             # form uphill and downhill
             # print(f"mountain: nums[{i}] = {nums[i]}")
-            u, d = up[i], down[i]
+            # u, d = up[i], down[i]
             # print(f"uphill={u}")
             # print(f"downhill={d}")
             if u == 1:
