@@ -21,46 +21,36 @@ class Solution:
                     return mid
             return left
 
-        # return the length of the longest increasing subsequence formed
+        # result[i] = the length of the longest increasing subsequence formed from arr[:i]
+        # nums[i] must be included in that subsequence
         def uphill(arr):
             # subseq stored the longest subsequence (sorted)
             # the elements inside may not be true, but the length would be true
             subseq = []
-            result = None
+            result = [] 
             for i, x in enumerate(arr):
                 insertAt = binarySearch(subseq, x)
                 if insertAt == len(subseq):
                     subseq.append(x)
                 else:
                     subseq[insertAt] = x
-                result = insertAt + 1 # as last item must be included, the result would be the insertAt+1 of the last item
+                result.append(insertAt + 1) # as arr[i] must be included, the result would be the insertAt+1
             return result
         
+        up = uphill(nums)
+        down = uphill(reversed(nums))
+        down.reverse()
+
         result = 3
-        subseq_uphill = [nums[0]]
         for i in range(1, n-1):
             # take nums[i] as mountain
             # form uphill and downhill
             # print(f"mountain: nums[{i}] = {nums[i]}")
-
-            x = nums[i]
-            insertAt = binarySearch(subseq_uphill, x)
-            if insertAt == len(subseq_uphill):
-                subseq_uphill.append(x)
-            else:
-                subseq_uphill[insertAt] = x
-            u = insertAt + 1
-
-
-
-
-
-            # u = uphill(nums[:i+1])
+            u, d = up[i], down[i]
             # print(f"uphill={u}")
+            # print(f"downhill={d}")
             if u == 1:
                 continue
-            d = uphill(reversed(nums[i:]))
-            # print(f"downhill={d}")
             if d == 1:
                 continue
 
