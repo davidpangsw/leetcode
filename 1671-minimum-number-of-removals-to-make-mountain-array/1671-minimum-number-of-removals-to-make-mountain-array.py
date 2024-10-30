@@ -18,14 +18,19 @@ class Solution:
                 
                 yield insertAt
         
-        up = uphill(nums)
-        down = reversed(list(uphill(reversed(nums))))
+        # up = uphill(nums)
+        # down = reversed(list(uphill(reversed(nums))))
+        up = list(uphill(nums))
+        down = list(uphill(reversed(nums)))[::-1]
+
 
         result = 3
-        for i, (u, d) in enumerate(zip(up, down)):
+        for i in range(1, len(nums)-1):
+        # for i, (u, d) in enumerate(zip(up, down)):
             # take nums[i] as mountain, and form uphill and downhill
-            if i == 0 or i == len(nums) - 1:
-                continue
+            # if i == 0 or i == len(nums) - 1:
+                # continue
+            u, d = up[i], down[i]
             # print(f"mountain: nums[{i}] = {nums[i]}")
             # print(f"uphill={u}")
             # print(f"downhill={d}")
