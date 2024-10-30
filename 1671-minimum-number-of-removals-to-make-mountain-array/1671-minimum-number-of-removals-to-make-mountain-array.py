@@ -24,7 +24,7 @@ class Solution:
         # up = uphill(nums)
         # down = reversed(list(uphill(reversed(nums))))
         up = uphill(nums)
-        down = uphill(reversed(nums))[::-1]
+        down = uphill(nums[::-1])[::-1]
 
 
         result = 3
