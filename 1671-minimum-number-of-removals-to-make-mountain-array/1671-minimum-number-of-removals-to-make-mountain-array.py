@@ -25,8 +25,6 @@ class Solution:
                 # if remove, just do another iteration
             
             return result
-
-
         
         # return the minimum number to form downhill in [i, n-1]
         # where nums[i] will be kept
@@ -61,8 +59,11 @@ class Solution:
             d = downhill(i)
             if d >= n-1-i:
                 continue
+
             # take nums[i] as mountain
             # form uphill and downhill
             result = min(result, uphill(i) + downhill(i))
+            if result == 0:
+                return result
         
         return result
