@@ -1,68 +1,56 @@
-# TODO: using bisection, can form uphill / downhill faster?
+# TODO: how to make it faster?
+# itertools.islice(iterable, start, stop[, step])
+# from itertools import islice
 class Solution:
 
     def minimumMountainRemovals(self, nums: List[int]) -> int:
         n = len(nums)
         result = n
 
-        # return the minimum number to form uphill in [0, i]
-        # where nums[i] will be kept
-        @cache
-        def uphill(i):
-            if i == 0:
-                return 0
-            x = nums[i]
+        # search the place to insert
+        def binarySearch(arr, x):
+            left = 0
+            right = len(arr)
+            while left < right:
+                mid = (left + right) // 2
+                if arr[mid] < x:
+                    left = mid + 1
+                elif arr[mid] > x:
+                    right = mid
+                else:
+                    return mid
+            return left
 
-            result = i
-            for j in range(i-1, -1, -1):
-                # assume j+1, ..., i-1 are all removed
-                if nums[j] >= x: # must be removed
-                    continue
-                
-                # can remove or not
-                # if not remove, form uphill in [0, j], and add the #removals 
-                result = min(result, i - (j+1) + uphill(j))
-
-                # if remove, just do another iteration
-            
+        # return the length of the longest increasing subsequence formed
+        def uphill(arr):
+            # subseq stored the longest subsequence (sorted)
+            # the elements inside may not be true, but the length would be true
+            subseq = []
+            result = None
+            for i, x in enumerate(arr):
+                insertAt = binarySearch(subseq, x)
+                if insertAt == len(subseq):
+                    subseq.append(x)
+                else:
+                    subseq[insertAt] = x
+                result = insertAt + 1 # as last item must be included, the result would be the insertAt+1 of the last item
             return result
         
-        # return the minimum number to form downhill in [i, n-1]
-        # where nums[i] will be kept
-        # similar as uphill()
-        @cache
-        def downhill(i):
-            if i == n-1:
-                return 0
-            x = nums[i]
-
-            result = n - 1 - i
-            for j in range(i+1, n):
-                # assume i+1, i+2..., j-1 are all removed
-                if nums[j] >= x: # must be removed
-                    continue
-                
-                # can remove or not
-                # if not remove, form uphill in [j, n-1], and add the #removals 
-                result = min(result, j - (i+1) + downhill(j))
-
-                # if remove, just do another iteration
-            
-            return result
-
-        result = n-3
+        result = 3
         for i in range(1, n-1):
-            # print(f"mountain: nums[{i}] = {nums[i]}")
-            # print(f"uphill={uphill(i)}, downhill={downhill(i)}")
-            u = uphill(i)
-            if u >= i:
-                continue
-            d = downhill(i)
-            if d >= n-1-i:
-                continue
-
             # take nums[i] as mountain
             # form uphill and downhill
-            result = min(result, uphill(i) + downhill(i))
+            # print(f"mountain: nums[{i}] = {nums[i]}")
+
+            u = uphill(nums[:i+1])
+            # print(f"uphill={u}")
+            if u == 1:
+                continue
+            d = uphill(reversed(nums[i:]))
+            # print(f"downhill={d}")
+            if d == 1:
+                continue
+
+            result = max(result, u + d - 1)
         
-        return result
+        return n - result
