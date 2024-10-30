@@ -3,20 +3,20 @@
 class Solution:
 
     def minimumMountainRemovals(self, nums: List[int]) -> int:
-
-        # search the place to insert x
-        def binarySearch(arr, x):
-            left = 0
-            right = len(arr)
-            while left < right:
-                mid = (left + right) // 2
-                if arr[mid] < x:
-                    left = mid + 1
-                elif arr[mid] > x:
-                    right = mid
-                else:
-                    return mid
-            return left
+        # # search the place to insert x
+        # # use bisect_left
+        # def binarySearch(arr, x):
+        #     left = 0
+        #     right = len(arr)
+        #     while left < right:
+        #         mid = (left + right) // 2
+        #         if arr[mid] < x:
+        #             left = mid + 1
+        #         elif arr[mid] > x:
+        #             right = mid
+        #         else:
+        #             return mid
+        #     return left
 
         # result[i] = the length of the longest increasing subsequence formed by arr[:i]
         # nums[i] must be included in that subsequence
