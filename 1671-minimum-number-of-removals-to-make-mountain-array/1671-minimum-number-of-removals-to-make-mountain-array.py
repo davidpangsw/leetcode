@@ -27,8 +27,8 @@ class Solution:
         down = uphill(nums[::-1])[::-1]
 
 
-        result = 3
-        for i in range(1, len(nums)-1):
+        result = 0
+        for i in range(1, n-1):
             # take nums[i] as mountain, and form uphill and downhill
             u, d = up[i], down[i]
             # print(f"mountain: nums[{i}] = {nums[i]}")
@@ -38,4 +38,4 @@ class Solution:
             if u > 0 and d > 0:
                 result = max(result, u + d + 1)
         
-        return len(nums) - result
+        return n - result
