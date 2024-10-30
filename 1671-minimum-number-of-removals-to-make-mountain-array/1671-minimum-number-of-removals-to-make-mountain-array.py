@@ -25,7 +25,6 @@ class Solution:
             # subseq stored the longest subsequence (sorted)
             # the elements inside may not be true, but the length would be true
             subseq = []
-            result = []
             for x in arr:
                 insertAt = bisect_left(subseq, x)
                 if insertAt == len(subseq):
@@ -34,11 +33,10 @@ class Solution:
                     subseq[insertAt] = x
                 
                 # as arr[i] must be included, the result would be the insertAt+1
-                result.append(insertAt + 1)
-            return result
+                yield insertAt + 1
         
         up = uphill(nums)
-        down = reversed(uphill(reversed(nums)))
+        down = reversed(list(uphill(reversed(nums))))
 
         result = 3
         for i, (u, d) in enumerate(zip(up, down)):
