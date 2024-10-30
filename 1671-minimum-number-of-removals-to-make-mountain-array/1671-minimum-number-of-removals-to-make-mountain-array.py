@@ -41,9 +41,9 @@ class Solution:
         down = reversed(uphill(reversed(nums)))
 
         result = 3
-        for i, (u, d) in enumerate(zip(up, down), 1):
+        for i, (u, d) in enumerate(zip(up, down)):
             # take nums[i] as mountain, and form uphill and downhill
-            if i == len(nums) - 1:
+            if i == 0 or i == len(nums) - 1:
                 continue
             # print(f"mountain: nums[{i}] = {nums[i]}")
             # print(f"uphill={u}")
