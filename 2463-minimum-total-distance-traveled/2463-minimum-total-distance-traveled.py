@@ -1,55 +1,32 @@
-RESULT_MAX = 2 * (10**9) * 100
 class Solution:
-    def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
-        # sort the robots
+    def minimumTotalDistance(self, robot, factory):
+        # Sort robots and factories by position
         robot.sort()
+        factory.sort(key=lambda x: x[0])
 
-        # clear factories and sort
-        factory = [(fpos, flimit) for fpos, flimit in factory if flimit > 0]
-        factory.sort()
-        
-        # mem[I][J] stores the minimum total distance for robot[0], ...robot[I] and factory[0], ... factory[J]
-        # mem[I][J] only depends on mem[:I][J-1]
-        mem = [[RESULT_MAX for _ in factory] for _ in robot]
+        # Flatten factory positions according to their capacities
+        factory_positions = []
+        for f in factory:
+            for _ in range(f[1]):
+                factory_positions.append(f[0])
 
-        for J in range(len(factory)):
-            for I in range(len(robot)):
-                # print(f"To calculate mem[{I}][{J}]: ")
-                # print(robot[:I+1])
-                # print(factory[:J+1])
-                result = RESULT_MAX
-                total = 0
+        robot_count, factory_count = len(robot), len(factory_positions)
+        dp = [[0] * (factory_count + 1) for _ in range(robot_count + 1)]
 
-                # i, j = current robot, current factory
-                j = J
-                fpos, flimit = factory[j]
-                for i in range(I, -1, -1):
-                    if j < 0: # there are robots left, but no more factories
-                        result = RESULT_MAX
-                        total = RESULT_MAX
-                        break
-                    rpos = robot[i]
+        # Initialize base cases
+        for i in range(robot_count):
+            dp[i][factory_count] = 1e12  # No factories left
 
-                    # conditions that robot[i] must take factory[j] :
-                    # j == 0; or
-                    # closer to the factory[j] than to factory[j-1] (outer or inner)
-                    # mustTake = (j == 0) or (abs(fpos - rpos) <= abs(factory[j-1][0] - rpos))
-                    if j > 0 and abs(fpos - rpos) > abs(factory[j-1][0] - rpos):
-                        # If not a must-take, try the option that doesn't take factory[j]
-                        # in this case, factory[j] must be removed (impossible to get better result if we keep it)
-                        result = min(result, total + mem[i][j-1])
-                        # print(f"robot[{i}] try not to take factory[{j}], {total + mem[i][j-1]}")
+        # Fill DP table bottom-up
+        for i in range(robot_count - 1, -1, -1):
+            for j in range(factory_count - 1, -1, -1):
+                # Option 1: Assign current robot to current factory
+                assign = abs(robot[i] - factory_positions[j]) + dp[i + 1][j + 1]
 
-                    # robot[i] takes the factory[j]
-                    total += abs(fpos - rpos)
-                    flimit -= 1
-                    # print(f"robot[{i}] takes factory[{j}], total={total}")
+                # Option 2: Skip current factory for the current robot
+                skip = dp[i][j + 1]
 
-                    # if factory has no rooms
-                    if flimit == 0:
-                        j -= 1
-                        fpos, flimit = factory[j] # j can be -1, simply ignore it (python allows it)
-                        
-                mem[I][J] = min(result, total)
-                # print(f"mem[{I}][{J}] = {mem[I][J]}")
-        return mem[-1][-1]
+                dp[i][j] = min(assign, skip)  # Take the minimum option
+
+        # Minimum distance starting from first robot and factory
+        return dp[0][0]  
