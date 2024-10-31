@@ -1,4 +1,4 @@
-RESULT_MAX = 2 * (10**9) * 100
+RESULT_MAX = float('inf')
 class Solution:
     def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
         # sort the robots
