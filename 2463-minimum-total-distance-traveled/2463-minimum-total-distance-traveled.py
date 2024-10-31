@@ -35,7 +35,7 @@ class Solution:
                     # if factory[j] has no rooms
                     if flimit == 0:
                         if j == 0: # there are robots left, but no more factories
-                            mem[I][J] = RESULT_MAX
+                            # mem[I][J] = RESULT_MAX
                             total = RESULT_MAX
                             break
                         j -= 1
