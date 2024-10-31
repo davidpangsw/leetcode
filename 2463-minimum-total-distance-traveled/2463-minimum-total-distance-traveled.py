@@ -5,7 +5,7 @@ class Solution:
         robot.sort()
 
         # clear factories and sort
-        factory = [(fpos, flimit) for fpos, flimit in factory if flimit > 0]
+        # factory = [(fpos, flimit) for fpos, flimit in factory if flimit > 0]
         factory.sort()
         
         # mem[I][J] stores the minimum total distance for robot[0], ...robot[I] and factory[0], ... factory[J]
@@ -33,7 +33,7 @@ class Solution:
                 fpos, flimit = factory[j]
                 for i in range(I, -1, -1):
                     # if factory has no rooms
-                    if flimit == 0:
+                    while flimit == 0:
                         j -= 1
                         fpos, flimit = factory[j] # j can be -1, simply ignore it (python allows it)
 
