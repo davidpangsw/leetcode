@@ -1,4 +1,4 @@
-INT_MAX = 2 * 10**9 * 100
+RESULT_MAX = 2 * (10**9) * 100
 class Solution:
     def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
         # figure out some basic rules first
@@ -19,18 +19,18 @@ class Solution:
         @cache
         def dp(x, y):
             """
-            Give the result starting from robot[x] and factory[y],
+            Return the result starting from robot[x] and factory[y],
             where factory[y] is empty
             ignoring the previous items
             
             x < R
             factory[y] must be new (not filled by any robot)
             """
-            result = INT_MAX
+            result = RESULT_MAX
 
             total = 0
             if y >= len(factory):
-                return INT_MAX
+                return RESULT_MAX
 
             fpos, flimit = factory[y]
             for i in range(x, len(robot)):
@@ -51,13 +51,11 @@ class Solution:
 
                 # if factory is full, use next one
                 if flimit == 0:
-                    print(i, y)
                     y += 1
                     if y < len(factory):
                         fpos, flimit = factory[y]
                     elif i + 1 < len(robot):
-                        return INT_MAX
-            result = min(result, total)
-            return result
+                        return RESULT_MAX
+            return min(result, total)
         
         return dp(0, 0)
