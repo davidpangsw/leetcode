@@ -11,9 +11,16 @@ class Solution:
         # mem[I][J] stores the minimum total distance for robot[0], ...robot[I] and factory[0], ... factory[J]
         mem = [[RESULT_MAX for _ in factory] for _ in robot]
 
+        # if there is only factory[0]
+        total = 0
+        for I in range(factory[0][1]):
+            # we have robot[0], ...robot[I]
+            total += abs(robot[I] - factory[0][0])
+            mem[I][0] = total
+
         # calculate mem[I][J] one-by-one
         # after analyzing the code, mem[I][J] actually only depends on mem[:I][J-1]
-        for J in range(len(factory)):
+        for J in range(1, len(factory)):
             for I in range(len(robot)):
                 # print(f"To calculate mem[{I}][{J}]: ")
                 # print(robot[:I+1])
