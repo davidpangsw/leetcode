@@ -14,8 +14,6 @@ class Solution:
 
         for J in range(len(factory)):
             for I in range(len(robot)):
-                # To calculate mem[I][J]
-                # Suppose we have only robot[0], ...robot[I] and factory[0], ... factory[J]
                 # print(f"To calculate mem[{I}][{J}]: ")
                 # print(robot[:I+1])
                 # print(factory[:J+1])
@@ -31,9 +29,9 @@ class Solution:
                     # conditions that robot[i] must take factory[j] :
                     # j == 0; or
                     # closer to the factory[j] than to factory[j-1] (outer or inner)
-                    mustTake = (j == 0) or (abs(fpos - rpos) <= abs(factory[j-1][0] - rpos))
-                    if not mustTake:
-                        # may try the optional alternative that it doesn't take the factory
+                    # mustTake = (j == 0) or (abs(fpos - rpos) <= abs(factory[j-1][0] - rpos))
+                    if not ((j == 0) or (abs(fpos - rpos) <= abs(factory[j-1][0] - rpos))):
+                        # If not a must-take, try the option that doesn't take factory[j]
                         # in this case, factory[j] must be removed (impossible to get better result if we keep it)
                         result = min(result, total + mem[i][j-1])
                         # print(f"robot[{i}] try not to take factory[{j}], {total + mem[i][j-1]}")
