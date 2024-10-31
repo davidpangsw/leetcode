@@ -24,6 +24,10 @@ class Solution:
                 j = J
                 fpos, flimit = factory[j]
                 for i in range(I, -1, -1):
+                    if j < 0: # there are robots left, but no more factories
+                        result = RESULT_MAX
+                        total = RESULT_MAX
+                        break
                     rpos = robot[i]
 
                     # conditions that robot[i] must take factory[j] :
@@ -43,14 +47,8 @@ class Solution:
 
                     # if factory has no rooms
                     if flimit == 0:
-                        if j == 0 and i > 0: # there are robots left, but no more factories
-                            result = RESULT_MAX
-                            total = RESULT_MAX
-                            break
-
-                        if j > 0:
-                            j -= 1
-                            fpos, flimit = factory[j]
+                        j -= 1
+                        fpos, flimit = factory[j] # j can be -1, simply ignore it
                         
                 mem[I][J] = min(result, total)
                 # print(f"mem[{I}][{J}] = {mem[I][J]}")
