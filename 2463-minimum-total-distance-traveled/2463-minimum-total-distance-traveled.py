@@ -13,8 +13,8 @@ class Solution:
         factory = [(fpos, flimit) for fpos, flimit in factory if flimit > 0]
         factory.sort()
         
-        print(robot)
-        print(factory)
+        # print(robot)
+        # print(factory)
 
         @cache
         def dp(x, y):
