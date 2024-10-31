@@ -30,16 +30,16 @@ class Solution:
 
                 # i, j = current robot, current factory
                 j = J
-                fpos, flimit = factory[j]
+                flimit = factory[j][1]
                 for i in range(I, -1, -1):
-                    # if factory has no rooms
+                    # if factory[j] has no rooms
                     if flimit == 0:
                         if j == 0: # there are robots left, but no more factories
                             mem[I][J] = RESULT_MAX
                             total = RESULT_MAX
                             break
                         j -= 1
-                        fpos, flimit = factory[j]
+                        flimit = factory[j][1]
                     rpos = robot[i]
 
                     # there is a "must-take" condition but we can skip it (not much difference)
@@ -47,7 +47,7 @@ class Solution:
                         mem[I][J] = min(mem[I][J], total + mem[i][j-1])
                     
                     # robot[i] takes the factory[j]
-                    total += abs(fpos - rpos)
+                    total += abs(factory[j][0] - rpos)
                     flimit -= 1
                     # print(f"robot[{i}] takes factory[{j}], total={total}")
                         
