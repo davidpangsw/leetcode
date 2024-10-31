@@ -48,7 +48,7 @@ class Solution:
                     # if factory has no rooms
                     if flimit == 0:
                         j -= 1
-                        fpos, flimit = factory[j] # j can be -1, simply ignore it
+                        fpos, flimit = factory[j] # j can be -1, simply ignore it (python allows it)
                         
                 mem[I][J] = min(result, total)
                 # print(f"mem[{I}][{J}] = {mem[I][J]}")
