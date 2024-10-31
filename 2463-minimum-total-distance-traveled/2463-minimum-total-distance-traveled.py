@@ -46,12 +46,13 @@ class Solution:
                     # if factory has no rooms
                     if flimit == 0:
                         j -= 1
-                        if j >= 0:
-                            fpos, flimit = factory[j]
-                        elif i > 0: # there are robots left, but no more factories
+                        if j < 0 and i > 0: # there are robots left, but no more factories
                             result = RESULT_MAX
                             total = RESULT_MAX
                             break
+                        if j >= 0:
+                            fpos, flimit = factory[j]
+                        
                 mem[I][J] = min(result, total)
                 # print(f"mem[{I}][{J}] = {mem[I][J]}")
         return mem[-1][-1]
