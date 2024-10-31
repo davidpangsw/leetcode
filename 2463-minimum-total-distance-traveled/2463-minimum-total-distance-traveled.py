@@ -35,19 +35,18 @@ class Solution:
                     # if factory[j] has no rooms
                     if flimit == 0:
                         if j == 0: # there are robots left, but no more factories
-                            # mem[I][J] = RESULT_MAX
+                            # mem[I][J] = RESULT_MAX # we don't need this line (won't be set if cannot do recursion)
                             total = RESULT_MAX
                             break
                         j -= 1
                         flimit = factory[j][1]
-                    rpos = robot[i]
 
                     # there is a "must-take" condition but we can skip it (not much difference)
                     if j > 0:
                         mem[I][J] = min(mem[I][J], total + mem[i][j-1])
                     
                     # robot[i] takes the factory[j]
-                    total += abs(factory[j][0] - rpos)
+                    total += abs(factory[j][0] - robot[i])
                     flimit -= 1
                     # print(f"robot[{i}] takes factory[{j}], total={total}")
                         
