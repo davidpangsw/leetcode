@@ -34,13 +34,12 @@ class Solution:
                 for i in range(I, -1, -1):
                     # if factory has no rooms
                     if flimit == 0:
+                        if j == 0: # there are robots left, but no more factories
+                            mem[I][J] = RESULT_MAX
+                            total = RESULT_MAX
+                            break
                         j -= 1
-                        fpos, flimit = factory[j] # j can be -1, simply ignore it (python allows it)
-
-                    if j < 0: # there are robots left, but no more factories
-                        mem[I][J] = RESULT_MAX
-                        total = RESULT_MAX
-                        break
+                        fpos, flimit = factory[j]
                     rpos = robot[i]
 
                     # there is a "must-take" condition but we can skip it (not much difference)
