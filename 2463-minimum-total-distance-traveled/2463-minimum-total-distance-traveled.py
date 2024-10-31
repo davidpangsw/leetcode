@@ -1,11 +1,8 @@
 RESULT_MAX = float('inf')
 class Solution:
     def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
-        # sort the robots
+        # sort the robots and factory
         robot.sort()
-
-        # clear factories and sort
-        # factory = [(fpos, flimit) for fpos, flimit in factory if flimit > 0]
         factory.sort()
         
         # mem[I][J] stores the minimum total distance for robot[0], ...robot[I] and factory[0], ... factory[J]
@@ -30,12 +27,12 @@ class Solution:
 
                 # i, j = current robot, current factory
                 j = J
-                fpos, flimit = factory[j]
+                flimit = factory[j][1]
                 for i in range(I, -1, -1):
                     # if factory has no rooms
                     while flimit == 0:
                         j -= 1
-                        fpos, flimit = factory[j] # j can be -1, simply ignore it (python allows it)
+                        flimit = factory[j][1] # j can be -1, simply ignore it (python allows it)
 
                     if j < 0: # there are robots left, but no more factories
                         mem[I][J] = RESULT_MAX
@@ -48,7 +45,7 @@ class Solution:
                         mem[I][J] = min(mem[I][J], total + mem[i][j-1])
                     
                     # robot[i] takes the factory[j]
-                    total += abs(fpos - rpos)
+                    total += abs(factory[j][0] - rpos)
                     flimit -= 1
                     # print(f"robot[{i}] takes factory[{j}], total={total}")
                         
