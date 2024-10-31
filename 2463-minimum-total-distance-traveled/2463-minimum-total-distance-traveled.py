@@ -9,9 +9,10 @@ class Solution:
         factory.sort()
         
         # mem[I][J] stores the minimum total distance for robot[0], ...robot[I] and factory[0], ... factory[J]
-        # mem[I][J] only depends on mem[:I][J-1]
         mem = [[RESULT_MAX for _ in factory] for _ in robot]
 
+        # calculate mem[I][J] one-by-one
+        # after analyzing the code, mem[I][J] actually only depends on mem[:I][J-1]
         for J in range(len(factory)):
             for I in range(len(robot)):
                 # print(f"To calculate mem[{I}][{J}]: ")
@@ -30,16 +31,19 @@ class Solution:
                         break
                     rpos = robot[i]
 
-                    # conditions that robot[i] must take factory[j] :
-                    # j == 0; or
-                    # closer to the factory[j] than to factory[j-1] (outer or inner)
-                    # mustTake = (j == 0) or (abs(fpos - rpos) <= abs(factory[j-1][0] - rpos))
-                    if j > 0 and abs(fpos - rpos) > abs(factory[j-1][0] - rpos):
-                        # If not a must-take, try the option that doesn't take factory[j]
-                        # in this case, factory[j] must be removed (impossible to get better result if we keep it)
-                        result = min(result, total + mem[i][j-1])
-                        # print(f"robot[{i}] try not to take factory[{j}], {total + mem[i][j-1]}")
+                    # # conditions that robot[i] must take factory[j] :
+                    # # j == 0; or
+                    # # closer to the factory[j] than to factory[j-1] (outer or inner)
+                    # # mustTake = (j == 0) or (abs(fpos - rpos) <= abs(factory[j-1][0] - rpos))
+                    # if j > 0 and abs(fpos - rpos) > abs(factory[j-1][0] - rpos):
+                    #     # If not a must-take, try the option that doesn't take factory[j]
+                    #     # in this case, factory[j] must be removed (impossible to get better result if we keep it)
+                    #     result = min(result, total + mem[i][j-1])
+                    #     # print(f"robot[{i}] try not to take factory[{j}], {total + mem[i][j-1]}")
 
+                    if j > 0:
+                        result = min(result, total + mem[i][j-1])
+                    
                     # robot[i] takes the factory[j]
                     total += abs(fpos - rpos)
                     flimit -= 1
