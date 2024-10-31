@@ -18,7 +18,7 @@ class Solution:
                 # print(f"To calculate mem[{I}][{J}]: ")
                 # print(robot[:I+1])
                 # print(factory[:J+1])
-                result = RESULT_MAX
+                mem[I][J] = RESULT_MAX
                 total = 0
 
                 # i, j = current robot, current factory
@@ -26,23 +26,14 @@ class Solution:
                 fpos, flimit = factory[j]
                 for i in range(I, -1, -1):
                     if j < 0: # there are robots left, but no more factories
-                        result = RESULT_MAX
+                        mem[I][J] = RESULT_MAX
                         total = RESULT_MAX
                         break
                     rpos = robot[i]
 
-                    # # conditions that robot[i] must take factory[j] :
-                    # # j == 0; or
-                    # # closer to the factory[j] than to factory[j-1] (outer or inner)
-                    # # mustTake = (j == 0) or (abs(fpos - rpos) <= abs(factory[j-1][0] - rpos))
-                    # if j > 0 and abs(fpos - rpos) > abs(factory[j-1][0] - rpos):
-                    #     # If not a must-take, try the option that doesn't take factory[j]
-                    #     # in this case, factory[j] must be removed (impossible to get better result if we keep it)
-                    #     result = min(result, total + mem[i][j-1])
-                    #     # print(f"robot[{i}] try not to take factory[{j}], {total + mem[i][j-1]}")
-
+                    # there is a "must-take" condition but we can skip it (not much difference)
                     if j > 0:
-                        result = min(result, total + mem[i][j-1])
+                        mem[I][J] = min(mem[I][J], total + mem[i][j-1])
                     
                     # robot[i] takes the factory[j]
                     total += abs(fpos - rpos)
@@ -54,6 +45,6 @@ class Solution:
                         j -= 1
                         fpos, flimit = factory[j] # j can be -1, simply ignore it (python allows it)
                         
-                mem[I][J] = min(result, total)
+                mem[I][J] = min(mem[I][J], total)
                 # print(f"mem[{I}][{J}] = {mem[I][J]}")
         return mem[-1][-1]
