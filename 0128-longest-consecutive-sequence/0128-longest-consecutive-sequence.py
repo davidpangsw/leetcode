@@ -5,8 +5,7 @@ class Solution:
         for x in nums:
             a = elemToLength.get(x-1, 0)
             b = elemToLength.get(x+1, 0)
-            newLength = a + 1 + b
-            elemToLength[x-a] = newLength
-            elemToLength[x+b] = newLength
+            elemToLength[x-a] = a + 1 + b
+            elemToLength[x+b] = a + 1 + b
         return max(elemToLength.values()) if nums else 0
         # return result
