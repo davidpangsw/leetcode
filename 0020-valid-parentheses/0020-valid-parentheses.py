@@ -1,3 +1,8 @@
+mapping = {
+    ')': '(',
+    ']': '[',
+    '}': '{',
+}
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
@@ -6,7 +11,7 @@ class Solution:
                 stack.append(x)
                 continue
             
-            if stack and stack[-1]+x in ['()', '[]', '{}']:
+            if stack and stack[-1] == mapping[x]:
                 stack.pop()
             else:
                 return False
