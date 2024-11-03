@@ -1,8 +1,8 @@
 class Solution:
-    def evalRPN(self, tokens: List[str]) -> int:
-        stack = tokens
+    def evalRPN(self, stack: List[str]) -> int:
+        # stack = tokens
         size = 0
-        for x in tokens:
+        for x in stack:
             match x:
                 case '+':
                     stack[size-2] += stack[size-1]
