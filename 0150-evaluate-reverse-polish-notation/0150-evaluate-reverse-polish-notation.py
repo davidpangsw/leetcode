@@ -1,25 +1,22 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
+        stack = [None] * 10000
+        size = 0
         for x in tokens:
             match x:
                 case '+':
-                    b = stack.pop()
-                    a = stack.pop()
-                    stack.append(a + b)
+                    stack[size-2] += stack[size-1]
+                    size -= 1
                 case '-':
-                    b = stack.pop()
-                    a = stack.pop()
-                    stack.append(a - b)
+                    stack[size-2] -= stack[size-1]
+                    size -= 1
                 case '*':
-                    b = stack.pop()
-                    a = stack.pop()
-                    stack.append(a * b)
+                    stack[size-2] *= stack[size-1]
+                    size -= 1
                 case '/':
-                    b = stack.pop()
-                    a = stack.pop()
-                    stack.append(int(a / b))
+                    stack[size-2] = int(stack[size-2] / stack[size-1])
+                    size -= 1
                 case _:
-                    stack.append(int(x))
-            # print(stack[-1])
+                    stack[size] = int(x)
+                    size += 1
         return stack[0]
