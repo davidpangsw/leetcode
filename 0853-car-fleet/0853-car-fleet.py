@@ -16,6 +16,7 @@ class Solution:
             if speed > leadSpeed and (leadPos - pos) / (speed - leadSpeed) <= timeRemain:
                 pass # join the fleet, ignore
             else:
+                # cannot join the fleet, become the lead of another fleet
                 leadPos, leadSpeed = pos, speed
                 timeRemain = (target - leadPos) / (leadSpeed)
                 result += 1
