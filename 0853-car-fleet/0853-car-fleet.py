@@ -8,7 +8,11 @@ class Solution:
         result = 0
         # leadPos, leadSpeed = float("inf"), float("inf")
         leadPos, leadSpeed = target, 1
-        for pos, speed in reversed(sorted(zip(position, speed))):
+        for pos, speed in sorted(zip(position, speed), reversed=True):
+            # timeToCatchUp = (leadPos - pos) / (speed - leadSpeed) 
+            # timeRemain = (target - leadPos) / (leadSpeed)
+            # canCatchUp = (leadPos - pos) / (speed - leadSpeed) <= (target - leadPos) / (leadSpeed)
+
             if speed > leadSpeed and (leadPos - pos) / (speed - leadSpeed) <= (target - leadPos) / (leadSpeed):
                 pass # join the fleet, ignore
             else:
