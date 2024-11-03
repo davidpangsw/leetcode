@@ -1,6 +1,6 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack = [None] * 10000
+        stack = [None] * len(tokens)
         size = 0
         for x in tokens:
             match x:
