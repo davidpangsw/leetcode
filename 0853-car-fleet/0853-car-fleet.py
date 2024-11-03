@@ -7,9 +7,8 @@
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
         result = 0
-        # leadPos, leadSpeed = float("inf"), float("inf")
-        leadPos, leadSpeed = target, float("inf")
-        timeRemain = (target - leadPos) / (leadSpeed)
+        leadPos, leadSpeed = float("inf"), float("inf")
+        timeRemain = 0
         for pos, speed in sorted(zip(position, speed), reverse=True):
             # timeToCatchUp = (leadPos - pos) / (speed - leadSpeed) 
             # timeRemain = (target - leadPos) / (leadSpeed)
