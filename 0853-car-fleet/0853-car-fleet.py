@@ -8,7 +8,7 @@ class Solution:
         result = 0
         # leadPos, leadSpeed = float("inf"), float("inf")
         leadPos, leadSpeed = target, 1
-        for pos, speed in sorted(zip(position, speed), reversed=True):
+        for pos, speed in sorted(zip(position, speed), reverse=True):
             # timeToCatchUp = (leadPos - pos) / (speed - leadSpeed) 
             # timeRemain = (target - leadPos) / (leadSpeed)
             # canCatchUp = (leadPos - pos) / (speed - leadSpeed) <= (target - leadPos) / (leadSpeed)
