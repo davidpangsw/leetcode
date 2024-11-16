@@ -11,7 +11,6 @@ class Solution:
         right = n
         while right > 0 and (right == n or arr[right-1] <= arr[right]) and arr[right-1] >= arr[left-1]:
             right -= 1
-        # print("left, right=", left, right)
 
         result = right - left
         while right > 0 and (right == n or arr[right-1] <= arr[right]):
@@ -19,8 +18,6 @@ class Solution:
             while left > 0 and arr[left-1] > arr[right]:
                 left -= 1
             result = min(result, right - left)
-
-
         return result
         
         
