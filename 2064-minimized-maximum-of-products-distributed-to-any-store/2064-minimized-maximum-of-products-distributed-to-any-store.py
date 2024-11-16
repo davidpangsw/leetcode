@@ -3,7 +3,6 @@ class Solution:
         low, high = 1, max(quantities)
 
         while low < high:
-            # print(low,high)
             mid = (low + high) // 2
 
             # math.ceil(q / mid)
