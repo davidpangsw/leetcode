@@ -1,5 +1,24 @@
 class Solution:
     def minimizedMaximum(self, n: int, quantities: List[int]) -> int:
+        low, high = 1, max(quantities)
+
+        while low < high:
+            # print(low,high)
+            mid = (low + high) // 2
+
+            stores = 0
+            for q in quantities:
+                stores += (q + (mid-1)) // mid # math.ceil(q / mid)
+
+            if n >= stores: # enough stores, reduce the amount
+                high = mid
+            else: # not enough stores
+                low = mid + 1
+        
+        return high
+
+
+    def minimizedMaximum2(self, n: int, quantities: List[int]) -> int:
         # maximize the minimum number of stores assigned to each product
 
         # stores[i] = number of stores assigned to the i-th product type
