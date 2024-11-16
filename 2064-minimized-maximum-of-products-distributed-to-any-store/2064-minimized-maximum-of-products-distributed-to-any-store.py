@@ -6,13 +6,11 @@ class Solution:
             # print(low,high)
             mid = (low + high) // 2
 
-            stores = 0
-            for q in quantities:
-                stores += (q + (mid-1)) // mid # math.ceil(q / mid)
-
-            if n >= stores: # enough stores, reduce the amount
+            # math.ceil(q / mid)
+            if n >= sum([(q + (mid-1)) // mid for q in quantities]):
+                # enough stores, reduce the amount
                 high = mid
-            else: # not enough stores
+            else:
                 low = mid + 1
         
         return high
