@@ -5,7 +5,6 @@ class Solution:
         # stores[i] = number of stores assigned to the i-th product type
         # at least one for each type
         m = len(quantities)
-        stores = [1] * m
 
         # (-avg, q, s)
         # average items per store, total quantities, stores assigned
