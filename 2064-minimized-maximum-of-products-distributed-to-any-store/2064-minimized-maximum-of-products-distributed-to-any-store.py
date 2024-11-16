@@ -17,8 +17,9 @@ class Solution:
             # assign the store to that type
             nAvg, q, s = heapq.heappop(data)
             s += 1
-            avg = (q + (s-1)) // s # avg = q // s, but add one more if remainder not zero
+            avg = q / s
+            # avg = (q + (s-1)) // s # avg = q // s, but add one more if remainder not zero
             heapq.heappush(data, (-avg, q, s))
 
         nAvg, q, s = heapq.heappop(data)
-        return -nAvg
+        return (q + (s-1)) // s
