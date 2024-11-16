@@ -17,9 +17,10 @@ class Solution:
             # assign the store to that type
             nAvg, q, s = heapq.heappop(data)
             s += 1
-            avg = q / s
-            # avg = (q + (s-1)) // s # avg = q // s, but add one more if remainder not zero
+            # avg = q // s, but add one more if remainder not zero
+            # or use math.ceil(q / s)
+            avg = (q + (s-1)) // s
             heapq.heappush(data, (-avg, q, s))
 
         nAvg, q, s = heapq.heappop(data)
-        return math.ceil(q / s)
+        return -nAvg
