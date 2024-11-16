@@ -22,4 +22,4 @@ class Solution:
             heapq.heappush(data, (-avg, q, s))
 
         nAvg, q, s = heapq.heappop(data)
-        return (q + (s-1)) // s
+        return math.ceil(q / s)
