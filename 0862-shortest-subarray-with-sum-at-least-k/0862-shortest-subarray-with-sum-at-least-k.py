@@ -31,16 +31,16 @@ class Solution:
                 result = min(result, i-lefts[lefts_from])
                 lefts_from += 1
             
-            # larger prefix sum => cannot be the left of the subarray
-            while lefts_to - lefts_from > 0 and sums[lefts[lefts_to-1]] >= sums[i]:
-                lefts_to -= 1
-            lefts[lefts_to] = i
-            lefts_to += 1
+            # # larger prefix sum => cannot be the left of the subarray
+            # while lefts_to - lefts_from > 0 and sums[lefts[lefts_to-1]] >= sums[i]:
+            #     lefts_to -= 1
+            # lefts[lefts_to] = i
+            # lefts_to += 1
 
-            # # use binary search as lefts is monotone
-            # ind = bisect_left(lefts, sums[i], lo=lefts_from, hi=lefts_to)
-            # lefts[ind] = i
-            # lefts_to = ind + 1
+            # use binary search as lefts is monotone
+            ind = bisect_left(lefts, sums[i], lo=lefts_from, hi=lefts_to, key=lambda left: sums[left])
+            lefts[ind] = i
+            lefts_to = ind + 1
         if result == n+1:
             return -1
         return result
