@@ -25,22 +25,25 @@ class Solution:
         lefts[lefts_to] = [right, curSum]
         lefts_to += 1
         curSum += nums[right]
-        for right in range(1, n+1):
-            if nums[right-1] > 0:
+        for right in range(0, n):
+            if nums[right+1] > 0:
                 found = False
                 while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
                     found = True
                     lefts_from += 1
                 if found:
-                    result = min(result, right-lefts[lefts_from-1][0])
+                    result = min(result, right+1-lefts[lefts_from-1][0])
             else:
                 # larger prefix sum => cannot be the left of the subarray
                 while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
                     lefts_to -= 1
-            lefts[lefts_to] = [right, curSum]
+            lefts[lefts_to] = [right+1, curSum]
             lefts_to += 1
-            if right < n:
-                curSum += nums[right]
+            if right+1 < n:
+                curSum += nums[right+1]
+
+
+
         if result == n+1:
             return -1
         return result
