@@ -24,8 +24,8 @@ class Solution:
         right = 0
         lefts[lefts_to] = [right, curSum]
         lefts_to += 1
-        curSum += nums[right]
         for right in range(n):
+            curSum += nums[right]
             if nums[right] > 0:
                 found = False
                 while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
@@ -39,8 +39,6 @@ class Solution:
                     lefts_to -= 1
             lefts[lefts_to] = [right+1, curSum]
             lefts_to += 1
-            if right+1 < n:
-                curSum += nums[right+1]
 
 
 
