@@ -26,21 +26,21 @@ class Solution:
             curSum += nums[right]
             if nums[right] > 0:
                 # can change to binary search
-                # found = False
-                # # while lefts_from < lefts_to and lefts[lefts_from][1] <= curSum - k:
-                # while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
-                #     found = True
-                #     lefts_from += 1
-                # if found:
-                #     result = min(result, right+1-lefts[lefts_from-1][0])
-                
-                ind = bisect_right(lefts, curSum-k, lo=lefts_from, hi=lefts_to, key=lambda item: item[1])
-                # print(lefts[lefts_from:lefts_to], curSum-k, ind)
-                if ind > 0:
-                    lefts_from = ind
+                found = False
+                while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
+                    found = True
+                    lefts_from += 1
+                if found:
                     result = min(result, right+1-lefts[lefts_from-1][0])
+                
+                # ind = bisect_right(lefts, curSum-k, lo=lefts_from, hi=lefts_to, key=lambda item: item[1])
+                # # print(lefts[lefts_from:lefts_to], curSum-k, ind)
+                # if ind > 0:
+                #     lefts_from = ind
+                #     result = min(result, right+1-lefts[lefts_from-1][0])
             else:
                 # larger prefix sum => cannot be the left of the subarray
+                # can change to binary search
                 while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
                     lefts_to -= 1
             
