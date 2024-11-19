@@ -26,7 +26,8 @@ class Solution:
             while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
                 found = True
                 lefts_from += 1
-            if found: result = min(result, right-lefts[lefts_from-1][0])
+            if found:
+                result = min(result, right-lefts[lefts_from-1][0])
 
             # larger prefix sum => cannot be the left of the subarray
             while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
