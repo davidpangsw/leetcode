@@ -15,7 +15,7 @@ class Solution:
         # "left" of the sliding windows
         # use an array to implement the deque
         # q = deque()
-        lefts[0] = (0, 0) # [ind=0, curSum=0]
+        lefts[0] = (-1, 0) # [ind=0, curSum=0]
         lefts_low, lefts_high = 0, 0
 
         curSum = 0
@@ -29,7 +29,7 @@ class Solution:
                     temp = lefts[lefts_low][0]
                     lefts_low += 1
                 if temp is not None:
-                    result = min(result, right+1-temp)
+                    result = min(result, right-temp)
                 
                 # ind = bisect_right(lefts, curSum-k, lo=lefts_from, hi=lefts_to, key=lambda item: item[1])
                 # # print(lefts[lefts_from:lefts_to], curSum-k, ind)
@@ -43,6 +43,6 @@ class Solution:
             
             # lefts.append([right+1, curSum])
             lefts_high += 1
-            lefts[lefts_high] = (right+1, curSum)
+            lefts[lefts_high] = (right, curSum)
 
         return result if result < inf else -1
