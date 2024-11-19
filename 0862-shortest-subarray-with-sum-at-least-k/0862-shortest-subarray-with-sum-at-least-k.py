@@ -17,17 +17,19 @@ class Solution:
         # use an array to implement the deque
         # q = deque()
         lefts = [None] * (n+1)
+        lefts[0] = [0, 0] # [ind=0, curSum=0]
         lefts_from, lefts_to = 0, 0
 
         curSum = 0
         result = n+1
         right = 0
-        lefts[lefts_to] = [right, curSum]
         lefts_to += 1
         for right in range(n):
             curSum += nums[right]
             if nums[right] > 0:
                 found = False
+
+                # can change to binary search
                 while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
                     found = True
                     lefts_from += 1
@@ -37,6 +39,8 @@ class Solution:
                 # larger prefix sum => cannot be the left of the subarray
                 while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
                     lefts_to -= 1
+            
+            # lefts.append([right+1, curSum])
             lefts[lefts_to] = [right+1, curSum]
             lefts_to += 1
 
