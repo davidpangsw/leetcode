@@ -12,8 +12,6 @@ Idea:
 lefts = [None] * 100001
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-
         # "left" of the sliding windows
         # use an array to implement the deque
         # q = deque()
@@ -21,8 +19,8 @@ class Solution:
         lefts_low, lefts_high = 0, 0
 
         curSum = 0
-        result = inf
-        for right in range(n):
+        result = inf # math.inf
+        for right in range(len(nums)):
             curSum += nums[right]
             if nums[right] > 0:
                 # can change to binary search
