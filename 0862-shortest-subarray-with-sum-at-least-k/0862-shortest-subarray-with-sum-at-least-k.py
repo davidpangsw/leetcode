@@ -16,8 +16,8 @@ Idea:
 lefts = [None] * 100001
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
-        # lefts.push((-1, 0))
-        lefts[0] = (-1, 0) # [ind=-1, curSum=0]
+        # lefts.append((-1, 0))
+        lefts[0] = (-1, 0) # (ind=-1, accSum=0)
         lefts_low, lefts_high = 0, 0
 
         curSum = 0
@@ -38,7 +38,7 @@ class Solution:
                 while lefts_low <= lefts_high and lefts[lefts_high][1] >= curSum:
                     lefts_high -= 1
             
-            # lefts.append([right+1, curSum])
+            # lefts.append((right, curSum]))
             lefts_high += 1
             lefts[lefts_high] = (right, curSum)
 
