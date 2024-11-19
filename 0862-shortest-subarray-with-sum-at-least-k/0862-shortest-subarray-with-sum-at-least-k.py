@@ -21,7 +21,11 @@ class Solution:
 
         curSum = 0
         result = n+1
-        for right in range(0, n+1):
+        right = 0
+        lefts[lefts_to] = [right, curSum]
+        lefts_to += 1
+        curSum += nums[right]
+        for right in range(1, n+1):
             if right > 0 or nums[right-1] > 0:
                 found = False
                 while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
