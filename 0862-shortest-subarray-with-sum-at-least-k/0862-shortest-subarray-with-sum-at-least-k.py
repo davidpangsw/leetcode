@@ -47,8 +47,4 @@ class Solution:
             lefts[lefts_to] = (right+1, curSum)
             lefts_to += 1
 
-
-
-        if result == n+1:
-            return -1
-        return result
+        return result if result < n+1 else -1
