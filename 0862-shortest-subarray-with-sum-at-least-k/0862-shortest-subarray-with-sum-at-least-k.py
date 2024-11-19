@@ -20,7 +20,7 @@ class Solution:
 
         curSum = 0
         result = inf # math.inf
-        for right in range(len(nums)):
+        for right, x in enumerate(nums):
             curSum += nums[right]
             if nums[right] > 0:
                 # can change to binary search
