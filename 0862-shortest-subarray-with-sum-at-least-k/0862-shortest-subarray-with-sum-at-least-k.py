@@ -21,20 +21,20 @@ class Solution:
 
         curSum = 0
         result = n+1
-        for i in range(n+1):
+        for right in range(n+1):
             found = False
             while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
                 found = True
                 lefts_from += 1
-            if found: result = min(result, i-lefts[lefts_from-1][0])
-            
+            if found: result = min(result, right-lefts[lefts_from-1][0])
+
             # larger prefix sum => cannot be the left of the subarray
-            while lefts_to - lefts_from > 0 and lefts[lefts_to-1][1] >= curSum:
+            while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
                 lefts_to -= 1
-            lefts[lefts_to] = [i, curSum]
+            lefts[lefts_to] = [right, curSum]
             lefts_to += 1
-            if i < n:
-                curSum += nums[i]
+            if right < n:
+                curSum += nums[right]
         if result == n+1:
             return -1
         return result
