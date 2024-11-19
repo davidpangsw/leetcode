@@ -23,7 +23,7 @@ class Solution:
         result = n+1
         for i in range(n+1):
             found = False
-            while lefts_to - lefts_from > 0 and curSum - lefts[lefts_from][1] >= k:
+            while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
                 found = True
                 lefts_from += 1
             if found: result = min(result, i-lefts[lefts_from-1][0])
