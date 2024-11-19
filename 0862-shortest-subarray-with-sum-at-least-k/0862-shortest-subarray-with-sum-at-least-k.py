@@ -18,7 +18,7 @@ class Solution:
         # q = deque()
         lefts = [None] * (n+1)
         lefts[0] = (0, 0) # [ind=0, curSum=0]
-        lefts_from, lefts_to = 0, 1
+        lefts_low, lefts_high = 0, 0
 
         curSum = 0
         result = n+1
@@ -27,11 +27,11 @@ class Solution:
             if nums[right] > 0:
                 # can change to binary search
                 found = False
-                while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
+                while lefts_low <= lefts_high and curSum - lefts[lefts_low][1] >= k:
                     found = True
-                    lefts_from += 1
+                    lefts_low += 1
                 if found:
-                    result = min(result, right+1-lefts[lefts_from-1][0])
+                    result = min(result, right+1-lefts[lefts_low-1][0])
                 
                 # ind = bisect_right(lefts, curSum-k, lo=lefts_from, hi=lefts_to, key=lambda item: item[1])
                 # # print(lefts[lefts_from:lefts_to], curSum-k, ind)
@@ -40,11 +40,11 @@ class Solution:
                 #     result = min(result, right+1-lefts[lefts_from-1][0])
             else:
                 # can change to binary search
-                while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
-                    lefts_to -= 1
+                while lefts_low <= lefts_high and lefts[lefts_high][1] >= curSum:
+                    lefts_high -= 1
             
             # lefts.append([right+1, curSum])
-            lefts[lefts_to] = (right+1, curSum)
-            lefts_to += 1
+            lefts_high += 1
+            lefts[lefts_high] = (right+1, curSum)
 
         return result if result < n+1 else -1
