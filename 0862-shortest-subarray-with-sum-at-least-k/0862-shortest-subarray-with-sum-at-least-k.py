@@ -17,7 +17,7 @@ class Solution:
         # use an array to implement the deque
         # q = deque()
         lefts = [None] * (n+1)
-        lefts[0] = [0, 0] # [ind=0, curSum=0]
+        lefts[0] = (0, 0) # [ind=0, curSum=0]
         lefts_from, lefts_to = 0, 1
 
         curSum = 0
@@ -39,13 +39,12 @@ class Solution:
                 #     lefts_from = ind
                 #     result = min(result, right+1-lefts[lefts_from-1][0])
             else:
-                # larger prefix sum => cannot be the left of the subarray
                 # can change to binary search
                 while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
                     lefts_to -= 1
             
             # lefts.append([right+1, curSum])
-            lefts[lefts_to] = [right+1, curSum]
+            lefts[lefts_to] = (right+1, curSum)
             lefts_to += 1
 
 
