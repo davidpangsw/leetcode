@@ -21,7 +21,7 @@ class Solution:
 
         curSum = 0
         result = n+1
-        for right in range(n+1):
+        for right in range(0, n+1):
             found = False
             while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
                 found = True
