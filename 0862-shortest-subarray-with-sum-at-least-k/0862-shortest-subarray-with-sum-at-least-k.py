@@ -14,11 +14,11 @@ Idea:
 # use an array to implement the deque
 # lefts = deque()
 lefts = [None] * 100001
-lefts_low, lefts_high = 0, 0
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
         # lefts.push((-1, 0))
         lefts[0] = (-1, 0) # [ind=-1, curSum=0]
+        lefts_low, lefts_high = 0, 0
 
         curSum = 0
         result = inf # math.inf
