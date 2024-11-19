@@ -16,7 +16,6 @@ Idea:
 lefts = [None] * 100001
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
-        # lefts.push((-1, 0))
         lefts[0] = (-1, 0) # [ind=-1, curSum=0]
         lefts_low, lefts_high = 0, 0
 
