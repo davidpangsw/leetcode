@@ -25,9 +25,7 @@ class Solution:
             if nums[right] > 0:
                 # can change to binary search
                 temp = None
-                found = False
                 while lefts_low <= lefts_high and curSum - lefts[lefts_low][1] >= k:
-                    found = True
                     temp = lefts[lefts_low]
                     lefts_low += 1
                 if temp:
