@@ -26,10 +26,10 @@ class Solution:
                 # can change to binary search
                 temp = None
                 while lefts_low <= lefts_high and curSum - lefts[lefts_low][1] >= k:
-                    temp = lefts[lefts_low]
+                    temp = lefts[lefts_low][0]
                     lefts_low += 1
-                if temp:
-                    result = min(result, right+1-lefts[lefts_low-1][0])
+                if temp is not None:
+                    result = min(result, right+1-temp)
                 
                 # ind = bisect_right(lefts, curSum-k, lo=lefts_from, hi=lefts_to, key=lambda item: item[1])
                 # # print(lefts[lefts_from:lefts_to], curSum-k, ind)
