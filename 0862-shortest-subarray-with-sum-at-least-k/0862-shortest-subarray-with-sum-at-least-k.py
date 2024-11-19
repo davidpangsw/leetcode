@@ -9,8 +9,7 @@ Idea:
 5. To do this, we use a deque to manage the possible "left"s
 """
 
-MAX = 100001
-lefts = [None] * MAX
+lefts = [None] * 100001
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
         n = len(nums)
@@ -22,7 +21,7 @@ class Solution:
         lefts_low, lefts_high = 0, 0
 
         curSum = 0
-        result = MAX
+        result = n+1
         for right in range(n):
             curSum += nums[right]
             if nums[right] > 0:
@@ -48,4 +47,4 @@ class Solution:
             lefts_high += 1
             lefts[lefts_high] = (right+1, curSum)
 
-        return result if result < MAX else -1
+        return result if result < n+1 else -1
