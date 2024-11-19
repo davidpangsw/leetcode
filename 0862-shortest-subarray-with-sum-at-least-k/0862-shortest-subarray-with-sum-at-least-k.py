@@ -9,6 +9,7 @@ Idea:
 5. To do this, we use a deque to manage the possible "left"s
 """
 
+lefts = [None] * 100001
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
         n = len(nums)
@@ -16,7 +17,6 @@ class Solution:
         # "left" of the sliding windows
         # use an array to implement the deque
         # q = deque()
-        lefts = [None] * (n+1)
         lefts[0] = (0, 0) # [ind=0, curSum=0]
         lefts_low, lefts_high = 0, 0
 
