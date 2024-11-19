@@ -13,29 +13,26 @@ class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
         n = len(nums)
 
-        # prefix sum
-        sums = [0] * (n + 1)
-        for i in range(n):
-            sums[i+1] = sums[i] + nums[i]
-        # print(sums) 
-
         # "left" of the sliding windows
         # use an array to implement the deque
         # q = deque()
-        lefts = list(range(n+1))
+        lefts = [None] * (n+1)
         lefts_from, lefts_to = 0, 0
 
+        curSum = 0
         result = n+1
         for i in range(n+1):
-            while lefts_to - lefts_from > 0 and sums[i] - sums[lefts[lefts_from]] >= k:
-                result = min(result, i-lefts[lefts_from])
+            while lefts_to - lefts_from > 0 and curSum - lefts[lefts_from][1] >= k:
+                result = min(result, i-lefts[lefts_from][0])
                 lefts_from += 1
             
             # larger prefix sum => cannot be the left of the subarray
-            while lefts_to - lefts_from > 0 and sums[lefts[lefts_to-1]] >= sums[i]:
+            while lefts_to - lefts_from > 0 and lefts[lefts_to-1][1] >= curSum:
                 lefts_to -= 1
-            lefts[lefts_to] = i
+            lefts[lefts_to] = [i, curSum]
             lefts_to += 1
+            if i < n:
+                curSum += nums[i]
 
             # # use binary search as lefts is monotone
             # ind = bisect_left(lefts, sums[i], lo=lefts_from, hi=lefts_to, key=lambda left: sums[left])
