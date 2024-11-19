@@ -26,17 +26,17 @@ class Solution:
         lefts_to += 1
         curSum += nums[right]
         for right in range(1, n+1):
-            if right > 0 or nums[right-1] > 0:
+            if nums[right-1] > 0:
                 found = False
                 while lefts_from < lefts_to and curSum - lefts[lefts_from][1] >= k:
                     found = True
                     lefts_from += 1
                 if found:
                     result = min(result, right-lefts[lefts_from-1][0])
-
-            # larger prefix sum => cannot be the left of the subarray
-            while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
-                lefts_to -= 1
+            else:
+                # larger prefix sum => cannot be the left of the subarray
+                while lefts_from < lefts_to and lefts[lefts_to-1][1] >= curSum:
+                    lefts_to -= 1
             lefts[lefts_to] = [right, curSum]
             lefts_to += 1
             if right < n:
