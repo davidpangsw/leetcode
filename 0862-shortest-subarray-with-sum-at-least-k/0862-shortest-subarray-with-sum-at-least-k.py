@@ -21,7 +21,7 @@ class Solution:
         lefts_low, lefts_high = 0, 0
 
         curSum = 0
-        result = n+1
+        result = inf
         for right in range(n):
             curSum += nums[right]
             if nums[right] > 0:
@@ -47,4 +47,4 @@ class Solution:
             lefts_high += 1
             lefts[lefts_high] = (right+1, curSum)
 
-        return result if result < n+1 else -1
+        return result if result < inf else -1
