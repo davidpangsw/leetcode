@@ -21,8 +21,8 @@ class Solution:
         curSum = 0
         result = inf # math.inf
         for right, x in enumerate(nums):
-            curSum += nums[right]
-            if nums[right] > 0:
+            curSum += x
+            if x > 0:
                 # can change to binary search
                 found = False
                 while lefts_low <= lefts_high and curSum - lefts[lefts_low][1] >= k:
