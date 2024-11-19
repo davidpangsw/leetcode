@@ -22,9 +22,11 @@ class Solution:
         curSum = 0
         result = n+1
         for i in range(n+1):
+            found = False
             while lefts_to - lefts_from > 0 and curSum - lefts[lefts_from][1] >= k:
-                result = min(result, i-lefts[lefts_from][0])
+                found = True
                 lefts_from += 1
+            if found: result = min(result, i-lefts[lefts_from-1][0])
             
             # larger prefix sum => cannot be the left of the subarray
             while lefts_to - lefts_from > 0 and lefts[lefts_to-1][1] >= curSum:
