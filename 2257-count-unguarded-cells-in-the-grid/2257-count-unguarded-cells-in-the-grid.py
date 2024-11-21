@@ -3,7 +3,7 @@ OBJECT = 2
 class Solution:
 
     def countUnguarded(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
-        table = [[0 for _ in range(n)] for _ in range(m)]
+        table = [[1 for _ in range(n)] for _ in range(m)]
         for x in chain(guards, walls):
             table[x[0]][x[1]] = OBJECT
         
@@ -31,4 +31,4 @@ class Solution:
 
         # print(table)
         # return sum([sum(row) for row in table]) - (len(guards) + len(walls)) * OBJECT
-        return sum([row.count(0) for row in table])
+        return sum([row.count(1) for row in table])
