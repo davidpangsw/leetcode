@@ -18,13 +18,12 @@ class Solution:
                 else:
                     if cur1 is GUARD:
                         table[i][j] = False
-                        
-            for j in range(n-1, -1, -1):
-                if table[i][j] in [GUARD, WALL]:
-                    cur2 = table[i][j]
+
+                if table[i][n-1-j] in [GUARD, WALL]:
+                    cur2 = table[i][n-1-j]
                 else:
                     if cur2 is GUARD:
-                        table[i][j] = False
+                        table[i][n-1-j] = False
 
         for j in range(n):
             curObj = None
