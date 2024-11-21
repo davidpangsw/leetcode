@@ -4,7 +4,7 @@ class Solution:
     def countUnguarded(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
         # bitwise to make it faster? still O(m, n)
         result = 0
-        # table = [[True for _ in range(n)] for _ in range(m)]
+        table = [[True for _ in range(n)] for _ in range(m)]
         for x in guards:
             table[x[0]][x[1]] = GUARD
         for x in walls:
