@@ -10,27 +10,24 @@ class Solution:
         for x in guards:
             row, col = x[0], x[1]
             for j in range(col-1, -1, -1):
-                i, j = row, j
-                if table[i][j] is OBJECT:
+                if table[row][j] is OBJECT:
                     break
-                table[i][j] = 0
+                table[row][j] = 0
 
             for j in range(col+1, n):
-                i, j = row, j
-                if table[i][j] is OBJECT:
+                if table[row][j] is OBJECT:
                     break
-                table[i][j] = 0
+                table[row][j] = 0
 
             for i in range(row-1, -1, -1):
-                i, j = i, col
-                if table[i][j] is OBJECT:
+                if table[i][col] is OBJECT:
                     break
-                table[i][j] = 0
+                table[i][col] = 0
 
             for i in range(row+1, m):
-                i, j = i, col
-                if table[i][j] is OBJECT:
+                if table[i][col] is OBJECT:
                     break
-                table[i][j] = 0
+                table[i][col] = 0
+                
         # print(table)
         return sum([sum(row) for row in table]) - len(guards) * OBJECT - len(walls) * OBJECT
