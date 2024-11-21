@@ -1,18 +1,15 @@
 class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
         counts = { "a": 0, "b": 0, "c": 0 }
-        right = None
         for i, c in enumerate(s):
             counts[c] += 1
-            if counts["a"] >= k and counts["b"] >= k and counts["c"] >= k:
-                right = i+1
-                break
-        if right is None:
+        if not (counts["a"] >= k and counts["b"] >= k and counts["c"] >= k):
             return -1
+        right = n
         
         result = right
-        # right -= 1
-        # counts[s[right]] -= 1
+        right -= 1
+        counts[s[right]] -= 1
 
         n = len(s)
         left = n
