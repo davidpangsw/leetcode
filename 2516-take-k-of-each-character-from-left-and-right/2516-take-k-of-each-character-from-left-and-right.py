@@ -2,7 +2,7 @@ class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
         n = len(s)
         counts = { "a": 0, "b": 0, "c": 0 }
-        for i, c in enumerate(s):
+        for c in s:
             counts[c] += 1
         if not (counts["a"] >= k and counts["b"] >= k and counts["c"] >= k):
             return -1
