@@ -1,5 +1,5 @@
 GUARD = 2
-WALL = 3
+WALL = 2
 
 class Solution:
 
