@@ -11,20 +11,19 @@ class Solution:
             table[x[0]][x[1]] = WALL
 
         for i in range(m):
-            curObj = None
+            cur1, cur2 = None, None
             for j in range(n):
                 if table[i][j] in [GUARD, WALL]:
-                    curObj = table[i][j]
+                    cur1 = table[i][j]
                 else:
-                    if curObj is GUARD:
+                    if cur1 is GUARD:
                         table[i][j] = False
-
-            curObj = None
+                        
             for j in range(n-1, -1, -1):
                 if table[i][j] in [GUARD, WALL]:
-                    curObj = table[i][j]
+                    cur2 = table[i][j]
                 else:
-                    if curObj is GUARD:
+                    if cur2 is GUARD:
                         table[i][j] = False
 
         for j in range(n):
