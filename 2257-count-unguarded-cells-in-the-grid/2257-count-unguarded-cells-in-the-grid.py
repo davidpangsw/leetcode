@@ -7,26 +7,36 @@ class Solution:
         
         # [print(row) for row in table]
 
+        result = m * n - len(guards) - len(walls)
         for x in guards:
             row, col = x[0], x[1]
             for j in range(col-1, -1, -1):
                 if table[row][j] is OBJECT:
                     break
+                if table[row][j] != 0:
+                    result -= 1
                 table[row][j] = 0
 
             for j in range(col+1, n):
                 if table[row][j] is OBJECT:
                     break
+                if table[row][j] != 0:
+                    result -= 1
                 table[row][j] = 0
 
             for i in range(row-1, -1, -1):
                 if table[i][col] is OBJECT:
                     break
+                if table[i][col] != 0:
+                    result -= 1
                 table[i][col] = 0
 
             for i in range(row+1, m):
                 if table[i][col] is OBJECT:
                     break
+                if table[i][col] != 0:
+                    result -= 1
                 table[i][col] = 0
 
-        return sum([row.count(1) for row in table])
+        return result
+        # return sum([row.count(1) for row in table])
