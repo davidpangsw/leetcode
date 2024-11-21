@@ -4,22 +4,17 @@ class Solution:
         counts = [0, 0, 0]
         for c in s:
             counts[ord(c) - ord("a")] += 1
-        if not (counts[0] >= k and counts[1] >= k and counts[2] >= k):
+        if counts[0] < k or counts[1] < k or counts[2] < k:
             return -1
-        right = n
-        
-        result = n
-        left = n
-        while right >= 0 and left > 0:
-            # print(right, left)
-            if counts[0] >= k and counts[1] >= k and counts[2] >= k:
-                result = min(result, right + (n - left))
-                right -= 1
-                counts[ord(s[right]) - ord("a")] -= 1 # in python, it is not an index error if right < 0 (doesn't matter here)
-            else:
-                left -= 1
+
+        left = 0
+        right = 0
+        for right in range(n):
+            # print(counts, s[right], left, right)
+            counts[ord(s[right]) - ord("a")] -= 1
+            if counts[0] < k or counts[1] < k or counts[2] < k:
+                # We don't need to include the character back (which is not useful as it increases the length)
+                # We just maintain the difference and see how far we can go
                 counts[ord(s[left]) - ord("a")] += 1
-        return result
-
-
-
+                left += 1
+        return left + (n-right)-1
