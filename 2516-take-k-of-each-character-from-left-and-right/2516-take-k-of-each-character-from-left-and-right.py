@@ -27,7 +27,7 @@ class Solution:
             if counts["a"] >= k and counts["b"] >= k and counts["c"] >= k:
                 result = min(result, right+n-left)
                 right -= 1
-                counts[s[right]] -= 1
+                counts[s[right]] -= 1 # in python, it is not an index error if right < 0 (doesn't matter here)
             else:
                 left -= 1
                 counts[s[left]] += 1
