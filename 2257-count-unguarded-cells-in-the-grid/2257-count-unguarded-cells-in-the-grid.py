@@ -1,5 +1,5 @@
-GUARD = "G"
-WALL = "W"
+GUARD = 11
+WALL = 12
 class Solution:
     def countUnguarded(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
         # bitwise to make it faster? still O(m, n)
