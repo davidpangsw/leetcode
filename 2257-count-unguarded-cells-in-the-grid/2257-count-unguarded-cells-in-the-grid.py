@@ -26,23 +26,24 @@ class Solution:
                         table[i][n-1-j] = False
 
         for j in range(n):
-            curObj = None
+            cur1, cur2 = None, None
             for i in range(m):
                 if table[i][j] in [GUARD, WALL]:
-                    curObj = table[i][j]
+                    cur1 = table[i][j]
                 else:
-                    if curObj is GUARD:
+                    if cur1 is GUARD:
                         table[i][j] = False
 
-            curObj = None
-            for i in range(m-1, -1, -1):
-                if table[i][j] in [GUARD, WALL]:
-                    curObj = table[i][j]
+                if table[m-1-i][j] in [GUARD, WALL]:
+                    cur2 = table[m-1-i][j]
                 else:
-                    if curObj is GUARD:
-                        table[i][j] = False
-
-                    if table[i][j] is True:
-                        result += 1
+                    if cur2 is GUARD:
+                        table[m-1-i][j] = False
+        
+        for i in range(m):
+            for j in range(n):
+                if table[i][j] is True:
+                    result += 1
+        
         # print(table)
         return result
