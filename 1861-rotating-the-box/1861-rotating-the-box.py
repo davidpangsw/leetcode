@@ -6,22 +6,16 @@ class Solution:
         m, n = len(box), len(box[0])
         result = [[EMPTY] * m for _ in range(n)]
         for i in range(m):
-            stones = 0
-            for j in range(n):
+            bottom = n-1
+            for j in range(n-1, -1, -1):
                 x = box[i][j]
-                if x == EMPTY:
-                    continue
-                elif x == STONE:
-                    stones += 1
+                if x == STONE:
+                    result[bottom][m-1-i] = STONE
+                    bottom -= 1
                 elif x == OBSTACLE:
                     result[j][m-1-i] = OBSTACLE
-                    for k in range(stones):
-                        result[j-1-k][m-1-i] = STONE
-                    stones = 0
+                    bottom = j - 1
                 else:
-                    # impossible
+                    # empty
                     pass
-
-            for k in range(stones):
-                result[n-1-k][m-1-i] = STONE
         return result
