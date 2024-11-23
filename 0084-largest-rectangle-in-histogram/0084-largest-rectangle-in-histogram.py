@@ -4,7 +4,7 @@ class Solution:
 
         stack = []
         for i, x in enumerate(heights):
-            myLeft = -1
+            # myLeft = -1
             while stack:
                 j, left = stack[-1]
                 if x < heights[j]:
@@ -19,5 +19,5 @@ class Solution:
                     break
             # print(i, myLeft)
             if not stack:
-                stack.append([i, myLeft])
+                stack.append([i, -1])
         return max(heights)
