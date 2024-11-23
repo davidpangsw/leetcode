@@ -8,15 +8,13 @@ class Solution:
         stack = []
         for i in range(n):
             while stack and heights[i] < heights[stack[-1]]:
-                j = stack.pop()
-                rights[j] = i
+                rights[stack.pop()] = i
             stack.append(i)
 
         stack = []
         for i in range(n-1, -1, -1):
             while stack and heights[i] < heights[stack[-1]]:
-                j = stack.pop()
-                lefts[j] = i
+                lefts[stack.pop()] = i
             stack.append(i)
 
         for i in range(n):
