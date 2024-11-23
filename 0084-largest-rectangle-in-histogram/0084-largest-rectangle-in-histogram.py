@@ -4,7 +4,6 @@ class Solution:
 
         stack = []
         for i, x in enumerate(heights):
-            # myLeft = -1
             while stack:
                 j, left = stack[-1]
                 if x < heights[j]:
@@ -14,8 +13,9 @@ class Solution:
                     stack.append([i, j])
                     break
                 else:
-                    stack.pop()
-                    stack.append([i, left])
+                    stack[-1][0] = i
+                    # stack.pop()
+                    # stack.append([i, left])
                     break
             # print(i, myLeft)
             if not stack:
