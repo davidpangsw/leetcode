@@ -3,7 +3,6 @@ class Solution:
         n = len(heights)
         lefts = [-1] * n
         rights = [n] * n
-        results = [0] * n
 
         stack = []
         for i in range(n):
@@ -16,6 +15,7 @@ class Solution:
             while stack and heights[i] < heights[stack[-1]]:
                 lefts[stack.pop()] = i
             stack.append(i)
+        # results = [0] * n
         # return max(results)
 
         result = 0
