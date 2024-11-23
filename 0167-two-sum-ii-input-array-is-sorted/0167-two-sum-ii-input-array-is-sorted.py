@@ -1,12 +1,12 @@
 class Solution:
+    # binary search on both pointers
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         left, right = 0, len(numbers)
         while True:
             # print(left, right)
 
             # fix left, find right
-            x = numbers[left]
-            y = target - x
+            y = target - numbers[left]
             newRight = bisect_left(numbers, y, lo=left+1, hi=right)
             if newRight < len(numbers) and numbers[newRight] == y:
                 return left+1, newRight+1
@@ -14,8 +14,7 @@ class Solution:
             # print(left, right)
 
             # fix right, find left
-            x = numbers[right]
-            y = target - x
+            y = target - numbers[right]
             newLeft = bisect_left(numbers, y, lo=left, hi=right-1)
             if numbers[newLeft] == y:
                 return newLeft+1, right+1
