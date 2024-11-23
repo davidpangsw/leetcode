@@ -20,6 +20,6 @@ class Solution:
             stack.append(i)
 
         for i in range(n):
-            results[i] = (rights[i] - lefts[i] - 1) * results[i]
+            results[i] = (rights[i] - lefts[i] - 1) * heights[i]
         
         return max(results)
