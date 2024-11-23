@@ -1,6 +1,6 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        s = map(lambda c: c.lower(), filter(lambda c: c.isalnum(), s))
+        s = list(map(lambda c: c.lower(), filter(lambda c: c.isalnum(), s)))
         return s == s[::-1]
         # left, right = 0, len(s) - 1
         # while left < right:
