@@ -4,16 +4,17 @@ class Solution:
         lefts = [-1] * n
         rights = [n] * n
 
-        st1, st2 = [], []
+        stack = []
         for i in range(n):
-            while st1 and heights[i] < heights[st1[-1]]:
-                rights[st1.pop()] = i
-            st1.append(i)
+            while stack and heights[i] < heights[stack[-1]]:
+                rights[stack.pop()] = i
+            stack.append(i)
 
-            j = n-1-i
-            while st2 and heights[j] < heights[st2[-1]]:
-                lefts[st2.pop()] = j
-            st2.append(j)
+        stack = []
+        for i in range(n-1, -1, -1):
+            while stack and heights[i] < heights[stack[-1]]:
+                lefts[stack.pop()] = i
+            stack.append(i)
         # results = [0] * n
         # return max(results)
 
