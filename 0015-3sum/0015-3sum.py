@@ -24,7 +24,7 @@ class Solution:
             # print(f"fix right={numbers[right-1]}, find {y} in {numbers[left:right-1]}")
             ind = bisect_right(numbers, y, lo=left, hi=right-1)
             # if exact value is found, yield the pair
-            if ind > left and numbers[ind-1] == y:
+            if ind > 0 and numbers[ind-1] == y:
                 yield ind - 1, right - 1
             left = ind
         # print("twoSum exits")
