@@ -10,9 +10,10 @@ class Solution:
                 j, left = stack[-1]
                 if x < heights[j]:
                     stack.pop()
-                    area = (i - left - 1) * heights[j]
-                    if area > result:
-                        result = area
+                    result = max(result, (i - left - 1) * heights[j])
+                    # area = (i - left - 1) * heights[j]
+                    # if area > result:
+                    #     result = area
                 elif x > heights[j]:
                     myLeft = j
                     break
