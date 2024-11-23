@@ -2,6 +2,7 @@ class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         heights.append(-1)
 
+        # stores (index, left boundary)
         stack = []
         for i, x in enumerate(heights):
             while stack:
@@ -14,8 +15,6 @@ class Solution:
                     break
                 else:
                     stack[-1][0] = i
-                    # stack.pop()
-                    # stack.append([i, left])
                     break
             # print(i, myLeft)
             if not stack:
