@@ -11,13 +11,11 @@ class Solution:
                     stack.pop()
                     heights[j] = (i - left - 1) * heights[j] # reuse heights to store the results
                 elif x > heights[j]:
-                    myLeft = j
-                    stack.append([i, myLeft])
+                    stack.append([i, j])
                     break
                 else:
                     stack.pop()
-                    myLeft = left
-                    stack.append([i, myLeft])
+                    stack.append([i, left])
                     break
             # print(i, myLeft)
             if not stack:
