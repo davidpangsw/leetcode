@@ -16,8 +16,13 @@ class Solution:
             while stack and heights[i] < heights[stack[-1]]:
                 lefts[stack.pop()] = i
             stack.append(i)
+        # return max(results)
 
+        result = 0
         for i in range(n):
-            results[i] = (rights[i] - lefts[i] - 1) * heights[i]
+            # results[i] = (rights[i] - lefts[i] - 1) * heights[i]
+            area = (rights[i] - lefts[i] - 1) * heights[i]
+            if area > result:
+                result = area
         
-        return max(results)
+        return result
