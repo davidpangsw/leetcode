@@ -8,17 +8,17 @@ class Solution:
             # fix left, find right
             y = target - numbers[left]
             newRight = bisect_left(numbers, y, lo=left+1, hi=right)
-            if newRight < len(numbers) and numbers[newRight] == y:
+            if newRight < right and numbers[newRight] == y:
                 return left+1, newRight+1
-            right = newRight - 1
+            right = newRight
             # print(left, right)
 
             # fix right, find left
-            y = target - numbers[right]
-            newLeft = bisect_right(numbers, y, lo=left, hi=right-1)
-            if numbers[newLeft] == y:
-                return newLeft+1, right+1
-            left = newLeft - 1
+            y = target - numbers[right-1]
+            newLeft = bisect_right(numbers, y, lo=left, hi=right-2)
+            if newLeft > left and numbers[newLeft-1] == y:
+                return newLeft-1+1, right+1
+            left = newLeft
             
 
     
