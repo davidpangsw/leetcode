@@ -9,8 +9,7 @@ class Solution:
                 j, left = stack[-1]
                 if x < heights[j]:
                     stack.pop()
-                    # reuse heights to store the results
-                    heights[j] = (i - left - 1) * heights[j]
+                    heights[j] = (i - left - 1) * heights[j] # reuse heights to store the results
                 elif x > heights[j]:
                     myLeft = j
                     break
