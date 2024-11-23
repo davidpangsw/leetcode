@@ -3,7 +3,7 @@ class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         left, right = 0, len(numbers)
         while True:
-            # print(left, right)
+            print(left, right)
 
             # fix left, find right
             y = target - numbers[left]
@@ -11,13 +11,13 @@ class Solution:
             if newRight < right and numbers[newRight] == y:
                 return left+1, newRight+1
             right = newRight
-            # print(left, right)
+            print(left, right)
 
             # fix right, find left
             y = target - numbers[right-1]
             newLeft = bisect_right(numbers, y, lo=left, hi=right-2)
             if newLeft > left and numbers[newLeft-1] == y:
-                return newLeft-1+1, right+1
+                return newLeft-1+1, right
             left = newLeft
             
 
