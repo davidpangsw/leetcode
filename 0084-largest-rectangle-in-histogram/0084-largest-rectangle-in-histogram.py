@@ -3,6 +3,7 @@ class Solution:
         n = len(heights)
         lefts = [-1] * n
         rights = [n] * n
+        results = [0] * n
 
         stack = []
         for i in range(n):
@@ -19,6 +20,6 @@ class Solution:
             stack.append(i)
 
         for i in range(n):
-            heights[i] = (rights[i] - lefts[i] - 1) * heights[i]
+            results[i] = (rights[i] - lefts[i] - 1) * results[i]
         
-        return max(heights)
+        return max(results)
