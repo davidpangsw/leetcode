@@ -15,10 +15,10 @@ class Solution:
 
             # fix right, find left
             y = target - numbers[right]
-            newLeft = bisect_left(numbers, y, lo=left, hi=right-1)
+            newLeft = bisect_right(numbers, y, lo=left, hi=right-1)
             if numbers[newLeft] == y:
                 return newLeft+1, right+1
-            left = newLeft
+            left = newLeft - 1
             
 
     
