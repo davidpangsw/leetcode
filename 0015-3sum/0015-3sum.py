@@ -11,7 +11,7 @@ class Solution:
             # print(f"fix left={numbers[left]}, find {y} in {numbers[left+1:right]}")
             ind = bisect_left(numbers, y, lo=left+1, hi=right)
             # if exact value is found, yield the pair
-            if ind < right and numbers[ind] == y:
+            if ind < len(numbers) and numbers[ind] == y:
                 yield left, ind
             right = ind
             # print(left, right, numbers[left:right])
