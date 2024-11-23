@@ -9,11 +9,11 @@ class Solution:
             # fix left, find right
             y = target - numbers[left]
             # print(f"fix left={numbers[left]}, find {y} in {numbers[left+1:right]}")
-            newRight = bisect_left(numbers, y, lo=left+1, hi=right)
+            ind = bisect_left(numbers, y, lo=left+1, hi=right)
             # if exact value is found, yield the pair
-            if newRight < right and numbers[newRight] == y:
-                yield left, newRight
-            right = newRight
+            if ind < right and numbers[ind] == y:
+                yield left, ind
+            right = ind
             # print(left, right, numbers[left:right])
 
             if left >= right - 1:
@@ -22,11 +22,11 @@ class Solution:
             # fix right, find left
             y = target - numbers[right-1]
             # print(f"fix right={numbers[right-1]}, find {y} in {numbers[left:right-1]}")
-            newLeft = bisect_right(numbers, y, lo=left, hi=right-1)
+            ind = bisect_right(numbers, y, lo=left, hi=right-1)
             # if exact value is found, yield the pair
-            if newLeft > left and numbers[newLeft-1] == y:
-                yield newLeft - 1, right - 1
-            left = newLeft
+            if ind > left and numbers[ind-1] == y:
+                yield ind - 1, right - 1
+            left = ind
         # print("twoSum exits")
         return
 
