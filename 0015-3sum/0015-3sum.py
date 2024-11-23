@@ -10,12 +10,13 @@ class Solution:
             y = target - numbers[left]
             # print(f"fix left={numbers[left]}, find {y} in {numbers[left+1:right]}")
             newRight = bisect_left(numbers, y, lo=left+1, hi=right)
+            # if exact value is found, yield the pair
             if newRight < len(numbers) and numbers[newRight] == y:
                 yield left, newRight
             right = newRight
             # print(left, right, numbers[left:right])
 
-            if left >= right:
+            if left >= right - 1:
                 break
 
             # fix right, find left
