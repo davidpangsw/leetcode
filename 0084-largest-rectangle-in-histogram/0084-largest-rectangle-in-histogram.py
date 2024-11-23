@@ -17,6 +17,7 @@ class Solution:
                     myLeft = j
                     break
                 else:
+                    stack.pop()
                     myLeft = left
                     break
             # print(i, myLeft)
