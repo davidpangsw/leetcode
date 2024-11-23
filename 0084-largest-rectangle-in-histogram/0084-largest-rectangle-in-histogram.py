@@ -12,11 +12,14 @@ class Solution:
                     heights[j] = (i - left - 1) * heights[j] # reuse heights to store the results
                 elif x > heights[j]:
                     myLeft = j
+                    stack.append([i, myLeft])
                     break
                 else:
                     stack.pop()
                     myLeft = left
+                    stack.append([i, myLeft])
                     break
             # print(i, myLeft)
-            stack.append((i, myLeft))
+            if not stack:
+                stack.append([i, myLeft])
         return max(heights)
