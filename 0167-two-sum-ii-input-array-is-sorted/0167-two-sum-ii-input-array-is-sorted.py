@@ -1,6 +1,6 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        left, right = 0, len(numbers)-1
+        left, right = 0, len(numbers)
         while True:
             # print(left, right)
 
@@ -8,9 +8,10 @@ class Solution:
             x = numbers[left]
             y = target - x
             newRight = bisect_left(numbers, y, lo=left+1, hi=right)
-            if numbers[newRight] == y:
+            if newRight < len(numbers) and numbers[newRight] == y:
                 return left+1, newRight+1
-            right = newRight
+            right = newRight - 1
+            # print(left, right)
 
             # fix right, find left
             x = numbers[right]
@@ -19,7 +20,6 @@ class Solution:
             if numbers[newLeft] == y:
                 return newLeft+1, right+1
             left = newLeft
-            # print(left, right)
             
 
     
