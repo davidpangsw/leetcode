@@ -4,11 +4,10 @@ class Solution:
         for i, x in enumerate(numbers):
             if x == prev_x:
                 continue
-            y = target - x
             # if y < x: # impossible
             #     break
-            j = bisect_left(numbers, y, lo=i+1)
-            if j < len(numbers) and numbers[j] == y:
+            j = bisect_left(numbers, target - x, lo=i+1)
+            if j < len(numbers) and numbers[j] == target - x:
                 return i+1, j+1
         
         raise "Answer not found"
