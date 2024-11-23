@@ -17,14 +17,8 @@ class Solution:
                 j = stack.pop()
                 lefts[j] = i
             stack.append(i)
-        
-        # print(lefts)
-        # print(rights)
 
-        results = [0] * n
         for i in range(n):
-            left, right = lefts[i], rights[i]
-            area = (right - left - 1) * heights[i]
-            results[i] = area
+            heights[i] = (rights[i] - lefts[i] - 1) * heights[i]
         
-        return max(results)
+        return max(heights)
