@@ -16,8 +16,8 @@ class Solution:
             # fix right, find left
             y = target - numbers[right]
             newLeft = bisect_right(numbers, y, lo=left, hi=right-1)
-            if newLeft > left and numbers[newLeft-1] == y:
-                return newLeft, right+1
+            if numbers[newLeft] == y:
+                return newLeft+1, right+1
             left = newLeft - 1
             
 
