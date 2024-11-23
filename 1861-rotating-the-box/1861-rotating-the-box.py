@@ -15,18 +15,13 @@ class Solution:
                     stones += 1
                 elif x == OBSTACLE:
                     result[j][m-1-i] = OBSTACLE
-                    J = j - 1
-                    while stones > 0:
-                        result[J][m-1-i] = STONE
-                        J -= 1
-                        stones -= 1
+                    for k in range(stones):
+                        result[j-1-k][m-1-i] = STONE
+                    stones = 0
                 else:
                     # impossible
                     pass
-            # print(stones)
-            J = n - 1
-            while stones > 0:
-                result[J][m-1-i] = STONE
-                J -= 1
-                stones -= 1
+
+            for k in range(stones):
+                result[n-1-k][m-1-i] = STONE
         return result
