@@ -9,10 +9,11 @@ class Solution:
             while st1 and heights[i] < heights[st1[-1]]:
                 rights[st1.pop()] = i
             st1.append(i)
-            
-            while st2 and heights[n-1-i] < heights[st2[-1]]:
-                lefts[st2.pop()] = n-1-i
-            st2.append(n-1-i)
+
+            j = n-1-i
+            while st2 and heights[j] < heights[st2[-1]]:
+                lefts[st2.pop()] = j
+            st2.append(j)
         # results = [0] * n
         # return max(results)
 
