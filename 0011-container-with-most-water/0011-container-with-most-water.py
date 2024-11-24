@@ -11,14 +11,19 @@ class Solution:
             #     continue
 
             if height[left] < height[right]:
-                result = max(result, height[left] * (right - left))
+                height[left] = height[left] * (right - left)
+                # result = max(result, height[left] * (right - left))
                 left += 1
             elif height[left] > height[right]:
-                result = max(result, height[right] * (right - left))
+                height[right] = height[right] * (right - left)
+                # result = max(result, height[right] * (right - left))
                 right -= 1
             else:
-                result = max(result, height[left] * (right - left))
+                height[left] = height[left] * (right - left)
+                height[right] = height[right] * (right - left)
+                # result = max(result, height[left] * (right - left))
                 left += 1
                 right -= 1
 
-        return result
+        # return result
+        return max(height)
