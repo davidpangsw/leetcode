@@ -4,12 +4,12 @@ class Solution:
         n = len(height)
         left, right = 0, n-1
         while left < right:
-            if left > 0 and height[left] < height[left-1]:
-                left += 1
-                continue
-            if right < n-1 and height[right] < height[right+1]:
-                right -= 1
-                continue
+            # if left > 0 and height[left] < height[left-1]:
+            #     left += 1
+            #     continue
+            # if right < n-1 and height[right] < height[right+1]:
+            #     right -= 1
+            #     continue
 
             if height[left] < height[right]:
                 result = max(result, height[left] * (right - left))
