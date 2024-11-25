@@ -1,9 +1,8 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        n = len(height)
         total = 0
         curLevel = 0
-        left, right = 0, n-1
+        left, right = 0, len(height)-1
 
         while left < right:
             h1, h2 = height[left], height[right]
@@ -14,6 +13,7 @@ class Solution:
                 total += (right - left - 1) * (newLevel - curLevel)
             else:
                 newLevel = curLevel
+
             # remove the water occupied by dirt
             # move the pointer
             if h1 <= h2:
