@@ -23,13 +23,16 @@ class Solution:
         q = deque([(initial, h, 1, 2, 0)])
 
         visited = {}
+        canMoveTo = [
+            [[(0, 1), (1, 0)], [(0, 0), (1, 1), (0, 2)],[(0, 1), (1, 2)]],
+            [[(0, 0), (1, 1)], [(1, 0), (0, 1), (1, 2)],[(0, 2), (1, 1)]]
+        ]
         while q:
             current, h, i, j, count = q.popleft()
             visited[h] = True
 
-            for d in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                di, dj = d
-                I, J = i + di, j + dj
+            for cell in canMoveTo[i][j]:
+                I, J = cell
                 if not (0 <= I < 2 and 0 <= J < 3):
                     continue
                 current[i][j], current[I][J] = current[I][J], current[i][j]
