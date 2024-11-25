@@ -20,7 +20,7 @@ class Solution:
             return 0
 
         q = deque([(initial, 5)])
-        visited = set()
+        visited = {}
         canMoveTo = [
             [1, 3], [0, 2, 4], [1, 5],
             [0, 4], [1, 3, 5], [2, 4],
@@ -48,6 +48,6 @@ class Solution:
 
                     if newH not in visited:
                         q.append((newH, cell))
-                        visited.add(current)
+                        visited[current] = True
             count += 1
         return -1
