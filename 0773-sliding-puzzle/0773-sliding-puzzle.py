@@ -522,9 +522,10 @@ class Solution:
             print(f"    {h}: {count},")
             visited[h] = True
 
-            for di in [-1, 1]:
-                I, J = i + di, j
-                if not (0 <= I < 2):
+            for d in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                di, dj = d
+                I, J = i + di, j + dj
+                if not (0 <= I < 2 and 0 <= J < 3):
                     continue
                 current[i][j], current[I][J] = current[I][J], current[i][j]
 
@@ -533,24 +534,10 @@ class Solution:
                 #     return count + 1
                 if newH not in visited:
                     q.append((copy(current), hashValue(current), I, J, count + 1))
-                current[i][j], current[I][J] = current[I][J], current[i][j]
-            
-            for dj in [-1, 1]:
-                I, J = i, j + dj
-                if not (0 <= J < 3):
-                    continue
-                current[i][j], current[I][J] = current[I][J], current[i][j]
-
-                newH = hashValue(current)
-                # if newH == targetH:
-                #     return count + 1
-                if newH not in visited:
-                    q.append((copy(current), hashValue(current), I, J, count + 1))
-
                 current[i][j], current[I][J] = current[I][J], current[i][j]
         print("}")
 
     def slidingPuzzle(self, target: List[List[int]]) -> int:
-        # self.generateAnswers()
+        self.generateAnswers()
         h = hashValue(target)
         return ANSWERS[hashValue(target)] if h in ANSWERS else -1
