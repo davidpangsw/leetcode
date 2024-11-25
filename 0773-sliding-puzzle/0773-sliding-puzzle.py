@@ -15,10 +15,11 @@ class Solution:
     def slidingPuzzle(self, target: List[List[int]]) -> int:
         # use string to represent a board
         initial = "123450"
-        targetH = ""
-        for row in target:
-            for x in row:
-                targetH += str(x)
+        # targetH = ""
+        # for row in target:
+        #     for x in row:
+        #         targetH += str(x)
+        targetH = "".join(str(x) for row in target for x in row)
         if initial == targetH:
             return 0
 
@@ -45,6 +46,7 @@ class Solution:
 
                 if newH == targetH:
                     return count + 1
+
                 if newH not in visited:
                     q.append((newH, cell, count + 1))
                     visited[current] = True
