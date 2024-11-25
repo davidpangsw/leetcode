@@ -31,7 +31,6 @@ class Solution:
 
         while q:
             current, pos, count = q.popleft()
-            visited[current] = True
 
             for cell in canMoveTo[pos]:
                 # arr = [c for c in current]
@@ -48,4 +47,5 @@ class Solution:
                     return count + 1
                 if newH not in visited:
                     q.append((newH, cell, count + 1))
+                    visited[current] = True
         return -1
