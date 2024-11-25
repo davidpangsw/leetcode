@@ -20,8 +20,8 @@ class Solution:
         if h == targetH:
             return 0
 
-        q = deque()
-        q.append((initial, h, 1, 2, 0))
+        q = deque([(initial, h, 1, 2, 0)])
+
         visited = {}
         while q:
             current, h, i, j, count = q.popleft()
