@@ -521,35 +521,25 @@ class Solution:
             current, h, i, j, count = q.popleft()
             print(f"    {h}: {count},")
             visited[h] = True
-            # print(current)
 
             for di in [-1, 1]:
-                I = i + di
-                J = j
+                I, J = i + di, j
                 if not (0 <= I < 2):
                     continue
-                temp = current[I][J]
-                current[I][J] = 0
-                current[i][j] = temp
+                current[i][j], current[I][J] = current[I][J], current[i][j]
 
                 newH = hashValue(current)
                 # if newH == targetH:
                 #     return count + 1
                 if newH not in visited:
                     q.append((copy(current), hashValue(current), I, J, count + 1))
-
-                temp = current[i][j]
-                current[i][j] = 0
-                current[I][J] = temp
+                current[i][j], current[I][J] = current[I][J], current[i][j]
             
             for dj in [-1, 1]:
-                I = i
-                J = j + dj
+                I, J = i, j + dj
                 if not (0 <= J < 3):
                     continue
-                temp = current[I][J]
-                current[I][J] = 0
-                current[i][j] = temp
+                current[i][j], current[I][J] = current[I][J], current[i][j]
 
                 newH = hashValue(current)
                 # if newH == targetH:
@@ -557,12 +547,10 @@ class Solution:
                 if newH not in visited:
                     q.append((copy(current), hashValue(current), I, J, count + 1))
 
-                temp = current[i][j]
-                current[i][j] = 0
-                current[I][J] = temp
+                current[i][j], current[I][J] = current[I][J], current[i][j]
         print("}")
 
     def slidingPuzzle(self, target: List[List[int]]) -> int:
-        # self.generateAnswers()
+        self.generateAnswers()
         h = hashValue(target)
         return ANSWERS[hashValue(target)] if h in ANSWERS else -1
