@@ -23,24 +23,29 @@ class Solution:
             return 0
 
         q = deque([(initial, 5, 0)])
-
         visited = {}
         canMoveTo = [
             [1, 3], [0, 2, 4], [1, 5],
             [0, 4], [1, 3, 5], [2, 4],
         ]
+
         while q:
             current, pos, count = q.popleft()
             visited[current] = True
 
             for cell in canMoveTo[pos]:
-                arr = [c for c in current]
-                arr[pos], arr[cell] = arr[cell], arr[pos]
+                # arr = [c for c in current]
+                # arr[pos], arr[cell] = arr[cell], arr[pos]
+                # newH = "".join(arr)
+                # print(current, pos, cell)
+                if pos <= cell:
+                    newH = current[:pos] + current[cell] + current[pos+1:cell] + current[pos] + current[cell+1:]
+                else:
+                    newH = current[:cell] + current[pos] + current[cell+1:pos] + current[cell] + current[pos+1:]
+                # print(newH)
 
-                newH = "".join(arr)
                 if newH == targetH:
                     return count + 1
                 if newH not in visited:
                     q.append((newH, cell, count + 1))
-                arr[pos], arr[cell] = arr[cell], arr[pos]
         return -1
