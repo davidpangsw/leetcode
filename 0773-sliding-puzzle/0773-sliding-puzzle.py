@@ -19,31 +19,35 @@ class Solution:
         if initial == targetH:
             return 0
 
-        q = deque([(initial, 5, 0)])
+        q = deque([(initial, 5)])
         visited = set()
         canMoveTo = [
             [1, 3], [0, 2, 4], [1, 5],
             [0, 4], [1, 3, 5], [2, 4],
         ]
 
+        count = 0
         while q:
-            current, pos, count = q.popleft()
+            qSize = len(q)
+            for _ in range(qSize):
+                current, pos = q.popleft()
 
-            for cell in canMoveTo[pos]:
-                # arr = [c for c in current]
-                # arr[pos], arr[cell] = arr[cell], arr[pos]
-                # newH = "".join(arr)
-                # print(current, pos, cell)
-                if pos <= cell:
-                    newH = current[:pos] + current[cell] + current[pos+1:cell] + current[pos] + current[cell+1:]
-                else:
-                    newH = current[:cell] + current[pos] + current[cell+1:pos] + current[cell] + current[pos+1:]
-                # print(newH)
+                for cell in canMoveTo[pos]:
+                    # arr = [c for c in current]
+                    # arr[pos], arr[cell] = arr[cell], arr[pos]
+                    # newH = "".join(arr)
+                    # print(current, pos, cell)
+                    if pos <= cell:
+                        newH = current[:pos] + current[cell] + current[pos+1:cell] + current[pos] + current[cell+1:]
+                    else:
+                        newH = current[:cell] + current[pos] + current[cell+1:pos] + current[cell] + current[pos+1:]
+                    # print(newH)
 
-                if newH == targetH:
-                    return count + 1
+                    if newH == targetH:
+                        return count + 1
 
-                if newH not in visited:
-                    q.append((newH, cell, count + 1))
-                    visited.add(current)
+                    if newH not in visited:
+                        q.append((newH, cell))
+                        visited.add(current)
+            count += 1
         return -1
