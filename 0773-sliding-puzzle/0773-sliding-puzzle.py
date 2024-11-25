@@ -56,6 +56,7 @@ class Solution:
                     return count + 1
 
                 if newH not in visited:
-                    heapq.heappush(q, (calcDist(newH), newH, cell, count + 1))
+                    # print(newH, count+1)
+                    heapq.heappush(q, (count + calcDist(newH), newH, cell, count + 1))
                     visited[current] = True
         return -1
