@@ -35,6 +35,8 @@ class Solution:
         return not isOdd
     
     def bfs(self, target):
+        answers = {}
+
         # use string to represent a board
         target = "".join(str(x) for row in target for x in row)
         if COMPLETED == target:
@@ -49,20 +51,21 @@ class Solution:
             qSize = len(q)
             for _ in range(qSize):
                 current, pos = q.popleft()
+                print(current, count)
 
                 for cell in canMoveTo[pos]:
                     # print(current, pos, cell)
                     arr = list(current)
                     arr[pos], arr[cell] = arr[cell], arr[pos]
-                    newH = "".join(arr)
-                    # print(newH)
+                    newState = "".join(arr)
+                    # print(newState)
 
-                    if newH == target:
-                        return count + 1
+                    # if newState == target:
+                    #     return count + 1
 
-                    if newH not in visited:
-                        q.append((newH, cell))
-                        visited[current] = True
+                    if newState not in visited:
+                        q.append((newState, cell))
+                        visited[newState] = True
             count += 1
         return -1
 
@@ -95,29 +98,29 @@ class Solution:
             return total
 
 
-        # q = [(f=g+h, current, 5, g)]
-        q = [(0 + heuristic(current), current, 5, 0)]
+        ind = current.index("0")
+        # q = [(f=g+h, current, ind, g)]
+        q = [(0 + heuristic(current), current, ind, 0)]
 
         visited = {}
         while q:
             f, current, pos, g = heappop(q)
+            # print(f, current, pos, g)
 
             for cell in canMoveTo[pos]:
                 # print(current, pos, cell)
                 arr = list(current)
                 arr[pos], arr[cell] = arr[cell], arr[pos]
-                newH = "".join(arr)
-                # print(newH)
+                newState = "".join(arr)
+                # print(newState)
 
-                if newH == COMPLETED:
+                if newState == COMPLETED:
                     return g + 1
 
-                if newH not in visited:
-                    q.append(((g+1) + heuristic(newH), newH, cell, g+1))
+                if newState not in visited:
+                    q.append(((g+1) + heuristic(newState), newState, cell, g+1))
                     visited[current] = True
         return -1
-
-
 
     def slidingPuzzle(self, target: List[List[int]]) -> int:
         return self.aStarSearch(target)
