@@ -18,6 +18,18 @@ class Solution:
         targetH = "".join(str(x) for row in target for x in row)
         if initial == targetH:
             return 0
+        
+        # check solvable
+        isOdd = False
+        for i in range(6):
+            if targetH[i] == "0": continue
+            for j in range(i, 6):
+                if targetH[j] == "0": continue
+
+                if ord(targetH[i]) > ord(targetH[j]):
+                    isOdd = not isOdd
+        if isOdd:
+            return -1
 
         q = deque([(initial, 5)])
         visited = {}
