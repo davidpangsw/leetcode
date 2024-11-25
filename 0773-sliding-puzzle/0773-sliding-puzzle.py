@@ -1,46 +1,46 @@
-def hashValue(board):
-    result = []
-    for row in board:
-        for x in row:
-            result.append(x)
-    return tuple(result)
+# def hashValue(board):
+    # result = []
+    # for row in board:
+    #     for x in row:
+    #         result.append(x)
+    # return tuple(result)
 
-def copy(board):
-    newBoard = []
-    for row in board:
-        newBoard.append([x for x in row])
-    return newBoard
+# def copy(board):
+#     newBoard = []
+#     for row in board:
+#         newBoard.append([x for x in row])
+#     return newBoard
 
 class Solution:
     def slidingPuzzle(self, target: List[List[int]]) -> int:
-        initial = [[1, 2, 3], [4, 5, 0]]
-        h = hashValue(initial)
-
-        targetH = hashValue(target)
-        if h == targetH:
+        # use string to represent a board
+        initial = "123450"
+        targetH = ""
+        for row in target:
+            for x in row:
+                targetH += str(x)
+        if initial == targetH:
             return 0
 
-        q = deque([(initial, h, 1, 2, 0)])
+        q = deque([(initial, 5, 0)])
 
         visited = {}
         canMoveTo = [
-            [[(0, 1), (1, 0)], [(0, 0), (1, 1), (0, 2)],[(0, 1), (1, 2)]],
-            [[(0, 0), (1, 1)], [(1, 0), (0, 1), (1, 2)],[(0, 2), (1, 1)]],
+            [1, 3], [0, 2, 4], [1, 5],
+            [0, 4], [1, 3, 5], [2, 4],
         ]
         while q:
-            current, h, i, j, count = q.popleft()
-            visited[h] = True
+            current, pos, count = q.popleft()
+            visited[current] = True
 
-            for cell in canMoveTo[i][j]:
-                I, J = cell
-                if not (0 <= I < 2 and 0 <= J < 3):
-                    continue
-                current[i][j], current[I][J] = current[I][J], current[i][j]
+            for cell in canMoveTo[pos]:
+                arr = [c for c in current]
+                arr[pos], arr[cell] = arr[cell], arr[pos]
 
-                newH = hashValue(current)
+                newH = "".join(arr)
                 if newH == targetH:
                     return count + 1
                 if newH not in visited:
-                    q.append((copy(current), hashValue(current), I, J, count + 1))
-                current[i][j], current[I][J] = current[I][J], current[i][j]
+                    q.append((newH, cell, count + 1))
+                arr[pos], arr[cell] = arr[cell], arr[pos]
         return -1
