@@ -551,6 +551,6 @@ class Solution:
         print("}")
 
     def slidingPuzzle(self, target: List[List[int]]) -> int:
-        self.generateAnswers()
+        # self.generateAnswers()
         h = hashValue(target)
         return ANSWERS[hashValue(target)] if h in ANSWERS else -1
