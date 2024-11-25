@@ -46,13 +46,13 @@ class Solution:
 
                 for cell in canMoveTo[pos]:
                     # print(current, pos, cell)
-                    arr = list(current)
-                    arr[pos], arr[cell] = arr[cell], arr[pos]
-                    newH = "".join(arr)
-                    # if pos <= cell:
-                    #     newH = current[:pos] + current[cell] + current[pos+1:cell] + current[pos] + current[cell+1:]
-                    # else:
-                    #     newH = current[:cell] + current[pos] + current[cell+1:pos] + current[cell] + current[pos+1:]
+                    # arr = list(current)
+                    # arr[pos], arr[cell] = arr[cell], arr[pos]
+                    # newH = "".join(arr)
+                    if pos <= cell:
+                        newH = current[:pos] + current[cell] + current[pos+1:cell] + current[pos] + current[cell+1:]
+                    else:
+                        newH = current[:cell] + current[pos] + current[cell+1:pos] + current[cell] + current[pos+1:]
                     # print(newH)
 
                     if newH == targetH:
