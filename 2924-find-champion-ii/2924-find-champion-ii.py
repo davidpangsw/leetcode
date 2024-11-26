@@ -1,5 +1,5 @@
 class Solution:
-    def findChampion(self, n: int, edges: List[List[int]]) -> int:
+    def findChampionBitwise(self, n: int, edges: List[List[int]]) -> int:
         result = 0
         mask = (1 << n) - 1
         # print(bin(mask))
@@ -25,7 +25,7 @@ class Solution:
             # print(bin(result))
         return champ
 
-    def findChampionStandard(self, n: int, edges: List[List[int]]) -> int:
+    def findChampion(self, n: int, edges: List[List[int]]) -> int:
         result = [True] * n
         for e in edges:
             result[e[1]] = False
