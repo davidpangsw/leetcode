@@ -10,7 +10,9 @@ class Node:
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         # make a copy of list
-        # and make original.next points to the copy (or use dict if you don't want any change?)
+        # and make original.next points to the copy, using dict
+        oldToNew = {None: None}
+
         dummy = Node(0)
         prev = dummy
         while head:
@@ -18,14 +20,11 @@ class Solution:
             prev.next = node
             prev = node
             
-            temp = head.next
-            head.next = node
-            head = temp
-        # print("cloned")
+            oldToNew[head] = node
+            head = head.next
         
         head = dummy.next
         while head:
-            if head.random:
-                head.random = head.random.next
+            head.random = oldToNew[head.random]
             head = head.next
         return dummy.next
