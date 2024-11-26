@@ -27,9 +27,6 @@ class Solution:
         return False
 
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        if head and not head.next:
-            return False
-
         slow = head
         fast = head
         while fast and fast.next:
