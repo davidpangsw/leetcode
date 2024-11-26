@@ -12,7 +12,10 @@ class Solution:
         while cur:
             if cur.next == head:
                 return True
-            cur, cur.next = cur.next, head
+            temp = cur.next
+            cur.next = head
+            cur = temp
+            # cur, cur.next = cur.next, head
         return False
 
         # s = set()
