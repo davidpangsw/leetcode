@@ -1,6 +1,5 @@
 table = {x: (1 << x) for x in range(1, 101)}
 class Solution:
-
     def findChampionBitwise(self, n: int, edges: List[List[int]]) -> int:
         result = 0
         mask = table[n] - 1
