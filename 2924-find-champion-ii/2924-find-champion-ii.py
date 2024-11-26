@@ -7,13 +7,13 @@ class Solution:
         if r > 0:
             masks += [(1 << r) - 1]
             result += [0]
-        print(",".join([bin(x) for x in masks]))
-        print(",".join([bin(x) for x in result]))
+        # print(",".join([bin(x) for x in masks]))
+        # print(",".join([bin(x) for x in result]))
 
         for e in edges:
             q, r = e[1] // 25, e[1] % 25
             result[q] |= (1 << r)
-            print(",".join([bin(x) for x in result]))
+            # print(",".join([bin(x) for x in result]))
         
         q, r = None, None
         for i in range(len(result)):
@@ -24,7 +24,7 @@ class Solution:
                 return -1
             q = i
             print(",".join([bin(x) for x in result]))
-        print(q)
+        # print(q)
 
         ind = 0
         while result[q]:
@@ -36,7 +36,7 @@ class Solution:
             result[q] >>= 1
             ind += 1
             print(",".join([bin(x) for x in result]))
-        print(r)
+        # print(r)
         return q*25 + r
 
     def findChampionStandard(self, n: int, edges: List[List[int]]) -> int:
