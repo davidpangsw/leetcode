@@ -19,10 +19,9 @@ class Solution:
         return False
 
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        s = set()
         while head:
-            if head in s:
+            if head.val is None:
                 return True
-            s.add(head)
+            head.val = None # mark as visited
             head = head.next
         return False
