@@ -13,18 +13,14 @@ class Solution:
         # and make original.next points to the copy, using dict
         oldToNew = {None: None}
 
-        dummy = Node(0)
-        prev = dummy
-        while head:
-            node = Node(head.val, None, head.random)
-            prev.next = node
-            prev = node
-            
-            oldToNew[head] = node
-            head = head.next
+        cur = head
+        while cur:            
+            oldToNew[cur] = Node(cur.val, cur.next, cur.random)
+            cur = cur.next
         
-        head = dummy.next
-        while head:
-            head.random = oldToNew[head.random]
-            head = head.next
-        return dummy.next
+        cur = head
+        while cur:
+            oldToNew[cur].next = oldToNew[cur.next]
+            oldToNew[cur].random = oldToNew[cur.random]
+            cur = cur.next
+        return oldToNew[head]
