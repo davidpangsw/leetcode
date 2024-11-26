@@ -32,15 +32,10 @@ class Solution:
 
         slow = head
         fast = head.next
-        while fast:
-            fast = fast.next
-            if fast == slow:
+        while fast and fast.next:
+            if fast.next == slow:
                 return True
-
-            if not fast:
-                break
-            fast = fast.next
-            if fast == slow:
-                return True
+            fast = fast.next.next
             slow = slow.next
+
         return False
