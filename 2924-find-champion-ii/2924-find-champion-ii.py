@@ -11,8 +11,7 @@ class Solution:
         # print(",".join([bin(x) for x in result]))
 
         for e in edges:
-            q, r = e[1] // 25, e[1] % 25
-            result[q] |= (1 << r)
+            result[e[1] // 25] |= (1 << (e[1] % 25))
             # print(",".join([bin(x) for x in result]))
         
         q, r = None, None
@@ -23,7 +22,7 @@ class Solution:
             if q is not None:
                 return -1
             q = i
-            print(",".join([bin(x) for x in result]))
+            # print(",".join([bin(x) for x in result]))
         # print(q)
 
         ind = 0
