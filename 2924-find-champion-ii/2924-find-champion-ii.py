@@ -35,7 +35,7 @@ class Solution:
                 
             result[q] >>= 1
             ind += 1
-            print(",".join([bin(x) for x in result]))
+            # print(",".join([bin(x) for x in result]))
         # print(r)
         return q*25 + r
 
