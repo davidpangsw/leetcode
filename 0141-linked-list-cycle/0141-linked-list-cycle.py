@@ -18,10 +18,29 @@ class Solution:
             # cur, cur.next = cur.next, head
         return False
 
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
+    def hasCycleNaive(self, head: Optional[ListNode]) -> bool:
         while head:
             if head.val is None:
                 return True
             head.val = None # mark as visited
             head = head.next
+        return False
+
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if not head or not head.next:
+            return False
+
+        slow = head
+        fast = head.next
+        while fast:
+            fast = fast.next
+            if fast == slow:
+                return True
+
+            if not fast:
+                break
+            fast = fast.next
+            if fast == slow:
+                return True
+            slow = slow.next
         return False
