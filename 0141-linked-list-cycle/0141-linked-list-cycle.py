@@ -5,7 +5,7 @@
 #         self.next = None
 
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
+    def hasCycleConstantMemory(self, head: Optional[ListNode]) -> bool:
         if not head:
             return False
         cur = head
@@ -18,10 +18,11 @@ class Solution:
             # cur, cur.next = cur.next, head
         return False
 
-        # s = set()
-        # while head:
-        #     if head in s:
-        #         return True
-        #     s.add(head)
-        #     head = head.next
-        # return False
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        s = set()
+        while head:
+            if head in s:
+                return True
+            s.add(head)
+            head = head.next
+        return False
