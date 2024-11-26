@@ -1,7 +1,14 @@
 class Solution:
     def findChampion(self, n: int, edges: List[List[int]]) -> int:
-        result = set(range(n))
+        result = [True] * n
         for e in edges:
-            result.discard(e[1])
+            result[e[1]] = False
+        
+        champion = None
+        for i, x in enumerate(result):
+            if x:
+                if champion is not None:
+                    return -1
+                champion = i
 
-        return result.pop() if len(result) == 1 else -1
+        return champion
