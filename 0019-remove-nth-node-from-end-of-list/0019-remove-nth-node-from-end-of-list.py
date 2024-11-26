@@ -6,9 +6,9 @@
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         head = ListNode(val=0, next=head)
-        stack = []
+        arr = []
         while head:
-            stack.append(head)
+            arr.append(head)
             head = head.next
-        stack[-n-1].next = stack[-n].next
-        return stack[0].next
+        arr[-n-1].next = arr[-n].next
+        return arr[0].next
