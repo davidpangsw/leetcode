@@ -24,7 +24,7 @@ class Solution:
 
         results = []
         steps = [i for i in range(n)]
-        print(steps)
+        # print(steps)
         for query in queries:
             u, v = query
             edges[u].add(v)
@@ -41,7 +41,7 @@ class Solution:
                         steps[dest] = steps[node] + 1
                         q.append(dest)
             results.append(steps[n-1])
-            print(steps)
+            # print(steps)
 
             #     qSize = len(q)
             #     for i in range(qSize):
