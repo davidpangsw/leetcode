@@ -14,22 +14,28 @@ class Solution:
             x, y = query
             edges[x].add(y)
 
-            # Dijkastra from 0
-            # (cost, node)
-            q = [(0, 0)]
+            # BFS from 0
+            q = deque([0])
             visited = [False for i in range(n)]
             result = inf
+            step = 0
             while q:
-                cost, node = heappop(q)
-                if visited[node]:
-                    continue
-                visited[node] = True
-                # print(cost, node)
-                if node == n-1:
-                    result = min(result, cost)
-                else:
-                    for destNode in edges[node]:
-                        q.append((cost+1, destNode))
+                qSize = len(q)
+                for i in range(qSize):
+                    node = q.popleft()
+                    if visited[node]:
+                        continue
+                    visited[node] = True
+
+                    # print(cost, node)
+                    if node == n-1:
+                        result = step
+                        q = None
+                        break
+                    else:
+                        for destNode in edges[node]:
+                            q.append(destNode)
+                step += 1
             results.append(result)
 
             # # update all a->x->y->b
