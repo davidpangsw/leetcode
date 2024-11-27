@@ -30,25 +30,19 @@ class Solution:
         qs = [[i+1] for i in range(n-1)]
         qs.append([])
 
-        for query in queries:
-            u, v = query
+        for u, v in queries:
             edges[u].add(v)
 
-            # BFS from 0
-            # steps on or before u are not affected.
-            q = deque([v])
-            # q = deque(qs[u])
-            # if steps[u] + 1 <= steps[v]:
-            #     q.append(v)
-            #     steps[v] = steps[u] + 1
+            if steps[u] + 1 < steps[v]:
+                steps[v] = steps[u] + 1
+                q = deque([v])
 
-            while q:
-                node = q.popleft()
-                for dest in edges[node]:
-                    if steps[node] + 1 <= steps[dest]:
-                        steps[dest] = steps[node] + 1
-                        q.append(dest)
-                        # qs[node] = list(q)
+                while q:
+                    node = q.popleft()
+                    for dest in edges[node]:
+                        if steps[node] + 1 <= steps[dest]:
+                            steps[dest] = steps[node] + 1
+                            q.append(dest)
             results.append(steps[n-1])
             # print(steps)
        
