@@ -1,6 +1,27 @@
 class Solution:
     def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
         edges = [set([i+1]) for i in range(n-1)]
+        dist = [n-1-i for i in range(n)]
+
+        results = []
+        for query in queries:
+            x, y = query
+            edges[x].add(y)
+            dist[x] = min(dist[x], 1 + dist[y])
+            # print(dist)
+            for node in range(x - 1, -1, -1):
+                for dest in edges[node]:
+                    if dest > x:
+                        continue
+                    dist[node] = min(dist[node], 1 + dist[dest])
+                # print(dist)
+            results.append(dist[0])
+        return results
+
+
+
+    def shortestDistanceAfterQueriesBFS(self, n: int, queries: List[List[int]]) -> List[int]:
+        edges = [set([i+1]) for i in range(n-1)]
 
         results = []
         for query in queries:
