@@ -26,23 +26,21 @@ class Solution:
         steps = [i for i in range(n)]
         # print(steps)
 
-        qs = [[i+1] for i in range(n-1)]
-        qs.append([])
+        # remember the q state after processing a node
+        # qs = [[i+1] for i in range(n-1)]
+        # qs.append([])
 
         for query in queries:
             u, v = query
             edges[u].add(v)
 
             # BFS from 0
-            # steps on or before u are not affected. But we need the queue
-            # start from 0
-            # q = deque([0])
-
-            # print(u, qs[u])
-            q = deque(qs[u])
-            if steps[u] + 1 <= steps[v]:
-                q.append(v)
-                steps[v] = steps[u] + 1
+            # steps on or before u are not affected.
+            q = deque([0])
+            # q = deque(qs[u])
+            # if steps[u] + 1 <= steps[v]:
+            #     q.append(v)
+            #     steps[v] = steps[u] + 1
 
             step = 0
             while q:
@@ -52,7 +50,7 @@ class Solution:
                         steps[dest] = steps[node] + 1
                         q.append(dest)
 
-                        qs[node] = list(q)
+                        # qs[node] = list(q)
             results.append(steps[n-1])
             # print(steps)
        
