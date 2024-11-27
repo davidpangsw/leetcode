@@ -19,8 +19,8 @@ class Solution:
 
 
     def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        edges = [set([i+1]) for i in range(n-1)]
-        edges.append(set())
+        edges = [[i+1] for i in range(n-1)]
+        edges.append([])
 
         results = []
         steps = [i for i in range(n)]
@@ -32,7 +32,7 @@ class Solution:
 
         for query in queries:
             u, v = query
-            edges[u].add(v)
+            edges[u].append(v)
 
             # BFS from 0
             # steps on or before u are not affected.
