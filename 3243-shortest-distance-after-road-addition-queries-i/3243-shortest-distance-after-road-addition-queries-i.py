@@ -23,12 +23,8 @@ class Solution:
         edges.append(set())
 
         results = []
-        steps = [i for i in range(n)]
+        steps = list(range(n))
         # print(steps)
-
-        # remember the q state after processing a node
-        qs = [[i+1] for i in range(n-1)]
-        qs.append([])
 
         for u, v in queries:
             edges[u].add(v)
