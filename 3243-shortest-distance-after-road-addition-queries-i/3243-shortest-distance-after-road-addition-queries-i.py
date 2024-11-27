@@ -36,7 +36,7 @@ class Solution:
 
             # BFS from 0
             # steps on or before u are not affected.
-            q = deque([0])
+            q = deque([v])
             # q = deque(qs[u])
             # if steps[u] + 1 <= steps[v]:
             #     q.append(v)
