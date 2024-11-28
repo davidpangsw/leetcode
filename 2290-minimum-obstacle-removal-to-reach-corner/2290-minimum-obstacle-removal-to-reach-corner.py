@@ -1,3 +1,4 @@
+DIRS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 class Solution:
     def minimumObstacles(self, grid: List[List[int]]) -> int:
         # BFS + priority queue
@@ -17,7 +18,7 @@ class Solution:
                 return cost
             mem[x][y] = cost
             
-            for dx, dy in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+            for dx, dy in DIRS:
                 X, Y = x + dx, y + dy
                 if 0 <= X < m and 0 <= Y < n:
                     if grid[X][Y] == 1:
