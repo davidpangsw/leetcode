@@ -11,12 +11,12 @@ class Solution:
         while q:
             cost, x, y = heappop(q)
             # print(cost, x, y)
-            if mem[x][y] <= cost:
-                continue
+            # if mem[x][y] <= cost:
+            #     continue
 
             if x == m-1 and y == n-1:
                 return cost
-            mem[x][y] = cost
+            # mem[x][y] = cost
 
             # if x > 0:
             #     X, Y = x - 1, y
@@ -38,6 +38,7 @@ class Solution:
             for dx, dy in DIRS:
                 X, Y = x + dx, y + dy
                 if 0 <= X < m and 0 <= Y < n and mem[X][Y] > cost + grid[X][Y]:
+                    mem[X][Y] = cost + grid[X][Y]
                     heappush(q, (cost + grid[X][Y], X, Y))
         raise "Path not found"
 
