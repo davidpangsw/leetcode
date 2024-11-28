@@ -7,7 +7,7 @@ class Solution:
 
         # cost, x, y
         # q = [(0, 0, 0)]
-        q = deque([(0, 0, 0)])
+        q = deque([(0, 0)])
 
         # def update(cost, X, Y):
         #     if mem[X][Y] > cost + grid[X][Y]:
@@ -18,7 +18,8 @@ class Solution:
         #             q.appendleft((cost + grid[X][Y], X, Y))
 
         while q:
-            cost, x, y = q.popleft()
+            x, y = q.popleft()
+            cost = mem[x][y]
             # print(cost, x, y)
 
             if x == m-1 and y == n-1:
@@ -29,33 +30,33 @@ class Solution:
                 if mem[X][Y] > cost + grid[X][Y]:
                     mem[X][Y] = cost + grid[X][Y]
                     if grid[X][Y]:
-                        q.append((cost + grid[X][Y], X, Y))
+                        q.append((X, Y))
                     else:
-                        q.appendleft((cost + grid[X][Y], X, Y))
+                        q.appendleft((X, Y))
             if x < m-1:
                 X, Y = x + 1, y
                 if mem[X][Y] > cost + grid[X][Y]:
                     mem[X][Y] = cost + grid[X][Y]
                     if grid[X][Y]:
-                        q.append((cost + grid[X][Y], X, Y))
+                        q.append((X, Y))
                     else:
-                        q.appendleft((cost + grid[X][Y], X, Y))
+                        q.appendleft((X, Y))
             if y > 0:
                 X, Y = x, y - 1
                 if mem[X][Y] > cost + grid[X][Y]:
                     mem[X][Y] = cost + grid[X][Y]
                     if grid[X][Y]:
-                        q.append((cost + grid[X][Y], X, Y))
+                        q.append((X, Y))
                     else:
-                        q.appendleft((cost + grid[X][Y], X, Y))
+                        q.appendleft((X, Y))
             if y < n-1:
                 X, Y = x, y + 1
                 if mem[X][Y] > cost + grid[X][Y]:
                     mem[X][Y] = cost + grid[X][Y]
                     if grid[X][Y]:
-                        q.append((cost + grid[X][Y], X, Y))
+                        q.append((X, Y))
                     else:
-                        q.appendleft((cost + grid[X][Y], X, Y))
+                        q.appendleft((X, Y))
 
         raise "Path not found"
 
