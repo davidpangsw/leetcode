@@ -1,3 +1,4 @@
+DIRS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 class Solution:
     def minimumObstacles(self, grid: List[List[int]]) -> int:
         # BFS + priority queue
@@ -11,41 +12,48 @@ class Solution:
             cost = mem[x][y]
             # print(cost, x, y)
 
-            if x == m-1 and y == n-1:
+            if x == m - 1 and y == n - 1:
                 return cost
 
-            if x > 0:
-                X, Y = x - 1, y
-                if mem[X][Y] > cost + grid[X][Y]:
+            for dx, dy in DIRS:
+                X, Y = x + dx, y + dy
+                if 0 <= X < m and 0 <= Y < n and mem[X][Y] > cost + grid[X][Y]:
                     mem[X][Y] = cost + grid[X][Y]
                     if grid[X][Y]:
                         q.append((X, Y))
                     else:
                         q.appendleft((X, Y))
-            if x < m-1:
-                X, Y = x + 1, y
-                if mem[X][Y] > cost + grid[X][Y]:
-                    mem[X][Y] = cost + grid[X][Y]
-                    if grid[X][Y]:
-                        q.append((X, Y))
-                    else:
-                        q.appendleft((X, Y))
-            if y > 0:
-                X, Y = x, y - 1
-                if mem[X][Y] > cost + grid[X][Y]:
-                    mem[X][Y] = cost + grid[X][Y]
-                    if grid[X][Y]:
-                        q.append((X, Y))
-                    else:
-                        q.appendleft((X, Y))
-            if y < n-1:
-                X, Y = x, y + 1
-                if mem[X][Y] > cost + grid[X][Y]:
-                    mem[X][Y] = cost + grid[X][Y]
-                    if grid[X][Y]:
-                        q.append((X, Y))
-                    else:
-                        q.appendleft((X, Y))
+            # if x > 0:
+            #     X, Y = x - 1, y
+            #     if mem[X][Y] > cost + grid[X][Y]:
+            #         mem[X][Y] = cost + grid[X][Y]
+            #         if grid[X][Y]:
+            #             q.append((X, Y))
+            #         else:
+            #             q.appendleft((X, Y))
+            # if x < m - 1:
+            #     X, Y = x + 1, y
+            #     if mem[X][Y] > cost + grid[X][Y]:
+            #         mem[X][Y] = cost + grid[X][Y]
+            #         if grid[X][Y]:
+            #             q.append((X, Y))
+            #         else:
+            #             q.appendleft((X, Y))
+            # if y > 0:
+            #     X, Y = x, y - 1
+            #     if mem[X][Y] > cost + grid[X][Y]:
+            #         mem[X][Y] = cost + grid[X][Y]
+            #         if grid[X][Y]:
+            #             q.append((X, Y))
+            #         else:
+            #             q.appendleft((X, Y))
+            # if y < n - 1:
+            #     X, Y = x, y + 1
+            #     if mem[X][Y] > cost + grid[X][Y]:
+            #         mem[X][Y] = cost + grid[X][Y]
+            #         if grid[X][Y]:
+            #             q.append((X, Y))
+            #         else:
+            #             q.appendleft((X, Y))
 
         raise "Path not found"
-
