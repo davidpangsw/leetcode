@@ -21,8 +21,7 @@ class Solution:
             for dx, dy in DIRS:
                 X, Y = x + dx, y + dy
                 if 0 <= X < m and 0 <= Y < n:
-                    if mem[X][Y] <= cost + grid[X][Y]:
-                        continue
-                    heappush(q, (cost + grid[X][Y], X, Y))
+                    if mem[X][Y] > cost + grid[X][Y]:
+                        heappush(q, (cost + grid[X][Y], X, Y))
         raise "Path not found"
 
