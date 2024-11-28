@@ -4,18 +4,7 @@ class Solution:
         m, n = len(grid), len(grid[0])
         mem = [[inf for j in range(n)] for i in range(m)]
         mem[0][0] = 0
-
-        # cost, x, y
-        # q = [(0, 0, 0)]
         q = deque([(0, 0)])
-
-        # def update(cost, X, Y):
-        #     if mem[X][Y] > cost + grid[X][Y]:
-        #         mem[X][Y] = cost + grid[X][Y]
-        #         if grid[X][Y]:
-        #             q.append((cost + grid[X][Y], X, Y))
-        #         else:
-        #             q.appendleft((cost + grid[X][Y], X, Y))
 
         while q:
             x, y = q.popleft()
