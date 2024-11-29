@@ -6,16 +6,12 @@ class Solution:
         if grid[1][0] > 1 and grid[0][1] > 1:
             return -1
 
-        q = [(0, 0)]
-        grid[0][0] = 0
-        # q = [(0, 0, 0)]
+        q = [(0, 0, 0)]
         # q = [(0, 0, 0, 0)]
         visited = [[False for _ in range(n)] for _ in range(m)]
         while q:
             # print(q)
-            x, y = heappop(q)
-            cost = grid[x][y]
-            # cost, x, y = heappop(q)
+            cost, x, y = heappop(q)
             # weight, cost, x, y = heappop(q)
 
             for dx, dy in [[-1,0], [1,0], [0,-1], [0,1]]:
@@ -37,9 +33,7 @@ class Solution:
                     return nextCost
 
                 visited[X][Y] = True
-                grid[X][Y] = nextCost # use original grid to store the cost
-                heappush(q, (X, Y))
-                # heappush(q, (nextCost, X, Y))
+                heappush(q, (nextCost, X, Y))
                 # heappush(q, (nextCost + (m-1-X+n-1-Y), nextCost, X, Y))
 
         return -1
