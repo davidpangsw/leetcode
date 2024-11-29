@@ -1,10 +1,10 @@
 class Solution:
     def minimumTime(self, grid: List[List[int]]) -> int:
-        m, n = len(grid), len(grid[0])
-
         # ensure we can go back and forth first
         if grid[1][0] > 1 and grid[0][1] > 1:
             return -1
+
+        m, n = len(grid), len(grid[0])
 
         q = [(0, 0, 0)]
         # q = [(0, 0, 0, 0)]
