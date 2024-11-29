@@ -6,7 +6,6 @@ class Solution:
             return -1
 
         m, n = len(grid), len(grid[0])
-
         q = [(0, 0, 0)]
         # q = [(0, 0, 0, 0)]
         visited = [[False for _ in range(n)] for _ in range(m)]
