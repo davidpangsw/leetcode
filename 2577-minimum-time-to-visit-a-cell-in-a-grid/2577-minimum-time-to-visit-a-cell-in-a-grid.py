@@ -8,8 +8,7 @@ class Solution:
         while q:
             # print(q)
             weight, cost, x, y = heappop(q)
-            if x == m-1 and y == n-1:
-                return cost
+
 
             for dx, dy in [[-1,0], [1,0], [0,-1], [0,1]]:
                 X, Y = x+dx, y+dy
@@ -34,7 +33,9 @@ class Solution:
 
                 if visited[X][Y]:
                     continue
-                visited[X][Y] = True
+                visited[X][Y] = True           
+                if X == m-1 and Y == n-1:
+                    return nextCost
 
                 heappush(q, [nextCost + (m-1-X+n-1-Y), nextCost, X, Y])
         return -1
