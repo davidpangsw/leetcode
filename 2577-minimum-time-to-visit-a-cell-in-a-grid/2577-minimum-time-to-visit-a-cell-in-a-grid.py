@@ -11,6 +11,7 @@ class Solution:
         # q = priority queue of (weight, cost, x, y)
         # weight = cost + h(x,y) (A star search)
         # h(x, y) = (under)estimated further cost = taxicab distance from (x, y) to goal
+        # we can also use h(x, y) = 0 for this relatively small question
         q = [(0, 0, 0, 0)]
         # q = [(0, 0, 0)]
         visited = [[False] * n for _ in range(m)]
@@ -41,6 +42,6 @@ class Solution:
 
                 visited[X][Y] = True
                 # heappush(q, (nextCost, X, Y))
-                heappush(q, (nextCost + (S-X-Y), nextCost, X, Y))
+                heappush(q, (nextCost + 0, nextCost, X, Y))
 
         return -1
