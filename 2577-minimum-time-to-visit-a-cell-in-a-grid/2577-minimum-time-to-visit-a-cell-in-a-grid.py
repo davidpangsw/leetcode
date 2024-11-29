@@ -1,5 +1,6 @@
 class Solution:
     def minimumTime(self, grid: List[List[int]]) -> int:
+        DIRS = ((-1,0), (1,0), (0,-1), (0,1))
         # ensure we can go back and forth first
         if grid[1][0] > 1 and grid[0][1] > 1:
             return -1
@@ -14,7 +15,7 @@ class Solution:
             cost, x, y = heappop(q)
             # weight, cost, x, y = heappop(q)
 
-            for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:
+            for dx, dy in DIRS:
                 X, Y = x+dx, y+dy
 
                 if X < 0 or X >= m or Y < 0 or Y >= n or visited[X][Y]:
