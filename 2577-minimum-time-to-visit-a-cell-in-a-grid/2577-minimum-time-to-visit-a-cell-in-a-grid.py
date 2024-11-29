@@ -3,20 +3,19 @@ class Solution:
         m, n = len(grid), len(grid[0])
 
         q = []
-        # q = [[0, 0, 0]]
-        # q = [[0, 0, 0, 0]]
         visited = [[False for _ in range(n)] for _ in range(m)]
 
         # special handling for (0, 0): it cannot go back and forth
         # (we need to visit it back)
         for X, Y in [[1,0], [0,1]]:
             if 1 >= grid[X][Y]:
-                heappush(q, [1, X, Y])
+                # heappush(q, [1, X, Y])
+                heappush(q, [1 + (m-1+n-1-1), 1, X, Y])
         
         while q:
             # print(q)
-            cost, x, y = heappop(q)
-            # weight, cost, x, y = heappop(q)
+            # cost, x, y = heappop(q)
+            weight, cost, x, y = heappop(q)
 
             for dx, dy in [[-1,0], [1,0], [0,-1], [0,1]]:
                 X, Y = x+dx, y+dy
@@ -39,11 +38,10 @@ class Solution:
                 else:
                     nextCost = cost + 1
 
-
                 if X == m-1 and Y == n-1:
                     return nextCost
 
-                heappush(q, [nextCost, X, Y])
-                # heappush(q, [nextCost + (m-1-X+n-1-Y), nextCost, X, Y])
+                # heappush(q, [nextCost, X, Y])
+                heappush(q, [nextCost + (m-1-X+n-1-Y), nextCost, X, Y])
 
         return -1
