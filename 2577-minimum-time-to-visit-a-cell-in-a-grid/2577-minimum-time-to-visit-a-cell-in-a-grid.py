@@ -2,9 +2,16 @@ class Solution:
     def minimumTime(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])
 
-        q = [[0, 0, 0]]
+        q = []
+        # q = [[0, 0, 0]]
         # q = [[0, 0, 0, 0]]
         visited = [[False for _ in range(n)] for _ in range(m)]
+
+        # special handling for the start: it cannot go back and forth
+        # (we need to visit it back)
+        for X, Y in [[1,0], [0,1]]:
+            if 1 >= grid[X][Y]:
+                heappush(q, [1, X, Y])
         
         while q:
             # print(q)
@@ -16,7 +23,10 @@ class Solution:
 
                 if not (0 <= X < m and 0 <= Y < n):
                     continue
-                    
+
+                if visited[X][Y]:
+                    continue
+                visited[X][Y] = True
             
                 if cost + 1 < grid[X][Y]:
                     if cost == 0: # no grid to go backward, review (0,0) again later
@@ -32,9 +42,6 @@ class Solution:
                 else:
                     nextCost = cost + 1
 
-                if visited[X][Y]:
-                    continue
-                visited[X][Y] = True
 
                 if X == m-1 and Y == n-1:
                     return nextCost
