@@ -23,13 +23,11 @@ class Solution:
                 if visited[X][Y]:
                     continue
             
-                if cost + 1 < grid[X][Y]:
+                nextCost = cost + 1
+                if nextCost < grid[X][Y]:
                     # go back and forth until time enough
                     # which is equivalent to "wait" even number of seconds
-                    # and then go 1 step (that is, odd)
-                    nextCost = grid[X][Y] + ((grid[X][Y] - cost + 1) % 2)
-                else:
-                    nextCost = cost + 1
+                    nextCost = grid[X][Y] + ((grid[X][Y] - nextCost) % 2)
 
                 if X == m-1 and Y == n-1:
                     return nextCost
