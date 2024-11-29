@@ -6,24 +6,20 @@ class Solution:
         visited = [[False for _ in range(n)] for _ in range(m)]
         
         while q:
-            # print(q)
+            print(q)
             weight, cost, x, y = heappop(q)
             if x == m-1 and y == n-1:
                 return cost
-
-            if visited[x][y]:
-                continue
-            visited[x][y] = True
 
             for dx, dy in [[-1,0], [1,0], [0,-1], [0,1]]:
                 X, Y = x+dx, y+dy
 
                 if not (0 <= X < m and 0 <= Y < n):
                     continue
-
+                    
             
                 if cost + 1 < grid[X][Y]:
-                    if cost == 0: # no grid to go backward, view (0,0) again later
+                    if cost == 0: # no grid to go backward, review (0,0) again later
                         visited[0][0] = False
                         continue
                     # go back and forth until time enough
@@ -35,5 +31,8 @@ class Solution:
                         nextCost = grid[X][Y]
                 else:
                     nextCost = cost + 1
+                if visited[X][Y]:
+                    continue
+                visited[X][Y] = True
                 heappush(q, [nextCost + (m-1-X+n-1-Y), nextCost, X, Y])
         return -1
