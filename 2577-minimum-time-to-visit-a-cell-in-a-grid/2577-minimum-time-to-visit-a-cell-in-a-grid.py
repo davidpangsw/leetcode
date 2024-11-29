@@ -7,13 +7,13 @@ class Solution:
 
         m, n = len(grid), len(grid[0])
 
-        # q = [(0, 0, 0)]
-        q = [(0, 0, 0, 0)]
+        q = [(0, 0, 0)]
+        # q = [(0, 0, 0, 0)]
         visited = [[False for _ in range(n)] for _ in range(m)]
         while q:
             # print(q)
-            # cost, x, y = heappop(q)
-            weight, cost, x, y = heappop(q)
+            cost, x, y = heappop(q)
+            # weight, cost, x, y = heappop(q)
 
             for dx, dy in DIRS:
                 X, Y = x+dx, y+dy
@@ -34,7 +34,7 @@ class Solution:
                     return nextCost
 
                 visited[X][Y] = True
-                # heappush(q, (nextCost, X, Y))
-                heappush(q, (nextCost + (m-1-X+n-1-Y), nextCost, X, Y))
+                heappush(q, (nextCost, X, Y))
+                # heappush(q, (nextCost + (m-1-X+n-1-Y), nextCost, X, Y))
 
         return -1
