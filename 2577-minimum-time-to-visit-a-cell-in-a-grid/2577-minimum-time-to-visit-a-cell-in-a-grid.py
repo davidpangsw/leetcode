@@ -19,16 +19,14 @@ class Solution:
 
                 if X < 0 or X >= m or Y < 0 or Y >= n or visited[X][Y]:
                     continue
-                # if not (0 <= X < m and 0 <= Y < n):
-                #     continue
-
-                # if visited[X][Y]:
-                #     continue
             
                 nextCost = cost + 1
                 if nextCost < grid[X][Y]:
                     # go back and forth until time enough
                     # which is equivalent to "wait" even number of seconds
+                    # check the evenness of grid[X][Y]
+                    # even/odd grid (X+Y is even/odd) should have an even/odd minimum time
+                    # nextCost = grid[X][Y] + 1 if not
                     nextCost = grid[X][Y] + ((grid[X][Y] & 1) ^ (nextCost & 1))
 
                 if X == m-1 and Y == n-1:
