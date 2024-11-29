@@ -6,7 +6,7 @@ class Solution:
         visited = [[False for _ in range(n)] for _ in range(m)]
         
         while q:
-            print(q)
+            # print(q)
             weight, cost, x, y = heappop(q)
             if x == m-1 and y == n-1:
                 return cost
@@ -31,8 +31,10 @@ class Solution:
                         nextCost = grid[X][Y]
                 else:
                     nextCost = cost + 1
+
                 if visited[X][Y]:
                     continue
                 visited[X][Y] = True
+
                 heappush(q, [nextCost + (m-1-X+n-1-Y), nextCost, X, Y])
         return -1
