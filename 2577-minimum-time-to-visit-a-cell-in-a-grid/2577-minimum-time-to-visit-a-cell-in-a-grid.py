@@ -6,7 +6,7 @@ class Solution:
             return -1
 
         m, n = len(grid), len(grid[0])
-        S = m+n-2
+        MAX = m+n-2
 
         # q = priority queue of (weight, cost, x, y)
         # weight = cost + h(x,y) (A star search)
@@ -43,6 +43,6 @@ class Solution:
 
                 visited[X][Y] = True
                 # heappush(q, (nextCost, X, Y))
-                heappush(q, (nextCost + S-X-Y, nextCost, X, Y))
+                heappush(q, (nextCost + MAX-X-Y, nextCost, X, Y))
 
         return -1
