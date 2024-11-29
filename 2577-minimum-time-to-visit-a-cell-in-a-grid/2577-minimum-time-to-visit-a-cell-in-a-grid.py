@@ -2,14 +2,14 @@ class Solution:
     def minimumTime(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])
 
-        q = [[0, 0, 0]]
+        q = [[0, 0, 0, 0]]
         visited = [[False for _ in range(n)] for _ in range(m)]
         
         while q:
             # print(q)
-            cost, x, y = heappop(q)
+            weight, cost, x, y = heappop(q)
             if x == m-1 and y == n-1:
-                return cost -  (m-1-x+n-1-y)
+                return cost
 
             if visited[x][y]:
                 continue
@@ -35,5 +35,5 @@ class Solution:
                         nextCost = grid[X][Y]
                 else:
                     nextCost = cost + 1
-                heappush(q, [nextCost + (m-1-X+n-1-Y), X, Y])
+                heappush(q, [nextCost + (m-1-X+n-1-Y), nextCost, X, Y])
         return -1
