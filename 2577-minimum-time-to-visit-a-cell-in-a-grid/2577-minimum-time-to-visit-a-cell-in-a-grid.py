@@ -8,7 +8,7 @@ class Solution:
         m, n = len(grid), len(grid[0])
         q = [(0, 0, 0)]
         # q = [(0, 0, 0, 0)]
-        visited = [[False for _ in range(n)] for _ in range(m)]
+        visited = [[False] * n for _ in range(m)]
         while q:
             # print(q)
             cost, x, y = heappop(q)
