@@ -1,3 +1,4 @@
+DIRS = [[-1,0], [1,0], [0,-1], [0,1]]
 class Solution:
     def minimumTime(self, grid: List[List[int]]) -> int:
         # ensure we can go back and forth first
@@ -14,7 +15,7 @@ class Solution:
             cost, x, y = heappop(q)
             # weight, cost, x, y = heappop(q)
 
-            for dx, dy in [[-1,0], [1,0], [0,-1], [0,1]]:
+            for dx, dy in DIRS:
                 X, Y = x+dx, y+dy
 
                 if not (0 <= X < m and 0 <= Y < n):
