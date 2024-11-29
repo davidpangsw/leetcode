@@ -7,7 +7,7 @@ class Solution:
         # q = [[0, 0, 0, 0]]
         visited = [[False for _ in range(n)] for _ in range(m)]
 
-        # special handling for the start: it cannot go back and forth
+        # special handling for (0, 0): it cannot go back and forth
         # (we need to visit it back)
         for X, Y in [[1,0], [0,1]]:
             if 1 >= grid[X][Y]:
@@ -29,9 +29,6 @@ class Solution:
                 visited[X][Y] = True
             
                 if cost + 1 < grid[X][Y]:
-                    if cost == 0: # no grid to go backward, review (0,0) again later
-                        visited[0][0] = False
-                        continue
                     # go back and forth until time enough
                     # which is equivalent to "wait" even number of seconds
                     # and then go 1 step (that is, odd)
