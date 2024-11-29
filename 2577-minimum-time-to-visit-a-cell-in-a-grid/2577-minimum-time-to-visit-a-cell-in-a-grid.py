@@ -9,6 +9,7 @@ class Solution:
         q = [(0, 0, 0)]
         # q = [(0, 0, 0, 0)]
         visited = [[False] * n for _ in range(m)]
+        visited[0][0] = True
         while q:
             # print(q)
             cost, x, y = heappop(q)
