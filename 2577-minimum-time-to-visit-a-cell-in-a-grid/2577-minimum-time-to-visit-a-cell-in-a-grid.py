@@ -20,10 +20,7 @@ class Solution:
             for dx, dy in [[-1,0], [1,0], [0,-1], [0,1]]:
                 X, Y = x+dx, y+dy
 
-                if not (0 <= X < m and 0 <= Y < n):
-                    continue
-
-                if visited[X][Y]:
+                if not (0 <= X < m and 0 <= Y < n) or visited[X][Y]:
                     continue
                 visited[X][Y] = True
             
