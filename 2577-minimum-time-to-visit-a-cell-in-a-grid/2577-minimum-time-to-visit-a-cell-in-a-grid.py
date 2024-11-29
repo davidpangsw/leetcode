@@ -27,7 +27,7 @@ class Solution:
                 if nextCost < grid[X][Y]:
                     # go back and forth until time enough
                     # which is equivalent to "wait" even number of seconds
-                    nextCost = grid[X][Y] + ((grid[X][Y] %2) ^ (nextCost % 2 ))
+                    nextCost = grid[X][Y] + (grid[X][Y] & 1) ^ (nextCost & 1)
 
                 if X == m-1 and Y == n-1:
                     return nextCost
