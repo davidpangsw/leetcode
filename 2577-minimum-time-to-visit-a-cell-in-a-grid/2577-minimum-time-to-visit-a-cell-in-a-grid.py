@@ -1,4 +1,4 @@
-DIRS = [[-1,0], [1,0], [0,-1], [0,1]]
+DIRS = [(-1,0), (1,0), (0,-1), (0,1)]
 class Solution:
     def minimumTime(self, grid: List[List[int]]) -> int:
         # ensure we can go back and forth first
