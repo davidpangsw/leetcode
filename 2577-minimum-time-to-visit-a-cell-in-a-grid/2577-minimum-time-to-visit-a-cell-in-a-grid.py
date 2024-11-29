@@ -6,6 +6,7 @@ class Solution:
             return -1
 
         m, n = len(grid), len(grid[0])
+        S = m+n-2
         # q = [(0, 0, 0)]
         q = [(0, 0, 0, 0)]
         visited = [[False] * n for _ in range(m)]
@@ -36,6 +37,6 @@ class Solution:
 
                 visited[X][Y] = True
                 # heappush(q, (nextCost, X, Y))
-                heappush(q, (nextCost + (m+n-2-X-Y), nextCost, X, Y))
+                heappush(q, (nextCost + (S-X-Y), nextCost, X, Y))
 
         return -1
