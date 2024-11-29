@@ -22,7 +22,6 @@ class Solution:
 
                 if visited[X][Y]:
                     continue
-                visited[X][Y] = True
             
                 if cost + 1 < grid[X][Y]:
                     # go back and forth until time enough
@@ -35,6 +34,7 @@ class Solution:
                 if X == m-1 and Y == n-1:
                     return nextCost
 
+                visited[X][Y] = True
                 heappush(q, (nextCost, X, Y))
                 # heappush(q, (nextCost + (m-1-X+n-1-Y), nextCost, X, Y))
 
