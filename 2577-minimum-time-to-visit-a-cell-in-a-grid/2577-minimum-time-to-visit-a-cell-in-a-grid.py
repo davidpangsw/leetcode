@@ -7,6 +7,10 @@ class Solution:
 
         m, n = len(grid), len(grid[0])
         S = m+n-2
+
+        # weight, cost, x, y
+        # weight = cost + estimated further cost (A star search)
+        # estimated further cost = taxicab distance
         # q = [(0, 0, 0)]
         q = [(0, 0, 0, 0)]
         visited = [[False] * n for _ in range(m)]
