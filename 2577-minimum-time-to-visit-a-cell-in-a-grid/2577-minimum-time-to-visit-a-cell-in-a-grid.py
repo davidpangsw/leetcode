@@ -36,6 +36,6 @@ class Solution:
 
                 visited[X][Y] = True
                 # heappush(q, (nextCost, X, Y))
-                heappush(q, (nextCost + (m-1-X+n-1-Y), nextCost, X, Y))
+                heappush(q, (nextCost + (m+n-2-X-Y), nextCost, X, Y))
 
         return -1
