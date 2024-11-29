@@ -1,6 +1,6 @@
+DIRS = ((-1,0), (1,0), (0,-1), (0,1))
 class Solution:
     def minimumTime(self, grid: List[List[int]]) -> int:
-        DIRS = ((-1,0), (1,0), (0,-1), (0,1))
         # ensure we can go back and forth first
         if grid[1][0] > 1 and grid[0][1] > 1:
             return -1
@@ -28,7 +28,8 @@ class Solution:
                     # check the evenness of grid[X][Y]
                     # even/odd grid (X+Y is even/odd) should have an even/odd minimum time
                     # nextCost = grid[X][Y] + 1 if not
-                    nextCost = grid[X][Y] + ((grid[X][Y] & 1) ^ (nextCost & 1))
+                    nextCost += (grid[X][Y] - cost) // 2 * 2
+                    # nextCost = grid[X][Y] + ((grid[X][Y] & 1) ^ (nextCost & 1))
 
                 if X == m-1 and Y == n-1:
                     return nextCost
