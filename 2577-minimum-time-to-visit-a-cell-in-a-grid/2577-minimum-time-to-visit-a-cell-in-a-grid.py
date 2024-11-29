@@ -17,11 +17,13 @@ class Solution:
             for dx, dy in DIRS:
                 X, Y = x+dx, y+dy
 
-                if not (0 <= X < m and 0 <= Y < n):
+                if X < 0 or X >= m or Y < 0 or Y >= n or visited[X][Y]:
                     continue
+                # if not (0 <= X < m and 0 <= Y < n):
+                #     continue
 
-                if visited[X][Y]:
-                    continue
+                # if visited[X][Y]:
+                #     continue
             
                 nextCost = cost + 1
                 if nextCost < grid[X][Y]:
