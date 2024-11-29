@@ -28,7 +28,7 @@ class Solution:
                     # go back and forth until time enough
                     # which is equivalent to "wait" even number of seconds
                     # and then go 1 step (that is, odd)
-                    nextCost = grid[X][Y] + (1 - (grid[X][Y] - cost) % 2)
+                    nextCost = grid[X][Y] + (((grid[X][Y] - cost) % 2) ^ 1)
                 else:
                     nextCost = cost + 1
 
