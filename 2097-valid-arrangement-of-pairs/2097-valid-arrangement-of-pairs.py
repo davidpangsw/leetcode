@@ -14,19 +14,17 @@ class Solution:
             adjLists[u].append(v)
 
         # count degrees to find the start and end        
-        start, end = None, None
+        start = None
         for node, degree in degrees.items():
             # print(node, len(adjLists[node]), inDegrees[node])
             if degree > 0:
                 start = node
-            elif degree < 0:
-                end = node
+                break
 
         # if all nodes are "even"
         if start is None:
-            # here, end must also be None
-            # just take any node as start and end
-            start = end = node 
+            # just take any node as start
+            start = node 
         # print(f"{start} -> {end}")
         
         path = []
