@@ -17,6 +17,7 @@ class Solution:
             f = f.next
             if f is None:
                 return None
+                
             if f == s:
                 break
         
