@@ -27,16 +27,32 @@ class Solution:
             start = node 
         # print(f"{start} -> {end}")
         
+        # DFS
         path = []
-        def dfs(cur):
-            while adjLists[cur]:
+        stack = [start]
+        while stack:
+            cur = stack[-1]
+            if adjLists[cur]:
                 v = adjLists[cur].pop()
-                dfs(v)
-                path.append((cur, v))
-        dfs(start)
-        # path supposed to be:
-        # [...[n1, n2],[n0, n1]]
+                stack.append(v)
+            else:
+                v = stack.pop()
+                if stack:
+                    path.append((stack[-1], v))
+        # print(path)
         return path[::-1]
+
+
+        # path = []
+        # def dfs(cur):
+        #     while adjLists[cur]:
+        #         v = adjLists[cur].pop()
+        #         dfs(v)
+        #         path.append((cur, v))
+        # dfs(start)
+        # # path supposed to be:
+        # # [...[n1, n2],[n0, n1]]
+        # return path[::-1]
 
 
         # # run a path from start to end
