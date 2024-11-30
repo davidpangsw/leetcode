@@ -13,7 +13,7 @@ class Solution:
             degrees[v] -= 1
             adjLists[u].append(v)
 
-        # count degrees to find the start and end        
+        # count degrees to find the start  
         stack = []
         for node, degree in degrees.items():
             # print(node, len(adjLists[node]), inDegrees[node])
@@ -21,11 +21,9 @@ class Solution:
                 stack.append(node) # found starting point
                 break
 
-        # if all nodes are "even"
+        # if all nodes are "even", just take any node as start
         if not stack:
-            # just take any node as start
             stack.append(node)
-        # print(f"{start} -> {end}")
         
         # DFS
         path = []
@@ -36,10 +34,9 @@ class Solution:
                 stack.append(v)
             else:
                 v = stack.pop()
-                if stack:
-                    path.append((stack[-1], v))
+                path.append(v)
         # print(path)
-        return path[::-1]
+        return list(pairwise(path[::-1]))
 
 
         # path = []
