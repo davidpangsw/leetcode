@@ -9,9 +9,10 @@ class LRUCache:
         self.data.move_to_end(key)
         return self.data[key]
 
-    def put(self, key: int, value: int) -> None:      
+    def put(self, key: int, value: int) -> None:
+        if key in self.data:
+            self.data.move_to_end(key)
         self.data[key] = value
-        self.data.move_to_end(key)
 
         # delete LRU item
         if len(self.data) > self.capacity:
