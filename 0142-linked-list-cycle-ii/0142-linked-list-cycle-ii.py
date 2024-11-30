@@ -11,13 +11,11 @@ class Solution:
         while f:
             s = s.next
             f = f.next
-            if f is None:
+            if f.next is None or f.next.next is None:
                 return None
 
-            f = f.next
-            if f is None:
-                return None
-                
+            f = f.next.next
+
             if f == s:
                 break
         
