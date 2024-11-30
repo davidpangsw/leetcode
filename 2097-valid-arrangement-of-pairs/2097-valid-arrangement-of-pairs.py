@@ -29,42 +29,49 @@ class Solution:
             start = end = node 
         # print(f"{start} -> {end}")
         
-        path = deque()
-        path.append(start)
+        path = []
+        def dfs(cur):
+            while adjLists[cur]:
+                v = adjLists[cur].pop()
+                dfs(v)
+                path.append((cur, v))
+        dfs(start)
+        return path[::-1]
 
-        # run a path from start to end
-        cur = start
-        while True:
-            # print(path)
-            # print(adjLists, cur, start, end)
-            v = adjLists[cur].pop()
-            path.append(v)
 
-            cur = v
-            if cur == end:
-                break
+        # # run a path from start to end
+        # cur = start
+        # while True:
+        #     # print(path)
+        #     # print(adjLists, cur, start, end)
+        #     v = adjLists[cur].pop()
+        #     path.append(v)
 
-        # backtracking and add loops along the path
-        result = []
-        while path:
-            # print(path)
-            end = path[-1]
-            adjList = adjLists[end]
-            if not adjList:
-                result.append(path.pop())
-                continue
+        #     cur = v
+        #     if cur == end:
+        #         break
+
+        # # backtracking and add loops along the path
+        # result = []
+        # while path:
+        #     # print(path)
+        #     end = path[-1]
+        #     adjList = adjLists[end]
+        #     if not adjList:
+        #         result.append(path.pop())
+        #         continue
             
-            # add a loop
-            cur = end
-            while True:
-                path.append(adjList.pop())
+        #     # add a loop
+        #     cur = end
+        #     while True:
+        #         path.append(adjList.pop())
 
-                if cur == end:
-                    break
-                adjList = data[cur]
+        #         if cur == end:
+        #             break
+        #         adjList = data[cur]
 
-        # print(result)
-        return [[result[E-i], result[E-1-i]] for i in range(E)]
+        # # print(result)
+        # return [[result[E-i], result[E-1-i]] for i in range(E)]
 
 
 
