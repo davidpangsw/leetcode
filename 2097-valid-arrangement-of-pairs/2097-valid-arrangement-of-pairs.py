@@ -2,24 +2,22 @@ class Solution:
     def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
         E = len(pairs)
 
-        inDegrees = {}
-        adjLists = {}
+        nodes = set()
+        inDegrees = defaultdict(int)
+        adjLists = defaultdict(list)
 
         # node -> [inDegree, adjList]
         for pair in pairs:
             u, v = pair
-            if u not in adjLists:
-                adjLists[u] = []
-                inDegrees[u] = 0
-            if v not in adjLists:
-                adjLists[v] = []
-                inDegrees[v] = 0
+            nodes.add(u)
+            nodes.add(v)
             inDegrees[v] += 1
             adjLists[u].append(v)
 
         # count degrees to find the start and end        
         start, end = None, None
-        for node in adjLists.keys():
+        for node in nodes:
+            # print(node, len(adjLists[node]), inDegrees[node])
             if len(adjLists[node]) > inDegrees[node]:
                 start = node
             elif inDegrees[node] > len(adjLists[node]):
@@ -39,6 +37,7 @@ class Solution:
         cur = start
         while True:
             # print(path)
+            # print(adjLists, cur, start, end)
             v = adjLists[cur].pop()
             path.append(v)
 
