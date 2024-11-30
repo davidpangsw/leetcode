@@ -6,11 +6,7 @@
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         # q = [(l.val, l) for l in lists]
-        # q = [(lists[i].val, i) if lists[i] for i in range(len(lists))]
-        q = []
-        for i, x in enumerate(lists):
-            if x:
-                q.append((x.val, i))
+        q = [(lists[i].val, i) if lists[i] else (inf, None) for i in range(len(lists))]
         heapify(q)
         # print(q, lists)
 
@@ -19,6 +15,8 @@ class Solution:
 
         while q:
             val, i = heappop(q)
+            if i is None or lists[i] is None:
+                continue
             
             
             l = lists[i]
