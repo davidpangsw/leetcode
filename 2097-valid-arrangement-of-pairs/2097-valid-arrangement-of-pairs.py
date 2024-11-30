@@ -1,7 +1,5 @@
 class Solution:
     def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
-        E = len(pairs)
-
         # outDegree - inDegree
         degrees = defaultdict(int)
         adjLists = defaultdict(list)
