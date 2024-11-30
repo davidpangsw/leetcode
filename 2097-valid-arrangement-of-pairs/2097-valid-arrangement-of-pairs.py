@@ -27,6 +27,7 @@ class Solution:
 
         # if all nodes are "even"
         if start is None:
+            # here, end must also be None
             # just take any node as start and end
             start = end = node 
         # print(f"{start} -> {end}")
@@ -34,7 +35,7 @@ class Solution:
         path = deque()
         path.append(start)
 
-        # run a path from start to end first
+        # run a path from start to end
         cur = start
         while True:
             # print(path)
