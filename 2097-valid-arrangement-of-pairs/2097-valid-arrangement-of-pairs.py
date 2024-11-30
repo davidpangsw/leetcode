@@ -12,7 +12,6 @@ class Solution:
                 data[v] = [0, []]
             data[v][0] += 1
             data[u][1].append(pair)
-        
 
         # count degrees to find the start and end        
         start, end = None, None
@@ -38,12 +37,10 @@ class Solution:
         cur = start
         while True:
             # print(path)
-            inDegree, adjList = data[cur]
+            _, adjList = data[cur]
 
             edge = adjList.pop()
             u, v = edge
-
-            data[v][0] -= 1
             path.append(v)
 
             cur = v
@@ -55,7 +52,7 @@ class Solution:
         while path:
             # print(path)
             end = path[-1]
-            inDegree, adjList = data[end]
+            _, adjList = data[end]
             if not adjList:
                 result.append(path.pop())
                 continue
@@ -63,14 +60,12 @@ class Solution:
             # add a loop
             cur = end
             while True:
-                inDegree, adjList = data[cur]
-
                 u, v = adjList.pop()
-                data[v][0] -= 1
                 path.append(v)
 
                 if cur == end:
                     break
+                _, adjList = data[cur]
         # print(result)
         return [[result[E-i], result[E-1-i]] for i in range(E)]
 
