@@ -15,7 +15,7 @@ class Solution:
                 adjLists[v] = []
                 inDegrees[v] = 0
             inDegrees[v] += 1
-            adjLists[u].append(pair)
+            adjLists[u].append(v)
 
         # count degrees to find the start and end        
         start, end = None, None
@@ -29,7 +29,7 @@ class Solution:
         if start is None:
             # just take any node as start and end
             start = end = node 
-        # print("odd points", start, end)
+        # print(f"{start} -> {end}")
         
         path = deque()
         path.append(start)
@@ -38,10 +38,7 @@ class Solution:
         cur = start
         while True:
             # print(path)
-            adjList = adjLists[cur]
-
-            edge = adjList.pop()
-            u, v = edge
+            v = adjLists[cur].pop()
             path.append(v)
 
             cur = v
@@ -61,12 +58,11 @@ class Solution:
             # add a loop
             cur = end
             while True:
-                u, v = adjList.pop()
-                path.append(v)
+                path.append(adjList.pop())
 
                 if cur == end:
                     break
-                _, adjList = data[cur]
+                adjList = data[cur]
 
         # print(result)
         return [[result[E-i], result[E-1-i]] for i in range(E)]
