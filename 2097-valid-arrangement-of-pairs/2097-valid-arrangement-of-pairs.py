@@ -25,11 +25,10 @@ class Solution:
             elif inDegrees[node] > len(adjLists[node]):
                 end = node
 
-        # if all even points, take any point as the start and the end
+        # if all nodes are "even"
         if start is None:
-            assert (end is None)
-            start = node # take any node
-            end = node
+            # just take any node as start and end
+            start = end = node 
         # print("odd points", start, end)
         
         path = deque()
