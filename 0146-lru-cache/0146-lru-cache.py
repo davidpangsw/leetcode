@@ -1,47 +1,25 @@
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.queue = deque()
-        self.data = {}
+        self.data = OrderedDict()
     
-    def add(self, key: int, value: int) -> None:
-        # add new item
-        newItem = [key, value]
-        self.data[key] = newItem
-        self.queue.append(newItem)
-        
-
-    def remove(self, key: int) -> int:
-        # remove the previous item
-        item = self.data[key]
-        value = item[1]
-        del self.data[key]
-        item[1] = None # deal with the dangling item in queue
-
-        return value
-
     def get(self, key: int) -> int:
+        # print("get", self.data, len(self.data), self.capacity)
         if key not in self.data:
             return -1
-            
-        value = self.remove(key)
-        self.add(key, value)
+        self.data.move_to_end(key)
+        return self.data[key]
 
-        return value
-        
+    def put(self, key: int, value: int) -> None:      
+        # print("put", self.data, len(self.data), self.capacity)
 
-    def put(self, key: int, value: int) -> None:
-        if key in self.data:
-            self.remove(key)
-        
+        self.data[key] = value
+        self.data.move_to_end(key)
+
         # delete LRU item
-        if len(self.data.keys()) == self.capacity:
-            item = self.queue.popleft()
-            while item[1] == None:
-                item = self.queue.popleft()
-            self.remove(item[0])
-        
-        self.add(key, value)
+        if len(self.data) > self.capacity:
+            _ = self.data.popitem(False)
+            
 
 
 
