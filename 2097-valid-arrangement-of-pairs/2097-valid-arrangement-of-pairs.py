@@ -2,25 +2,24 @@ class Solution:
     def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
         E = len(pairs)
 
-        nodes = set()
-        inDegrees = defaultdict(int)
+        # outDegree - inDegree
+        degrees = defaultdict(int)
         adjLists = defaultdict(list)
 
         # node -> [inDegree, adjList]
         for pair in pairs:
             u, v = pair
-            nodes.add(u)
-            nodes.add(v)
-            inDegrees[v] += 1
+            degrees[u] += 1
+            degrees[v] -= 1
             adjLists[u].append(v)
 
         # count degrees to find the start and end        
         start, end = None, None
-        for node in nodes:
+        for node, degree in degrees.items():
             # print(node, len(adjLists[node]), inDegrees[node])
-            if len(adjLists[node]) > inDegrees[node]:
+            if degree > 0:
                 start = node
-            elif inDegrees[node] > len(adjLists[node]):
+            elif degree < 0:
                 end = node
 
         # if all nodes are "even"
