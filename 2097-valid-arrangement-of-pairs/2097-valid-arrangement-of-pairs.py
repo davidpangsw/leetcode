@@ -26,9 +26,8 @@ class Solution:
         # DFS
         path = []
         while stack:
-            cur = stack[-1]
-            if adjLists[cur]:
-                stack.append(adjLists[cur].pop())
+            if adjLists[stack[-1]]:
+                stack.append(adjLists[stack[-1]].pop())
             else:
                 path.append(stack.pop())
         # print(path)
@@ -54,11 +53,9 @@ class Solution:
         #     # print(adjLists, cur, start, end)
         #     v = adjLists[cur].pop()
         #     path.append(v)
-
         #     cur = v
         #     if cur == end:
         #         break
-
         # # backtracking and add loops along the path
         # result = []
         # while path:
@@ -77,7 +74,6 @@ class Solution:
         #         if cur == end:
         #             break
         #         adjList = data[cur]
-
         # # print(result)
         # return [[result[E-i], result[E-1-i]] for i in range(E)]
 
