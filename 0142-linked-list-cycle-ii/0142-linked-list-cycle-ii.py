@@ -8,17 +8,10 @@ class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if head is None:
             return None
-        # f = 2s
-        s = head.next
-        f = head.next
-        if f is None:
-            return None
 
-        f = f.next
-        if f is None:
-            return None
-        
-        while f != s:
+        # f = 2s
+        f = s = head
+        while f:
             s = s.next
             f = f.next
             if f is None:
@@ -27,7 +20,8 @@ class Solution:
             f = f.next
             if f is None:
                 return None
-            
+            if f == s:
+                break
         
         # Let c = cycle length
         # Let x = answer = length before the cycle entry
