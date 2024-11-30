@@ -6,6 +6,9 @@
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+
         # f = 2s
         f = s = head
         while f:
@@ -20,6 +23,14 @@ class Solution:
             
             if f == s:
                 break
+        
+        # Let c = cycle length
+        # Let x = answer = length before the cycle entry
+        # Then, 
+        # f - x = s - x (mod c)
+
+        # Since f = 2s, f = s = 0 (mod c)
+        # f + l = 0 + l (mod c)
         
         s = head
         while f != s:
