@@ -36,6 +36,8 @@ class Solution:
                 dfs(v)
                 path.append((cur, v))
         dfs(start)
+        # path supposed to be:
+        # [...[n1, n2],[n0, n1]]
         return path[::-1]
 
 
