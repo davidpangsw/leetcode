@@ -2,32 +2,34 @@ class Solution:
     def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
         E = len(pairs)
 
+        inDegrees = {}
+        adjLists = {}
+
         # node -> [inDegree, adjList]
-        data = {}
         for pair in pairs:
             u, v = pair
-            if u not in data:
-                data[u] = [0, []]
-            if v not in data:
-                data[v] = [0, []]
-            data[v][0] += 1
-            data[u][1].append(pair)
+            if u not in adjLists:
+                adjLists[u] = []
+                inDegrees[u] = 0
+            if v not in adjLists:
+                adjLists[v] = []
+                inDegrees[v] = 0
+            inDegrees[v] += 1
+            adjLists[u].append(pair)
 
         # count degrees to find the start and end        
         start, end = None, None
-        for key, value in data.items():
-            inDegree, adjList = value
-            if len(adjList) > inDegree:
-                start = key
-            elif inDegree > len(adjList):
-                end = key
+        for node in adjLists.keys():
+            if len(adjLists[node]) > inDegrees[node]:
+                start = node
+            elif inDegrees[node] > len(adjLists[node]):
+                end = node
 
         # if all even points, take any point as the start and the end
-        nodes = list(data.keys())
         if start is None:
             assert (end is None)
-            start = nodes[0]
-            end = nodes[0]
+            start = node # take any node
+            end = node
         # print("odd points", start, end)
         
         path = deque()
@@ -37,7 +39,7 @@ class Solution:
         cur = start
         while True:
             # print(path)
-            _, adjList = data[cur]
+            adjList = adjLists[cur]
 
             edge = adjList.pop()
             u, v = edge
@@ -52,7 +54,7 @@ class Solution:
         while path:
             # print(path)
             end = path[-1]
-            _, adjList = data[end]
+            adjList = adjLists[end]
             if not adjList:
                 result.append(path.pop())
                 continue
@@ -66,6 +68,7 @@ class Solution:
                 if cur == end:
                     break
                 _, adjList = data[cur]
+
         # print(result)
         return [[result[E-i], result[E-1-i]] for i in range(E)]
 
