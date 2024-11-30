@@ -30,11 +30,9 @@ class Solution:
         while stack:
             cur = stack[-1]
             if adjLists[cur]:
-                v = adjLists[cur].pop()
-                stack.append(v)
+                stack.append(adjLists[cur].pop())
             else:
-                v = stack.pop()
-                path.append(v)
+                path.append(stack.pop())
         # print(path)
         return list(pairwise(path[::-1]))
 
