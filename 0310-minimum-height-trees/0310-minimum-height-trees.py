@@ -1,21 +1,15 @@
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
-        if n == 1:
-            return [0]
-
         adjLists = [set() for _ in range(n)]
 
         for u, v in edges:
             adjLists[u].add(v)
             adjLists[v].add(u)
         
-        # BFS by levels
+        # BFS
         # Kahn's Algorithm (Topo-sort)
-        q = []
-        for i, x in enumerate(adjLists):
-            # if the degree is 1, it must be a leaf
-            if len(x) == 1:
-                q.append(i)
+        # start with leaves (degree = 1)
+        q = [i for i, x in enumerate(adjLists) if len(x) == 1]
 
         # print(q)
         while q:
@@ -33,3 +27,7 @@ class Solution:
             else:
                 q = newQ
             # print(q)
+
+        # only happens there is no "leaves"
+        # which mean only 1 node
+        return [0]
