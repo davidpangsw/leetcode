@@ -1,22 +1,18 @@
 class Solution:
     def checkIfExist(self, arr: List[int]) -> bool:
-        arr.sort()
+        zero = False
+        data = {}
         for i, x in enumerate(arr):
-            d = (x << 1)
-            if d > arr[-1]:
-                break
+            data[x] = i
+            if x == 0:
+                if zero:
+                    return True
+                zero = True
 
-            if x > 0:
-                ind = bisect_left(arr, d, i)
-            elif x < 0:
-                ind = bisect_left(arr, d, 0, i)
-            else:
-                if i > 0:
-                    ind = i - 1
-                else:
-                    ind = i
-            # if ind == len(arr):
-            #     break
-            if arr[ind] == d:
+        for i, x in enumerate(arr):
+            if x == 0:
+                continue
+            d = x << 1
+            if d in data:
                 return True
         return False
