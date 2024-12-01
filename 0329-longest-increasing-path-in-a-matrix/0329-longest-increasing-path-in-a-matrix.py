@@ -1,13 +1,13 @@
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        m = len(matrix)
-        n = len(matrix[0])
+        m, n = len(matrix), len(matrix[0])
 
         # consider the matrix as a directed graph
+        results = [[None for _ in range(n)] for _ in range(m)]
         adjLists = [[[] for _ in range(n)] for _ in range(m)]
 
-        # BFS
-        q = deque()
+        # DFS
+        q = []
 
         # find all starting points
         for i, row in enumerate(matrix):
@@ -22,13 +22,20 @@ class Solution:
                 if inDegree == 0:
                     q.append((i, j))
 
+        def dfs(i, j):
+            if results[i][j]:
+                return results[i][j]
+            
+            l = 1
+            for I, J in adjLists[i][j]:
+                l = max(l, 1 + dfs(I, J))
+            
+            results[i][j] = l
+            return l
+        
         result = 0
-        while q:
-            qSize = len(q)
-            for _ in range(qSize):
-                i, j = q.popleft()
-                for I, J in adjLists[i][j]:
-                    q.append((I, J))
-            result += 1
+        for x, y in q:
+            result = max(result, dfs(x, y))
         return result
+        
 
