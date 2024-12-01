@@ -24,11 +24,11 @@ class Solution:
             newQ = []
             for cur in q:
                 for adj in adjLists[cur]:
-                    # remove the edge
+                    # remove the edge (just the degree)
                     degrees[adj] -= 1
                     if degrees[adj] == 1:
                         newQ.append(adj)
-            if not newQ:
+            if not newQ: # here is why we kept prev queue
                 return q
             elif len(newQ) == 1:
                 return newQ
