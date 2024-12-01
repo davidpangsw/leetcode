@@ -3,6 +3,8 @@ class Solution:
         arr.sort()
         for i, x in enumerate(arr):
             d = (x << 1)
+            if d > arr[-1]:
+                break
 
             if x > 0:
                 ind = bisect_left(arr, d, i)
@@ -13,8 +15,8 @@ class Solution:
                     ind = i - 1
                 else:
                     ind = i
-            if ind == len(arr):
-                break
+            # if ind == len(arr):
+            #     break
             if arr[ind] == d:
                 return True
         return False
