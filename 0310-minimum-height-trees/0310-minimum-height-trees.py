@@ -19,7 +19,7 @@ class Solution:
             if x == 1:
                 q.append(i)
 
-        print(q)
+        # print(q)
         while q:
             newQ = []
             for cur in q:
@@ -34,4 +34,4 @@ class Solution:
                 return newQ
             else:
                 q = newQ
-            print(q)
+            # print(q)
