@@ -19,5 +19,5 @@ class Solution:
                 inDegrees[adj] -= 1
                 if inDegrees[adj] == 0:
                     q.append(adj)
-        return result
+        return result if len(result) == numCourses else []
             
