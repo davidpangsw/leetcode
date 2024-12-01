@@ -5,7 +5,7 @@ class Solution:
             d = (x << 1)
 
             if x > 0:
-                ind = bisect_left(arr, d)
+                ind = bisect_left(arr, d, i)
             elif x < 0:
                 ind = bisect_left(arr, d, 0, i)
             else:
