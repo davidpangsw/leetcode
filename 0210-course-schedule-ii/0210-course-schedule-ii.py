@@ -6,6 +6,7 @@ class Solution:
             adjLists[u].append(v)
             inDegrees[v] += 1
         
+        # Topological sort, using Kahn's Algorithm
         q = deque()
         for i, x in enumerate(inDegrees):
             if x == 0:
