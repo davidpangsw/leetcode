@@ -11,6 +11,6 @@ class Solution:
                 data.add(x)
 
         for i, x in enumerate(arr):
-            if (x << 1) in data:
+            if (x << 1) in data or (x / 2) in data:
                 return True
         return False
