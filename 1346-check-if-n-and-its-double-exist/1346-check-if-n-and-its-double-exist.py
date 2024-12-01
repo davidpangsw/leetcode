@@ -1,9 +1,9 @@
 class Solution:
     def checkIfExist(self, arr: List[int]) -> bool:
         zero = False
-        data = {}
+        data = set()
         for i, x in enumerate(arr):
-            data[x] = i
+            data.add(x)
             if x == 0:
                 if zero:
                     return True
@@ -12,7 +12,6 @@ class Solution:
         for i, x in enumerate(arr):
             if x == 0:
                 continue
-            d = x << 1
-            if d in data:
+            if (x << 1) in data:
                 return True
         return False
