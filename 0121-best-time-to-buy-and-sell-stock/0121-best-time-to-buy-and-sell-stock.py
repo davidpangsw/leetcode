@@ -4,7 +4,8 @@ class Solution:
         curMin = inf
         for x in prices:
             if x > curMin:
-                result = max(result, x - curMin)
+                if result < x - curMin:
+                    result = x - curMin
             else:
                 curMin = x
         return result
