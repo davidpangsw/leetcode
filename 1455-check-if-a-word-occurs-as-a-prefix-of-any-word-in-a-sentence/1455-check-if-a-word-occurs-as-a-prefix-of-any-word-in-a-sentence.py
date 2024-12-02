@@ -19,8 +19,5 @@ class Solution:
 
             result += 1
             j = 0
-        if j == len(searchWord):
-            return result
-
 
         return -1
