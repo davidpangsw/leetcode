@@ -4,12 +4,12 @@ class Solution:
         result = 1
         while i < len(sentence):
             # print(sentence[i], j, result)
-            if j == len(searchWord):
-                return result
             
             if sentence[i] == searchWord[j]:
                 i += 1
                 j += 1
+                if j == len(searchWord):
+                    return result
                 continue
             
             # go to next word
