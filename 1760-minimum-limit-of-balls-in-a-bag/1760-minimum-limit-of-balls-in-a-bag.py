@@ -20,8 +20,6 @@ class Solution:
 
             if bags > maxBags:
                 left = mid + 1
-            elif bags < maxBags:
-                right = mid
             else:
                 right = mid
         return left
