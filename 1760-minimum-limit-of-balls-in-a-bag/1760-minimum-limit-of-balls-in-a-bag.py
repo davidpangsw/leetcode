@@ -4,7 +4,7 @@ class Solution:
         # binary search on penality
         # given a penality, we know the maxOperations (or maxBags)
         left = 1
-        right = max(nums)
+        right = 10**9 # max(nums)
 
         maxBags = len(nums) + maxOperations
 
