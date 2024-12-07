@@ -1,7 +1,8 @@
 class Solution:
     def minimumSize(self, nums: List[int], maxOperations: int) -> int:
+        # 10^5 * log (10^9)
         # binary search on penality
-        # given a penality, we know the maxOperations
+        # given a penality, we know the maxOperations (or maxBags)
         left = 1
         right = max(nums)
 
@@ -11,12 +12,13 @@ class Solution:
             mid = (left + right) // 2
 
             #
-            bags = 0
-            for x in nums:
-                bags += ceil(x / mid)
-                if bags > maxBags:
-                    break
-            # print(left, right, mid, bags)
+            bags = sum([ceil(x / mid) for x in nums])
+            # bags = 0
+            # for x in nums:
+            #     bags += ceil(x / mid)
+            #     if bags > maxBags:
+            #         break
+            # # print(left, right, mid, bags)
 
             if bags > maxBags:
                 left = mid + 1
@@ -24,6 +26,7 @@ class Solution:
                 right = mid
         return left
 
+        # 10^9 * log (10^5)
         # # (-avg, nBags, total)
         # nums = [(-x, 1, x) for x in nums]
         # heapify(nums)
