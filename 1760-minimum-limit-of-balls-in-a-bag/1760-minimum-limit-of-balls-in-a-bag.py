@@ -3,11 +3,11 @@ class Solution:
         # 10^5 * log (10^9)
         # binary search on penality
         # given a penality, we know the maxOperations (or maxBags)
-        left = 1
-        right = 10**9 # max(nums)
+        s = sum(nums)
 
         maxBags = len(nums) + maxOperations
-
+        left = ceil(s / maxBags)
+        right = 10**9 # max(nums)
         while left < right:
             mid = (left + right) // 2
 
