@@ -13,13 +13,6 @@ class Solution:
 
             #
             bags = sum([ceil(x / mid) for x in nums])
-            # bags = 0
-            # for x in nums:
-            #     bags += ceil(x / mid)
-            #     if bags > maxBags:
-            #         break
-            # # print(left, right, mid, bags)
-
             if bags > maxBags:
                 left = mid + 1
             else:
