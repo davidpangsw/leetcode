@@ -16,25 +16,23 @@ class Solution:
         result = -1
         for s, e, v in events:
             if events[n-1][0] <= e:
-                m = 0
-                # print((s, e, v), None)
-            else:
-                # perform binary search
-                # m = bisect_left(events, v)
-                left, right = 0, n-1
-                while left < right:
-                    # print(left, right)
-                    mid = (left + right) // 2
-                    s1, e1, v1 = events[mid]
-                    if s1 > e:
-                        right = mid
-                    else:
-                        left = mid + 1
-                m = data[left]
-                # print((s, e, v), events[left])
+                result = max(result, v)
+                continue 
 
-            result = max(result, v + m)
+            # perform binary search
+            # search event index with start time > e
+            # ind = bisect_right(list(range(n)), e, key=lambda i: events[i][0])
+            left, right = 0, n-1
+            while left < right:
+                # print(left, right)
+                mid = (left + right) // 2
+                s1, e1, v1 = events[mid]
+                if s1 > e:
+                    right = mid
+                else:
+                    left = mid + 1
+            # print((s, e, v), events[left])
+            ind = left
+            result = max(result, v + data[ind])
         return result
         
-        
-
