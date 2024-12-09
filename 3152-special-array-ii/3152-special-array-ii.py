@@ -8,8 +8,4 @@ class Solution:
             prefixCounts[i] = count
         # print(prefixCounts)
         
-        results = []
-        for f, t in queries:
-            result = prefixCounts[t] - prefixCounts[f]
-            results.append(result == 0)
-        return results
+        return [prefixCounts[f] == prefixCounts[t] for f, t in queries]
