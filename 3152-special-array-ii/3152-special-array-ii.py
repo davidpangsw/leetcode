@@ -4,7 +4,7 @@ class Solution:
 
         count = 0
         for i in range(1, len(nums)):
-            count += not ((nums[i] & 1) ^ (nums[i-1] & 1))
+            count += ((nums[i] & 1)  == (nums[i-1] & 1))
             prefixCounts[i] = count
         # print(prefixCounts)
         
