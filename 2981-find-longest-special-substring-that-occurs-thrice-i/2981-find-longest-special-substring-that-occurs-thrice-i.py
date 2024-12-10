@@ -1,11 +1,8 @@
 class Solution:
     def maximumLength(self, s: str) -> int:
-        n = len(s)
-
         table = [[] for _ in range(26)]
-
         count = 1
-        for i in range(1, n):
+        for i in range(1, len(s)):
             if s[i] == s[i-1]:
                 count += 1
             else:
