@@ -28,8 +28,8 @@ class Solution:
                 # min(a, b-1)
                 # a-1
                 # X a-2 X
-                s = heapq.nlargest(2, table[x])
-                result = max(result, s[0]-2, min(s[1], s[0]-1), s[1]-1)
+                s = sorted(table[x])
+                result = max(result, s[1]-2, min(s[0], s[1]-1), s[0]-1)
             else:
                 # 3 numbers (a <= b <= c)
                 # c-2
