@@ -28,7 +28,9 @@ class Solution:
                 # min(a, b-1)
                 # a-1
                 # X a-2 X
-                s = sorted(table[x])
+                s = table[x]
+                if s[0] > s[1]:
+                    s[0], s[1] = s[1], s[0]
                 result = max(result, s[1]-2, min(s[0], s[1]-1), s[0]-1)
             else:
                 # 3 numbers (a <= b <= c)
