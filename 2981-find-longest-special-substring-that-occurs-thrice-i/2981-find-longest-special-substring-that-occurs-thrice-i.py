@@ -10,13 +10,11 @@ class Solution:
             if s[i] == s[i-1]:
                 count += 1
             else:
-                prev = ord(s[i-1]) - ord('a')
-                table[prev].append(count)
+                table[ord(s[i-1]) - ord('a')].append(count)
                 count = 1
 
-        prev = ord(s[-1]) - ord('a')
-        table[prev].append(count)
-        print(table)
+        table[ord(s[-1]) - ord('a')].append(count)
+        # print(table)
             
         result = 0
         for x in range(26):
