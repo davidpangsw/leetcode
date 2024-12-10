@@ -8,13 +8,10 @@ class Solution:
         for i in range(n-2, -1, -1):
             if s[i] == s[i+1]:
                 count += 1
+                counts[i] = count
             else:
                 count = 1
-            counts[i] = count
         
-        # "at least twice"
-        # countsTwice[i] = min(length of special string before i, counts[i])
-        # data[c] = maximum count of character c (before i)
         maxCounts = [0] * 26
         maxCountsTwice = [0] * 26
         result = -1
