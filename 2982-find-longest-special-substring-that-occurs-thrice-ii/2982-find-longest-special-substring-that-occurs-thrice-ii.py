@@ -17,7 +17,7 @@ class Solution:
         for x in range(26):
             if not table[x]:
                 continue
-                
+
             s = sorted(table[x])
             if len(s) == 1:
                 # 1 number
@@ -36,6 +36,7 @@ class Solution:
                 # min(b, c-1)  ; X min(a, c-1) X
                 # b-1          ; X a-1 X
                 # a
+                s = sorted(table[x])
                 result = max(result, s[-1] - 2, min(s[-2], s[-1]-1), s[-2] - 1, s[-3])
 
         return result if result > 0 else -1
