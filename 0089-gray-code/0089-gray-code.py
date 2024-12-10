@@ -16,9 +16,8 @@ class Solution:
 
             helper(n-1, result)
             m = len(result)
-            for i in range(m):
-                result[i] = result[i] << 1
             for i in range(m-1, -1, -1):
+                result[i] <<= 1
                 result.append(result[i] + 1)
         result = []
         helper(n, result)
