@@ -19,11 +19,11 @@ class Solution:
                 continue
 
             s = sorted(table[x])
-            if len(s) == 1:
+            if len(table[x]) == 1:
                 # 1 number
                 # a-2
                 result = max(result, s[0] - 2)
-            elif len(s) == 2:
+            elif len(table[x]) == 2:
                 # 2 numbers (a <= b)
                 # b-2
                 # min(a, b-1)
@@ -36,7 +36,7 @@ class Solution:
                 # min(b, c-1)  ; X min(a, c-1) X
                 # b-1          ; X a-1 X
                 # a
-                s = sorted(table[x])
-                result = max(result, s[-1] - 2, min(s[-2], s[-1]-1), s[-2] - 1, s[-3])
+                s = heapq.nlargest(3, table[x])
+                result = max(result, s[0] - 2, min(s[1], s[0]-1), s[1] - 1, s[2])
 
         return result if result > 0 else -1
