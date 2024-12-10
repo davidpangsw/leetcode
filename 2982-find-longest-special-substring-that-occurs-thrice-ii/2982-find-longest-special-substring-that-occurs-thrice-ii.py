@@ -18,17 +18,17 @@ class Solution:
             if not table[x]:
                 continue
 
-            s = sorted(table[x])
             if len(table[x]) == 1:
                 # 1 number
                 # a-2
-                result = max(result, s[0] - 2)
+                result = max(result, table[x][0] - 2)
             elif len(table[x]) == 2:
                 # 2 numbers (a <= b)
                 # b-2
                 # min(a, b-1)
                 # a-1
                 # X a-2 X
+                s = sorted(table[x])
                 result = max(result, s[1]-2, min(s[0], s[1]-1), s[0]-1)
             else:
                 # 3 numbers (a <= b <= c)
