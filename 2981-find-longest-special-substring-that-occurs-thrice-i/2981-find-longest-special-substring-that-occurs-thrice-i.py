@@ -17,10 +17,10 @@ class Solution:
         result = -1
         for i in range(n):
             x = ord(s[i]) - ord('a')
-            countsTwice = min(maxCounts[x], counts[i])
             if maxCountsTwice[x]:
                 countsThrice = min(maxCountsTwice[x], counts[i])
                 result = max(result, countsThrice)
+            countsTwice = min(maxCounts[x], counts[i])
             maxCountsTwice[x] = max(maxCountsTwice[x], countsTwice)
             maxCounts[x] = max(maxCounts[x], counts[i])
         return result 
