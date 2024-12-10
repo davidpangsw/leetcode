@@ -1,32 +1,40 @@
 class Solution:
     def maximumLength(self, s: str) -> int:
-        n = len(s)
-
-        # counts[i] = #repeated char starting from i
-        counts = [1] * n
+        # table
+        # character => list of special string lengths
+        table = [[] for _ in range(26)]
         count = 1
-        for i in range(n-2, -1, -1):
-            if s[i] == s[i+1]:
+        for i in range(1, len(s)):
+            if s[i] == s[i-1]:
                 count += 1
-                counts[i] = count
             else:
+                table[ord(s[i-1]) - ord('a')].append(count)
                 count = 1
-        
-        maxCounts = [0] * 26
-        maxCountsTwice = [0] * 26
-        result = -1
-        for i in range(n):
-            x = ord(s[i]) - ord('a')
+        table[ord(s[-1]) - ord('a')].append(count)
+        # print(table)
+            
+        result = 0
+        for x in range(26):
+            if not table[x]:
+                continue
+            s = sorted(table[x])
+            if len(s) == 1:
+                # 1 number
+                # a-2
+                result = max(result, s[0] - 2)
+            elif len(s) == 2:
+                # 2 numbers (a <= b)
+                # b-2
+                # min(a, b-1)
+                # a-1
+                # X a-2 X
+                result = max(result, s[1]-2, min(s[0], s[1]-1), s[0]-1)
+            else:
+                # 3 numbers (a <= b <= c)
+                # c-2
+                # min(b, c-1)  ; X min(a, c-1) X
+                # b-1          ; X a-1 X
+                # a
+                result = max(result, s[-1] - 2, min(s[-2], s[-1]-1), s[-2] - 1, s[-3])
 
-            # update max counts Thrice (only when maxCountsTwice[x] exists)
-            if maxCountsTwice[x]:
-                countsThrice = min(maxCountsTwice[x], counts[i])
-                result = max(result, countsThrice)
-            
-            # update max counts Twice
-            countsTwice = min(maxCounts[x], counts[i])
-            maxCountsTwice[x] = max(maxCountsTwice[x], countsTwice)
-            
-            # update max counts
-            maxCounts[x] = max(maxCounts[x], counts[i])
-        return result 
+        return result if result > 0 else -1
