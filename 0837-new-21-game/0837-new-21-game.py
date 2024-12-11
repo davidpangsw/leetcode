@@ -13,10 +13,7 @@ class Solution:
 
         q = deque()
         for i in range(0, n-k+1):
-            if i <= n-k:
-                q.append(1)
-            else:
-                q.append(total / m)
+            q.append(1)
             # print(f"P({i}, {k-n+i}) = {cur}")
 
             if len(q) > m:
@@ -24,10 +21,7 @@ class Solution:
             total += q[-1]
 
         for i in range(n-k+1, n+1):
-            if i <= n-k:
-                q.append(1)
-            else:
-                q.append(total / m)
+            q.append(total / m)
             # print(f"P({i}, {k-n+i}) = {cur}")
 
             if len(q) > m:
