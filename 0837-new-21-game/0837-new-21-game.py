@@ -10,6 +10,7 @@ class Solution:
         # Starting from P(0, k-n), keep the sum of previous m items, get the next by sum / m
 
         total = 0.0
+        prev = 0
         q = deque()
         for i in range(0, n+1):
             if i <= n-k:
