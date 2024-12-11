@@ -6,8 +6,8 @@ class Solution:
         q = deque()
 
         heapify(nums)
-        q.append()
-        
+        q.append(heappop(nums))
+
         result = 1
         while nums:
             x = heappop(nums)
