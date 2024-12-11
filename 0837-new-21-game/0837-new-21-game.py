@@ -15,9 +15,8 @@ class Solution:
 
         for _ in range(k):
             q.append(total / m)
-            # print(f"P({_+n+1-k}, {_+1}) = {q[-1]}")
+            # print(f"P({_+n-k+1}, {_+1}) = {q[-1]}")
 
-            
             if len(q) > m:
                 total += q[-1] - q.popleft()
             else:
