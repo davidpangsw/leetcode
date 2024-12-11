@@ -15,7 +15,7 @@ class Solution:
 
             # dequeue all non-overlapping intervals
             # we don't need to dequeue all in practice, as it doesn't affect the maximum count
-            while q[0] + k < x - k:
+            if q[0] + k < x - k:
                 q.popleft()
 
             # now, all intervals in queue are overlapping
