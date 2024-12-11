@@ -10,7 +10,7 @@ class Solution:
 
         # if the overlap is possible, subtract the overlap area
         # if (bx1 <= cx1 < bx2 and by1 <= cy1 < by2) and (bx1 < cx2 <= bx2 and by1 < cy2 <= by2):
-        if( bx1 < ax2 and bx2 > ax1 and by1 < ay2 and by2 > ay1):
+        if bx1 < ax2 and bx2 > ax1 and by1 < ay2 and by2 > ay1:
             # find the overlap corners
             # cx1 = max(ax1, bx1)
             # cy1 = max(ay1, by1)
