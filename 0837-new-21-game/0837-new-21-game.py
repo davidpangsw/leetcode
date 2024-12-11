@@ -10,9 +10,8 @@ class Solution:
         # Starting from P(0, k-n), keep the sum of previous m items, get the next by sum / m
 
 
-        size = min(m, n-k+1)
-        q = deque([1] * size)
-        total = size
+        q = deque([1] * min(m, n-k+1))
+        total = len(q)
 
         for i in range(n-k+1, n+1):
             q.append(total / m)
