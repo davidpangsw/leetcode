@@ -13,14 +13,13 @@ class Solution:
         q = deque()
         for i in range(0, n+1):
             if i <= n-k:
-                cur = 1
+                q.append(1)
             else:
-                cur = total / m
+                q.append(total / m)
             # print(f"P({i}, {k-n+i}) = {cur}")
 
-            if len(q) == m:
+            if len(q) > m:
                 total -= q.popleft()
-            total += cur
-            q.append(cur)
+            total += q[-1]
         return q[-1]
 
