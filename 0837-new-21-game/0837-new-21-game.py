@@ -7,13 +7,12 @@ class Solution:
         #     P(n, k) = 0 for n < 0
         #     P(n, k) = 1 for k <= 0 and n >= 0
 
-        # (Suppose n >= k)
         # Starting from P(0, k-n), keep the sum of previous m items, get the next by sum / m
 
         total = 0.0
         q = deque()
         for i in range(0, n+1):
-            if k-n+i <= 0:
+            if i <= n-k:
                 cur = 1
             else:
                 cur = total / m
