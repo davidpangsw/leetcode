@@ -10,9 +10,8 @@ class Solution:
         # (Suppose n >= k)
         # Starting from P(0, k-n), keep the sum of previous m items, get the next by sum / m
 
-        total = 0
+        total = 0.0
         q = deque()
-        prev = 0
         for i in range(0, n+1):
             if k-n+i <= 0:
                 cur = 1
