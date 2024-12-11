@@ -15,14 +15,14 @@ class Solution:
         prev = 0
         for i in range(0, n+1):
             if k-n+i <= 0:
-                cur = m
+                cur = 1
             else:
-                cur = total
+                cur = total / m
             # print(f"P({i}, {k-n+i}) = {cur}")
 
             if len(q) == m:
                 total -= q.popleft()
-            total += cur / m
-            q.append(cur / m)
+            total += cur
+            q.append(cur)
         return q[-1]
 
