@@ -8,7 +8,7 @@ class Solution:
         p = 0 # nums[p, i] is like a queue of intervals
         for i in range(1, len(nums)):
             # dequeue all non-overlapping intervals
-            while nums[p] + k < nums[i] - k:
+            if nums[p] < nums[i] - 2 * k:
                 p += 1
             # now, all intervals from p to i are overlapping
             result = max(result, i - p + 1)
