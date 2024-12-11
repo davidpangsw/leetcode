@@ -12,13 +12,12 @@ class Solution:
 
         total = 0
         q = deque()
-        # print(f"P({0}, {k-n}) = {1}")
+        prev = 0
         for i in range(0, n+1):
             if k-n+i <= 0:
                 cur = 1
             else:
                 cur = total / m
-
             # print(f"P({i}, {k-n+i}) = {cur}")
 
             if len(q) == m:
