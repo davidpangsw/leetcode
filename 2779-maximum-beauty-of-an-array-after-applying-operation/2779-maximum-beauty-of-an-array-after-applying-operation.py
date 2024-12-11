@@ -9,7 +9,7 @@ class Solution:
         for i in range(1, len(nums)):
             # dequeue all non-overlapping intervals
             # we don't need to dequeue all in practice, as it doesn't affect the maximum count
-            if nums[p] < nums[i] - 2 * k:
+            while nums[p] < nums[i] - 2 * k:
                 p += 1
             # now, all intervals from p to i are overlapping
             result = max(result, i - p + 1)
