@@ -13,9 +13,9 @@ class Solution:
         q = deque([1] * min(m, n-k+1))
         total = len(q)
 
-        for _ in range(0, k):
+        for _ in range(k):
             q.append(total / m)
-            # print(f"P({_+n+1-k}, {_+1}) = {cur}")
+            print(f"P({_+n+1-k}, {_+1}) = {cur}")
 
             if len(q) > m:
                 total -= q.popleft()
