@@ -10,9 +10,7 @@ class Solution:
         # Starting from P(0, k-n), keep the sum of previous m items, get the next by sum / m
 
         total = 0.0
-        # q = deque()
-        q = []
-        left = 0
+        q = deque()
         for i in range(0, n+1):
             if i <= n-k:
                 q.append(1)
@@ -20,10 +18,8 @@ class Solution:
                 q.append(total / m)
             # print(f"P({i}, {k-n+i}) = {cur}")
 
-            if len(q) - left > m:
-                # total -= q.popleft()
-                total -= q[left]
-                left += 1
+            if len(q) > m:
+                total -= q.popleft()
             total += q[-1]
         return q[-1]
 
