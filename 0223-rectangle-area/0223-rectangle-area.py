@@ -7,7 +7,7 @@ class Solution:
 
         total = (ax2-ax1) * (ay2-ay1) + (bx2-bx1) * (by2-by1)
 
-        # find the overlap corner
+        # find the overlap corners
         cx1 = max(ax1, bx1)
         cy1 = max(ay1, by1)
         cx2 = min(ax2, bx2)
