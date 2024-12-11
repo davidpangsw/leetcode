@@ -14,7 +14,7 @@ class Solution:
             # # binary search the left index
             # p = bisect_left(nums, nums[i] - 2 * k, lo=p, hi=i)
 
-            # now, all intervals from p to i are overlapping
+            # now, all intervals from p to i are overlapping (in theory)
             result = max(result, i - p + 1)
         return result
 
