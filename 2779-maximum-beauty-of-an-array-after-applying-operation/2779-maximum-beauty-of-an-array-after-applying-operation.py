@@ -3,22 +3,18 @@ class Solution:
         # consider the intervals [nums[i] - k, nums[i] + k]
         # the answer would be the maximum count of overlaps
         # use a queue to store all overlapping intervals (represented by two pointer)
-        q = deque()
-
-        heapify(nums)
-        q.append(heappop(nums))
-
+        nums.sort()
         result = 1
-        while nums:
-            x = heappop(nums)
-            q.append(x)
-
+        p = 0 # nums[p, i] is like a queue of intervals
+        for i in range(1, len(nums)):
             # dequeue all non-overlapping intervals
             # we don't need to dequeue all in practice, as it doesn't affect the maximum count
-            if q[0] + k < x - k:
-                q.popleft()
+            while nums[p] < nums[i] - 2 * k:
+                p += 1
+            # # binary search the left index
+            # p = bisect_left(nums, nums[i] - 2 * k, lo=p, hi=i)
 
-            # now, all intervals in queue are overlapping
-            result = max(result, len(q))
+            # now, all intervals from p to i are overlapping
+            result = max(result, i - p + 1)
         return result
 
