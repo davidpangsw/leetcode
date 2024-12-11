@@ -17,8 +17,10 @@ class Solution:
             q.append(total / m)
             # print(f"P({_+n+1-k}, {_+1}) = {q[-1]}")
 
+            
             if len(q) > m:
-                total -= q.popleft()
-            total += q[-1]
+                total = total + q[-1] - q.popleft()
+            else:
+                total = total + q[-1]
         return q[-1]
 
