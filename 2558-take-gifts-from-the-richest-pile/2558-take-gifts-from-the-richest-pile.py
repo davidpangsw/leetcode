@@ -4,7 +4,6 @@ class Solution:
         heapify(arr)
         for i in range(k):
             p = heappop(arr)
-            # print(-p)
             heappush(arr, -int(sqrt(-p)))
         return -sum(arr)
 
