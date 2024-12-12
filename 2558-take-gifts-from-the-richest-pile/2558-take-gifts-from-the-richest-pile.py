@@ -4,7 +4,7 @@ class Solution:
         heapify(arr)
         while k > 0:
             p = heappop(arr)
-            heappush(arr, -int(sqrt(-p)))
+            heappush(arr, -floor(sqrt(-p)))
             k -= 1
         return -sum(arr)
 
