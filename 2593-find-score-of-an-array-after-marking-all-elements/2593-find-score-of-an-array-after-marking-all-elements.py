@@ -22,7 +22,7 @@ class Solution:
                 
                 # now, nums[i-1] is a local minimum
                 # score += sum(nums[i-1:left-1:-2])
-                # score += sum(nums[i-1:left-1:-2])
+                # print(i-1, left-1, nums[i-1:left-1:-2])
                 for j in range(i-1, left-1, -2):
                     score += nums[j]
                 
