@@ -21,6 +21,8 @@ class Solution:
                 # print(nums[left: i])
                 
                 # now, nums[i-1] is a local minimum
+                # score += sum(nums[i-1:left-1:-2])
+                # score += sum(nums[i-1:left-1:-2])
                 for j in range(i-1, left-1, -2):
                     score += nums[j]
                 
