@@ -6,8 +6,9 @@ class Solution:
         heapify(arr)
         while arr:
             x, i = heappop(arr)
-            if nums[i] is None:
+            if not nums[i]:
                 continue
+
             score += x
             if i > 0:
                 nums[i-1] = None
