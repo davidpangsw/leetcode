@@ -12,11 +12,10 @@ class Solution:
         
         nums.append(inf)
         score = 0
-        n = len(nums)
 
         left = 0
         i = 1
-        while i < n:
+        while i < len(nums):
             if nums[i] >= nums[i-1]:
                 # print(nums[left: i])
                 
@@ -30,12 +29,6 @@ class Solution:
                 i += 2
             else:
                 i += 1
-            
-        
-        # # print(nums[left: n])
-        # if left < n:
-        #     for j in range(n-1, left-1, -2):
-        #         score += nums[j]
 
         return score
 
