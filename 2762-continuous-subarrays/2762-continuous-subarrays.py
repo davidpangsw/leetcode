@@ -4,7 +4,7 @@ class Solution:
         left = 0
         right = 1
         curMax = curMin = nums[0]
-        while right < len(nums):
+        for right in range(1, len(nums)):
             # print(nums[left:right], curMax, curMin)
             M = max(curMax, nums[right])
             m = min(curMin, nums[right])
@@ -28,13 +28,12 @@ class Solution:
                 # minus back to avoid double-count
                 size = right - left
                 total -= (size + 1) * size // 2
+            # print(total)
 
-            right += 1
-
-        # print(nums[left:right], curMax, curMin)
+        # print(nums[left:], curMax, curMin)
 
         # process the subarray
-        size = right - left
+        size = len(nums) - left
         total += (size + 1) * size // 2
 
         return total
