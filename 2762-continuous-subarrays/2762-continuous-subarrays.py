@@ -5,7 +5,7 @@ class Solution:
         total = 0
         incQ = deque() # To manage the min (with the ability to update when we pop out leftmost item)
         decQ = deque() # To manage the max
-        while right < len(nums):
+        for right in range(0, len(nums)):
             # print(nums[left:right])
             while incQ and nums[incQ[-1]] > nums[right]:
                 incQ.pop()
@@ -29,7 +29,6 @@ class Solution:
                     decQ.popleft()
                 left += 1
             
-            right += 1
 
         # process the subarray
         total += (right - left + 1) * (right - left) // 2
