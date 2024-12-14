@@ -1,12 +1,11 @@
 class Solution:
     def continuousSubarrays(self, nums: List[int]) -> int:
-        n = len(nums)
         left  = 0
         right = 0
 
         total = 0
         counts = defaultdict(int)
-        while left < n:
+        while left < len(nums):
             # print(nums[left:right])
             if right < n:
                 # print(nums[right], counts)
