@@ -1,37 +1,38 @@
 class Solution:
     def continuousSubarrays(self, nums: List[int]) -> int:
-        left = right = 0
+        left  = right = 0
 
         total = 0
-        incQ = deque() # To manage the min (with the ability to update when we pop out leftmost item)
-        decQ = deque() # To manage the max
-        incQ.append(0)
-        decQ.append(0)
-        for right in range(1, len(nums)):
+        counts = defaultdict(int)
+        while left < len(nums) and right < len(nums):
             # print(nums[left:right])
-            while incQ and nums[incQ[-1]] > nums[right]:
-                incQ.pop()
-            incQ.append(right)
-            
-            while decQ and nums[decQ[-1]] < nums[right]:
-                decQ.pop()
-            decQ.append(right)
-            
-            while incQ and decQ and nums[decQ[0]] - nums[incQ[0]] > 2:
-                # process the subarray
-                # print(right - left, incQ, decQ)
-                total += (right - left)
+            # print(nums[right], counts)
+            keys = counts.keys()
+            if keys:
+                M = max(*keys, nums[right])
+                m = min(*keys, nums[right])
+            else:
+                M = m = nums[right]
 
-                # pop out the left item
-                if left == incQ[0]:
-                    incQ.popleft()
-                if left == decQ[0]:
-                    decQ.popleft()
-                left += 1
+            if M - m <= 2:
+                # accept it into subarray
+                counts[nums[right]] += 1
+                right += 1
+                continue
             
+            # process the subarray
+            total += (right - left)
+
+            # pop out the left item
+            if counts[nums[left]] == 1:
+                del counts[nums[left]]
+            else:
+                counts[nums[left]] -= 1
+            left += 1
 
         # process the subarray
-        total += (len(nums) - left + 1) * (len(nums) - left) // 2
+        size = right - left
+        total += (size + 1) * size // 2
 
         return total
 
