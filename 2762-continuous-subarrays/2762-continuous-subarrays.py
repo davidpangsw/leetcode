@@ -4,7 +4,7 @@ class Solution:
         left = 0
         curMax = curMin = nums[0]
         n = len(nums)
-        for right in range(1, n):
+        for right in range(n):
             # print(nums[left:right], curMax, curMin)
             curMax = max(curMax, nums[right])
             curMin = min(curMin, nums[right])
