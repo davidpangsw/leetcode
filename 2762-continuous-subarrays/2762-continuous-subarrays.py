@@ -5,7 +5,9 @@ class Solution:
         total = 0
         incQ = deque() # To manage the min (with the ability to update when we pop out leftmost item)
         decQ = deque() # To manage the max
-        for right in range(len(nums)):
+        incQ.append(nums[0])
+        decQ.append(nums[0])
+        for right in range(1, len(nums)):
             # print(nums[left:right])
             while incQ and nums[incQ[-1]] > nums[right]:
                 incQ.pop()
