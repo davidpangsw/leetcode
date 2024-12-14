@@ -1,22 +1,17 @@
 class Solution:
     def continuousSubarrays(self, nums: List[int]) -> int:
-        left  = right = 0
-
         total = 0
-        counts = defaultdict(int)
+        left = 0
+        right = 1
+        curMax = curMin = nums[0]
         while left < len(nums) and right < len(nums):
-            # print(nums[left:right])
-            # print(nums[right], counts)
-            keys = counts.keys()
-            if left <= right:
-                M = max(*keys, nums[right])
-                m = min(*keys, nums[right])
-            else:
-                M = m = nums[right]
-
+            # print(nums[left:right], curMax, curMin)
+            M = max(curMax, nums[right])
+            m = min(curMin, nums[right])
             if M - m <= 2:
                 # accept it into subarray
-                counts[nums[right]] += 1
+                curMax = M
+                curMin = m
                 right += 1
                 continue
             
@@ -24,13 +19,21 @@ class Solution:
             size = right - left
             total += (size + 1) * size // 2
 
+            # reset the subarray
+            left = right
+            curMax = curMin = nums[right]
+            while abs(nums[right] - nums[left - 1]) <= 2:
+                left -= 1
+                curMax = max(curMax, nums[left])
+                curMin = min(curMin, nums[left])
 
-            # pop out the left item
-            if counts[nums[left]] == 1:
-                del counts[nums[left]]
-            else:
-                counts[nums[left]] -= 1
-            left += 1
+            # minus back to avoid double-count
+            size = right - left
+            total -= (size + 1) * size // 2
+
+            right += 1
+
+        # print(nums[left:right], curMax, curMin)
 
         # process the subarray
         size = right - left
