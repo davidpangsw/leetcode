@@ -9,9 +9,9 @@ class Solution:
             # print(nums[left:right])
             if right < len(nums):
                 # print(nums[right], counts)
-                if counts.keys():
-                    keys = list(counts.keys())
-                    M = max(max(keys), nums[right])
+                keys = counts.keys()
+                if keys:
+                    M = max(*keys, nums[right])
                     m = min(*keys, nums[right])
                 else:
                     M = m = nums[right]
