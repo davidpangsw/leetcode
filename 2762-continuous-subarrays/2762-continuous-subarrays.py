@@ -8,12 +8,7 @@ class Solution:
             # print(nums[left:right], curMax, curMin)
             curMax = max(curMax, nums[right])
             curMin = min(curMin, nums[right])
-            if curMax - curMin <= 2:
-                # # accept it into subarray
-                # curMax = M
-                # curMin = m
-                pass
-            else:
+            if curMax - curMin > 2:
                 # process the subarray
                 total += (right - left + 1) * (right - left) // 2
 
