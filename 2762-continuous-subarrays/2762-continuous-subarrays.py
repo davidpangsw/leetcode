@@ -9,13 +9,11 @@ class Solution:
             # print(nums[left:right])
             while incQ and nums[incQ[-1]] > nums[right]:
                 incQ.pop()
-            if not incQ or incQ[-1] != right:
-                incQ.append(right)
+            incQ.append(right)
             
             while decQ and nums[decQ[-1]] < nums[right]:
                 decQ.pop()
-            if not decQ or decQ[-1] != right:
-                decQ.append(right)
+            decQ.append(right)
             
             while incQ and decQ and nums[decQ[0]] - nums[incQ[0]] > 2:
                 # process the subarray
