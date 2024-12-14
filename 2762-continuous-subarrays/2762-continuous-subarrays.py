@@ -31,7 +31,7 @@ class Solution:
             
 
         # process the subarray
-        total += (right - left + 1) * (right - left) // 2
+        total += (len(nums) - left + 1) * (len(nums) - left) // 2
 
         return total
 
