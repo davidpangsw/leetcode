@@ -4,7 +4,7 @@ class Solution:
         left = 0
         right = 1
         curMax = curMin = nums[0]
-        while left < len(nums) and right < len(nums):
+        while right < len(nums):
             # print(nums[left:right], curMax, curMin)
             M = max(curMax, nums[right])
             m = min(curMin, nums[right])
