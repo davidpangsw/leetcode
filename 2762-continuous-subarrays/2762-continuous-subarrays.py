@@ -23,7 +23,7 @@ class Solution:
                 # pop out the left item
                 if left == incQ[0]:
                     incQ.popleft()
-                if left == decQ[0]:
+                elif left == decQ[0]:
                     decQ.popleft()
                 left += 1
             
