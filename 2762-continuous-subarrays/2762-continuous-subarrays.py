@@ -12,24 +12,22 @@ class Solution:
                 # accept it into subarray
                 curMax = M
                 curMin = m
-                right += 1
-                continue
-            
-            # process the subarray
-            size = right - left
-            total += (size + 1) * size // 2
+            else:
+                # process the subarray
+                size = right - left
+                total += (size + 1) * size // 2
 
-            # reset the subarray
-            left = right
-            curMax = curMin = nums[right]
-            while abs(nums[right] - nums[left - 1]) <= 2:
-                left -= 1
-                curMax = max(curMax, nums[left])
-                curMin = min(curMin, nums[left])
+                # reset the subarray
+                left = right
+                curMax = curMin = nums[right]
+                while abs(nums[right] - nums[left - 1]) <= 2:
+                    left -= 1
+                    curMax = max(curMax, nums[left])
+                    curMin = min(curMin, nums[left])
 
-            # minus back to avoid double-count
-            size = right - left
-            total -= (size + 1) * size // 2
+                # minus back to avoid double-count
+                size = right - left
+                total -= (size + 1) * size // 2
 
             right += 1
 
