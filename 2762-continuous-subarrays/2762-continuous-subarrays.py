@@ -24,13 +24,13 @@ class Solution:
                     continue
             
             # process the subarray
-            size = right - left
-            total += size
+            total += (right - left)
 
             # pop out the left item
-            counts[nums[left]] -= 1
-            if counts[nums[left]] == 0:
+            if counts[nums[left]] == 1:
                 del counts[nums[left]]
+            else:
+                counts[nums[left]] -= 1
             left += 1
 
         return total
