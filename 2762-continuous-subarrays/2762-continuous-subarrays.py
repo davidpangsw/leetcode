@@ -29,6 +29,7 @@ class Solution:
             else:
                 counts[nums[left]] -= 1
             left += 1
+
         # process the subarray
         size = right - left
         total += (size + 1) * size // 2
