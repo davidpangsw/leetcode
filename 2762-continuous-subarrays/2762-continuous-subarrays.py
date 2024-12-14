@@ -6,12 +6,13 @@ class Solution:
         n = len(nums)
         for right in range(1, n):
             # print(nums[left:right], curMax, curMin)
-            M = max(curMax, nums[right])
-            m = min(curMin, nums[right])
-            if M - m <= 2:
-                # accept it into subarray
-                curMax = M
-                curMin = m
+            curMax = max(curMax, nums[right])
+            curMin = min(curMin, nums[right])
+            if curMax - curMin <= 2:
+                # # accept it into subarray
+                # curMax = M
+                # curMin = m
+                pass
             else:
                 # process the subarray
                 total += (right - left + 1) * (right - left) // 2
