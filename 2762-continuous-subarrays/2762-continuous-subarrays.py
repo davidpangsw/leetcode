@@ -2,7 +2,6 @@ class Solution:
     def continuousSubarrays(self, nums: List[int]) -> int:
         total = 0
         left = 0
-        right = 1
         curMax = curMin = nums[0]
         for right in range(1, len(nums)):
             # print(nums[left:right], curMax, curMin)
@@ -14,8 +13,7 @@ class Solution:
                 curMin = m
             else:
                 # process the subarray
-                size = right - left
-                total += (size + 1) * size // 2
+                total += (right - left + 1) * (right - left) // 2
 
                 # reset the subarray
                 left = right
@@ -26,15 +24,13 @@ class Solution:
                     curMin = min(curMin, nums[left])
 
                 # minus back to avoid double-count
-                size = right - left
-                total -= (size + 1) * size // 2
+                total -= (right - left + 1) * (right - left) // 2
             # print(total)
 
         # print(nums[left:], curMax, curMin)
 
         # process the subarray
-        size = len(nums) - left
-        total += (size + 1) * size // 2
+        total += (right - left + 1) * (right - left) // 2
 
         return total
 
