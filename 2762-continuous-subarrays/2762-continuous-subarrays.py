@@ -3,8 +3,8 @@ class Solution:
         left = right = 0
 
         total = 0
-        incQ = deque()
-        decQ = deque()
+        incQ = deque() # To manage the min
+        decQ = deque() # To manage the max
         while left < len(nums) and right < len(nums):
             # print(nums[left:right])
             while incQ and nums[incQ[-1]] > nums[right]:
@@ -19,19 +19,18 @@ class Solution:
             
             if nums[decQ[0]] - nums[incQ[0]] <= 2:
                 right += 1
-                continue
-            
-            # process the subarray
-            # print(right - left, incQ, decQ)
-            total += (right - left)
+            else:
+                # process the subarray
+                # print(right - left, incQ, decQ)
+                total += (right - left)
 
-            # pop out the left item
-            if left == incQ[0]:
-                incQ.popleft()
-            if left == decQ[0]:
-                decQ.popleft()
+                # pop out the left item
+                if left == incQ[0]:
+                    incQ.popleft()
+                if left == decQ[0]:
+                    decQ.popleft()
 
-            left += 1
+                left += 1
 
         # process the subarray
         total += (right - left + 1) * (right - left) // 2
