@@ -7,7 +7,7 @@ class Solution:
         counts = defaultdict(int)
         while left < len(nums):
             # print(nums[left:right])
-            if right < n:
+            if right < len(nums):
                 # print(nums[right], counts)
                 if counts.keys():
                     keys = list(counts.keys())
