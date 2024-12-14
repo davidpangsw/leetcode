@@ -8,7 +8,7 @@ class Solution:
             # print(nums[left:right])
             # print(nums[right], counts)
             keys = counts.keys()
-            if keys:
+            if left <= right:
                 M = max(*keys, nums[right])
                 m = min(*keys, nums[right])
             else:
@@ -21,7 +21,9 @@ class Solution:
                 continue
             
             # process the subarray
-            total += (right - left)
+            size = right - left
+            total += (size + 1) * size // 2
+
 
             # pop out the left item
             if counts[nums[left]] == 1:
