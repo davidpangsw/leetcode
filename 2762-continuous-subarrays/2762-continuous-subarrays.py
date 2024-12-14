@@ -3,18 +3,17 @@ class Solution:
         total = 0
         left = 0
         curMax = curMin = nums[0]
-        n = len(nums)
-        for right in range(n):
+        for right, x in enumerate(nums):
             # print(nums[left:right], curMax, curMin)
-            curMax = max(curMax, nums[right])
-            curMin = min(curMin, nums[right])
+            curMax = max(curMax, x)
+            curMin = min(curMin, x)
             if curMax - curMin > 2:
                 # process the subarray
                 total += (right - left + 1) * (right - left) // 2
 
                 # reset the subarray
                 left = right
-                curMax = curMin = nums[right]
+                curMax = curMin = x
                 while abs(nums[right] - nums[left - 1]) <= 2:
                     left -= 1
                     curMax = max(curMax, nums[left])
