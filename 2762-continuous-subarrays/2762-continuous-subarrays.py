@@ -3,7 +3,7 @@ class Solution:
         left = right = 0
 
         total = 0
-        incQ = deque() # To manage the min
+        incQ = deque() # To manage the min (with the ability to update when we pop out leftmost item)
         decQ = deque() # To manage the max
         while left < len(nums) and right < len(nums):
             # print(nums[left:right])
@@ -17,9 +17,7 @@ class Solution:
             if not decQ or decQ[-1] != right:
                 decQ.append(right)
             
-            if nums[decQ[0]] - nums[incQ[0]] <= 2:
-                right += 1
-            else:
+            while incQ and decQ and nums[decQ[0]] - nums[incQ[0]] > 2:
                 # process the subarray
                 # print(right - left, incQ, decQ)
                 total += (right - left)
@@ -29,8 +27,9 @@ class Solution:
                     incQ.popleft()
                 if left == decQ[0]:
                     decQ.popleft()
-
                 left += 1
+            
+            right += 1
 
         # process the subarray
         total += (right - left + 1) * (right - left) // 2
