@@ -8,7 +8,7 @@ class Solution:
         heapify(arr)
         for _ in range(extraStudents):
             _, p, n = heappop(arr)
-            print(p, n)
+            # print(p, n)
             p, n = p+1, n+1
             heappush(arr, (-(n-p) / (n * (n+1)), p, n))
         # print(arr)
