@@ -4,7 +4,8 @@ class Solution:
         # d * n(n+1) = (pn + n) - (pn + p) = n - p
         # d = (n-p) / (n * (n+1))
 
-        arr = [(-(n-p) / (n * (n+1)), p, n) for p, n in classes]
+        # arr = [(-(n-p) / (n * (n+1)), p, n) for p, n in classes]
+        arr = [(-((p+1) / (n+1) - p / n), p, n) for p, n in classes]
         heapify(arr)
         for _ in range(extraStudents):
             _, p, n = heappop(arr)
