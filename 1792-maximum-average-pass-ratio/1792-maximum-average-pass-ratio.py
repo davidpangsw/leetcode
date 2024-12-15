@@ -1,11 +1,11 @@
 class Solution:
-    def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
+    def maxAverageRatio(self, arr: List[List[int]], extraStudents: int) -> float:
         # p / n -> (p+1) / (n+1)
         # d * n(n+1) = (pn + n) - (pn + p) = n - p
         # d = (n-p) / (n * (n+1))
 
-        arr = [(p/n - (p+1)/(n+1), p, n) for p, n in classes]
-        # arr = [(-((p+1) / (n+1) - p / n), p, n) for p, n in classes]
+        arr = [(p/n - (p+1)/(n+1), p, n) for p, n in arr]
+        # arr = [(-((p+1) / (n+1) - p / n), p, n) for p, n in arr]
         heapify(arr)
         for _ in range(extraStudents):
             _, p, n = heappop(arr)
