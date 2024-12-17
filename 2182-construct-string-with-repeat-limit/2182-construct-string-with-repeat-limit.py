@@ -1,20 +1,28 @@
 class Solution:
     def repeatLimitedString(self, s: str, repeatLimit: int) -> str:
-        counts = Counter(s)
-        counts = sorted(counts.items())
+        counts = [0] * 26
+        for x in s:
+            counts[ord(x) - ord('a')] += 1
+        
+        stack = []
+        for i, count in enumerate(counts):
+            if count > 0:
+                stack.append(i)
+
         
         result = ""
-        while counts:
-            x, count = counts[-1]
-            if count <= repeatLimit:
-                result += x * count
-                counts.pop()
-            else:
-                result += x * count
-                counts[-1][1] = (x, count - repeatLimit)
+        while stack:
+            x = stack.pop()
+            if not counts[x]:
+                continue
+            
+            k = min(repeatLimit, counts[x])
+            result += chr(ord('a') + x) * k
+            counts[x] -= k
 
+            if counts[x]:
                 # if no backup, done
-                if not counts:
+                if not stack:
                     break
                 
                 # add one character of backup
