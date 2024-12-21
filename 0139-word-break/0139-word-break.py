@@ -1,15 +1,11 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        visited = [False] * len(s)
+        mem = [False] * (len(s) + 1)
+        mem[-1] = True
 
-        def dfs(i: int):
-            # print(i)
-            if visited[i]:
-                return False
-
-            visited[i] = True
+        for i in range(len(s)-1, -1, -1):
             for j in range(i+1, len(s)+1):
-                if s[i:j] in wordDict and (j == len(s) or dfs(j)):
-                    return True
-            return False
-        return dfs(0)
+                if mem[j] and s[i:j] in wordDict:
+                    mem[i] = True
+                    break
+        return mem[0]
