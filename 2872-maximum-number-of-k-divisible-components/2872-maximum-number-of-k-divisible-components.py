@@ -13,13 +13,14 @@ class Solution:
             for v in adjLists[u]:
                 if v == fromNode:
                     continue
-                values[u] = (values[u] + dfs(v, u)) % k
+                values[u] += dfs(v, u)
+                # values[u] = (values[u] + dfs(v, u)) % k
 
             nonlocal result
             if values[u] % k == 0:
                 result += 1
 
-            return values[u]
+            return values[u] % k
         dfs(0, -1)
         return result
                 
