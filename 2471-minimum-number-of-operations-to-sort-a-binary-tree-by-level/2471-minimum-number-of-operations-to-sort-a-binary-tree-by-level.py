@@ -9,7 +9,8 @@ class Solution:
         def countSwaps(nodes):
             n = len(nodes)
             visited = [False] * n
-            s = sorted([(x.val, i) for i, x in enumerate(nodes)])
+            # s = sorted([(x.val, i) for i, x in enumerate(nodes)])
+            s = sorted(range(n), key=lambda i: nodes[i].val)
 
             count = 0
             # print(s)
@@ -19,22 +20,18 @@ class Solution:
                     continue
 
                 # starting at i, count the cycle length
-                cur = i
 
                 cycleLen = 0
                 visited[i] = True
-                while s[cur][1] != i:
-                    cur = s[cur][1]
+                cur = i
+                while s[cur] != i:
+                    cur = s[cur]
                     cycleLen += 1
                     visited[cur] = True
                 
                 count += cycleLen 
             return count
                 
-
-
-
-
         q = deque([root])
         result = 0
         while q:
