@@ -22,17 +22,13 @@ class Solution:
                 cur = i
 
                 cycleLen = 0
-                visited[cur] = True
-                x, j = s[cur]
-                cur = j
-                cycleLen += 1
-                while cur != i:
+                while s[cur][1] != i:
                     visited[cur] = True
-                    x, j = s[cur]
-                    cur = j
+                    cur = s[cur][1]
                     cycleLen += 1
+                visited[cur] = True
                 
-                count += (cycleLen - 1)
+                count += cycleLen 
             return count
                 
 
