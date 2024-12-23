@@ -12,7 +12,7 @@ class Solution:
             s = sorted([(x.val, i) for i, x in enumerate(nodes)])
 
             count = 0
-            print(s)
+            # print(s)
 
             for i in range(n):
                 if visited[i]:
