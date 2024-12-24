@@ -22,7 +22,7 @@ class Solution:
                             q.append(v)
                 result += 2
 
-            return result - (1 - len(q))
+            return result + len(q) - 1
 
         d1 = getDiameter(edges1)
         d2 = getDiameter(edges2)
