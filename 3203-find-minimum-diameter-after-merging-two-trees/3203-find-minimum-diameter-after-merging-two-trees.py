@@ -14,21 +14,18 @@ class Solution:
                 size = len(q)
                 for _ in range(size):
                     u = q.popleft()
-                    if len(adjLists[u]) == 0:
-                        continue
-                    v = adjLists[u].pop()
-                    # adjLists[u].remove(v)
-                    adjLists[v].remove(u)
-                    if len(adjLists[v]) == 1:
-                        q.append(v)
+                    if adjLists[u]:
+                        v = adjLists[u].pop()
+                        # adjLists[u].remove(v)
+                        adjLists[v].remove(u)
+                        if len(adjLists[v]) == 1:
+                            q.append(v)
                 result += 1
-            if len(q) == 1: # even diameter
-                result *= 2
-            else:
-                result = result * 2 - 1
 
-            # print(result)
-            return result
+            if len(q) == 1: # even diameter
+                return result * 2
+            else:
+                return result * 2 - 1
 
         d1 = getDiameter(edges1)
         d2 = getDiameter(edges2)
