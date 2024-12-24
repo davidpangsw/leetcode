@@ -15,12 +15,14 @@ class Solution:
                 size = len(q)
                 for _ in range(size):
                     u = q.popleft()
-                    if adjLists[u]:
-                        v = adjLists[u].pop()
-                        # adjLists[u].remove(v)
-                        adjLists[v].remove(u)
-                        if len(adjLists[v]) == 1:
-                            q.append(v)
+                    if not adjLists[u]:
+                        continue
+                        
+                    v = adjLists[u].pop()
+                    # adjLists[u].remove(v)
+                    adjLists[v].remove(u)
+                    if len(adjLists[v]) == 1:
+                        q.append(v)
                 result += 2
 
             return result + len(q) - 1
