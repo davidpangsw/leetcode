@@ -1,13 +1,14 @@
 class Solution:
     def minimumDiameterAfterMerge(self, edges1: List[List[int]], edges2: List[List[int]]) -> int:
         def getDiameter(edges):
-            adjLists = defaultdict(set)
+            n = len(edges) + 1
+            adjLists = [set() for _ in range(n)]
             for u, v in edges:
                 adjLists[u].add(v)
                 adjLists[v].add(u)
             
             # BFS starting from leaves
-            q = deque([u for u in adjLists if len(adjLists[u]) == 1])
+            q = deque([u for u in range(n) if len(adjLists[u]) == 1])
             result = 0
             while len(q) > 1:
                 # print(q)
