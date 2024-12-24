@@ -20,12 +20,12 @@ class Solution:
                         adjLists[v].remove(u)
                         if len(adjLists[v]) == 1:
                             q.append(v)
-                result += 1
+                result += 2
 
             if len(q) == 1: # even diameter
-                return result * 2
+                return result
             else:
-                return result * 2 - 1
+                return result - 1
 
         d1 = getDiameter(edges1)
         d2 = getDiameter(edges2)
