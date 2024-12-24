@@ -22,10 +22,7 @@ class Solution:
                             q.append(v)
                 result += 2
 
-            if len(q) == 1: # even diameter
-                return result
-            else:
-                return result - 1
+            return result - (1 - len(q))
 
         d1 = getDiameter(edges1)
         d2 = getDiameter(edges2)
