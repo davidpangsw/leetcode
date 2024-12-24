@@ -9,9 +9,9 @@ class Solution:
             # BFS starting from leaves
             q = deque([u for u in adjLists if len(adjLists[u]) == 1])
             result = 0
-            while len(q) > 1:
+            size = len(q)
+            while size > 1:
                 # print(q)
-                size = len(q)
                 for _ in range(size):
                     u = q.popleft()
                     if adjLists[u]:
@@ -21,8 +21,9 @@ class Solution:
                         if len(adjLists[v]) == 1:
                             q.append(v)
                 result += 2
+                size = len(q)
 
-            return result + len(q) - 1
+            return result + size - 1
 
         d1 = getDiameter(edges1)
         d2 = getDiameter(edges2)
