@@ -22,5 +22,5 @@ class Solution:
 
                 values.append(-x.val)
             # heapify(values)
-            result.append(-nsmallest(1, values))
+            result.append(-nsmallest(1, values)[0])
         return result
