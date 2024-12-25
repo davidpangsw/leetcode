@@ -6,6 +6,8 @@
 #         self.right = right
 class Solution:
     def largestValues(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
         result = []
         q = deque([root])
         while q:
