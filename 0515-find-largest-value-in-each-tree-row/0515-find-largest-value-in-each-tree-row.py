@@ -21,6 +21,6 @@ class Solution:
                     q.append(x.right)
 
                 values.append(-x.val)
-            heapify(values)
-            result.append(-heappop(values))
+            # heapify(values)
+            result.append(-nsmallest(1, values))
         return result
