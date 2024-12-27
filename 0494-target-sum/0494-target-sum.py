@@ -6,7 +6,7 @@ class Solution:
         # f(nums[:k], target) = f(nums[:k-1], target+nums[k-1]) + f(nums[:k-1], target-nums[k-1])
         # 2^20 = 1048576 acceptable
         n = len(nums)
-        mem = [[None for _ in range(2001)] for _ in range(n)]
+        mem = [[None for _ in range(1001)] for _ in range(n)]
         def f(k, t):
             # print(f"f({k},{t})")
             if k == 0:
@@ -15,7 +15,7 @@ class Solution:
                 return 0
             if t < 0:
                 return f(k, -t)
-            i, j = k-1, t+1000
+            i, j = k-1, t
             if mem[i][j] is not None:
                 return mem[i][j]
             mem[i][j] = f(k-1, t+nums[k-1]) + f(k-1, t-nums[k-1])
