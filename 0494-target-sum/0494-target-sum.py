@@ -11,10 +11,11 @@ class Solution:
             # print(f"f({k},{t})")
             if k == 0:
                 return 1 if t == 0 else 0
-            if t < -1000 or t > 1000:
-                return 0
             if t < 0:
                 return f(k, -t)
+            if t > 1000:
+                return 0
+
             i, j = k-1, t
             if mem[i][j] is not None:
                 return mem[i][j]
