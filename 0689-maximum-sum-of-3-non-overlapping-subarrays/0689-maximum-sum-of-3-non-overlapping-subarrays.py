@@ -9,14 +9,12 @@ class Solution:
         # find max non-k-neighbouring 1-sum in arr
         prefixMax = [0] * n
         for i in range(1, n):
-            j = prefixMax[i-1]
-            prefixMax[i] = i if arr[i] > arr[j] else j
+            prefixMax[i] = i if arr[i] > arr[prefixMax[i-1]] else prefixMax[i-1]
         # print(prefixMax)
 
         # find max non-k-neighbouring 2-sum in arr
         prefixMax2 = [(-1, -1, -1)] * n
         for i in range(k, n):
-            a = arr[i]
             j = prefixMax[i-k]
             prev = prefixMax2[i-1]
             if arr[i] + arr[j] > prev[0]:
@@ -31,5 +29,5 @@ class Solution:
             a = arr[i]
             b, x, y = prefixMax2[i-k]
             if a + b > result[0]:
-                result = a+b, [x, y, i]
+                result = a + b, [x, y, i]
         return result[1]
