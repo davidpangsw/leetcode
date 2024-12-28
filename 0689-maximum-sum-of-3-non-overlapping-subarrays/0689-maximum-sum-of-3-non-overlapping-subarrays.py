@@ -1,11 +1,12 @@
 class Solution:
     def maxSumOfThreeSubarrays(self, nums: List[int], k: int) -> List[int]:
-        n = len(nums)
+        
         arr = [sum(nums[:k])]
         for i in range(1, len(nums)-k+1):
             arr.append(arr[-1] - nums[i-1] + nums[i-1+k])
         # print(arr)
         nums = arr
+        n = len(nums)
         
         # find max non-k-neighbouring 1-sum in arr
         prefixMax = [(nums[0], 0)] + [None] * (n-1)
