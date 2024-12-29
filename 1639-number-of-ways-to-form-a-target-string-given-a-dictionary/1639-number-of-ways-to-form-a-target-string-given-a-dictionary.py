@@ -8,14 +8,12 @@ class Solution:
                     data.append(defaultdict(int))
                 data[i][x] += 1
         
-        mem = [[None for _ in target] for _ in data]
+        # mem = [[None for _ in target] for _ in data]
+        @cache
         def f(cur: int, t: int):
             if t == len(target):
                 return 1
             if cur == len(data):
                 return 0
-            
-            if mem[cur][t] is None:
-                mem[cur][t] = (data[cur][target[t]] * f(cur+1, t+1) + f(cur+1, t)) % M
-            return mem[cur][t]
+            return (data[cur][target[t]] * f(cur+1, t+1) + f(cur+1, t)) % M
         return f(0, 0)
