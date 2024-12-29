@@ -19,10 +19,9 @@ class Solution:
         # f(0, 0) = posCharCounts[0][target[0]]
         # f(p, 0) = posCharCounts[p][target[t]] + f(p-1, t)  (for p > 0)
         # t = 0
-        curRow = [None] * P
-        curRow[0] = posCharCounts[0][target[0]]
+        curRow = [posCharCounts[0][target[0]]]
         for p in range(1, P):
-            curRow[p] = posCharCounts[p][target[0]] + curRow[p-1]
+            curRow.append(posCharCounts[p][target[0]] + curRow[p-1])
         prevRow = [0] * P
         
         # print(curRow)
