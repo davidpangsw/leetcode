@@ -23,12 +23,15 @@ class Solution:
         curRow[0] = posCharCounts[0][target[0]]
         for p in range(1, P):
             curRow[p] = posCharCounts[p][target[0]] + curRow[p-1]
+        prevRow = [0] * P
+        
         # print(curRow)
         for t in range(1, T):
-            prevRow = [x for x in curRow]
+            curRow, prevRow = prevRow, curRow
             # for p in range(t):
-                # curRow[p] = 0
-            curRow[t-1] = 0
+            #     curRow[p] = 0
+            for p in range(max(0, t-2), t):
+                curRow[p] = 0
             for p in range(t, P):
                 curRow[p] = (posCharCounts[p][target[t]] * prevRow[p-1] + curRow[p-1]) % M
             # print(curRow)
