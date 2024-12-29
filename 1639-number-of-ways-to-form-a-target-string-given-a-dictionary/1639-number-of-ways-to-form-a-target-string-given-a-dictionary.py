@@ -1,42 +1,45 @@
 M = 10 ** 9 + 7
 class Solution:
     def numWays(self, words: List[str], target: str) -> int:
-        data = [defaultdict(int) for _ in words[0]]
+        T = len(target)
+        P = len(words[0])
+        if T > P:
+            return 0
+
+        # posCharCounts[i][x] = counts of character x at position i
+        posCharCounts = [defaultdict(int) for _ in words[0]]
         for w in words:
             for i, x in enumerate(w):
-                data[i][x] += 1
+                posCharCounts[i][x] += 1
         
-        @cache
-        def f(cur: int, t: int):
-            if t == len(target):
-                return 1
-            if cur == len(data):
-                return 0
-            return (data[cur][target[t]] * f(cur+1, t+1) + f(cur+1, t)) % M
-        return f(0, 0)
 
-    def numWaysSampleAnswer(self, words: List[str], target: str) -> int:
-        m = len(target)
-        num_word = len(words)
-        n = len(words[0])
+        # f(p, t) = #ways that given words until position, match target until position t
+        # f(p, t) = posCharCounts[p][target[t]] * f(p-1, t-1) + f(p-1, t)
+        # f(p, t) = 0 if p < t
+        # f(0, 0) = posCharCounts[0][target[0]]
+        # f(p, 0) = posCharCounts[p][target[t]] + f(p-1, t)  (for p > 0)
+        # t = 0
+        curRow = [None] * P
+        curRow[0] = posCharCounts[0][target[0]]
+        for p in range(1, P):
+            curRow[p] = posCharCounts[p][target[0]] + curRow[p-1]
+        # print(curRow)
+        for t in range(1, T):
+            prevRow = [x for x in curRow]
+            for p in range(t):
+                curRow[p] = 0
+            for p in range(t, P):
+                curRow[p] = (posCharCounts[p][target[t]] * prevRow[p-1] + curRow[p-1]) % M
+            # print(curRow)
+        return curRow[-1]
 
-        MOD = 10**9 + 7
-
-        pos_cnt = []
-        for j in range(n):
-            char2cnt = collections.defaultdict(int)
-            for i in range(num_word):
-                char2cnt[words[i][j]] += 1
-            pos_cnt.append(char2cnt)
-
-        dp = [[0]*n for _ in range(2)]
-        for j in range(n-m+1):
-            if j == 0:
-                dp[0][0] = pos_cnt[0][target[0]] % MOD
-            else:
-                dp[0][j] = (dp[0][j-1] + pos_cnt[j][target[0]])%MOD
-        for i in range(1, m):
-            dp[i%2] = [0]*n
-            for j in range(i, n-m+i+1):
-                dp[i%2][j] = (dp[i%2][j-1] + dp[(i-1)%2][j-1] * pos_cnt[j][target[i]]) % MOD
-        return dp[(m-1)%2][n-1]
+        
+        # # recursive dp, much cleaner
+        # @cache
+        # def f(pos: int, t: int):
+        #     if t == len(target):
+        #         return 1
+        #     if pos == len(data):
+        #         return 0
+        #     return (data[pos][target[t]] * f(pos+1, t+1) + f(pos+1, t)) % M
+        # return f(0, 0)
