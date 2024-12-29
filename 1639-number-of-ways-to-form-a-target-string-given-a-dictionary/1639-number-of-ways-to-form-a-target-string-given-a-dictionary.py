@@ -29,7 +29,7 @@ class Solution:
             curRow, prevRow = prevRow, curRow
             # for p in range(t):
             #     curRow[p] = 0
-            for p in range(max(0, t-2), t):
+            for p in range(max(0, t-1), t):
                 curRow[p] = 0
             for p in range(t, P):
                 curRow[p] = (posCharCounts[p][target[t]] * prevRow[p-1] + curRow[p-1]) % M
