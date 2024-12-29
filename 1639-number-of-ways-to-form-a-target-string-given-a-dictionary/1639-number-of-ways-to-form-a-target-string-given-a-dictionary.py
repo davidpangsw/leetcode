@@ -26,8 +26,9 @@ class Solution:
         # print(curRow)
         for t in range(1, T):
             prevRow = [x for x in curRow]
-            for p in range(t):
-                curRow[p] = 0
+            # for p in range(t):
+                # curRow[p] = 0
+            curRow[t-1] = 0
             for p in range(t, P):
                 curRow[p] = (posCharCounts[p][target[t]] * prevRow[p-1] + curRow[p-1]) % M
             # print(curRow)
