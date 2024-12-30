@@ -10,9 +10,10 @@ class Solution:
         mem = [0] * (high + 1)
         mem[0] = 1
         for s in range(1, high+1):
-            if s >= zero:
-                mem[s] += mem[s-zero] % M
-            if s >= one:
-                mem[s] += mem[s-one] % M
+            mem[s] = (mem[s-zero] + mem[s-one]) % M
+            # if s >= zero:
+            #     mem[s] += mem[s-zero] % M
+            # if s >= one:
+            #     mem[s] += mem[s-one] % M
         # print(mem)
         return sum(mem[low:high+1]) % M
