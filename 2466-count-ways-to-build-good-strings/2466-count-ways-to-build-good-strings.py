@@ -15,7 +15,7 @@ class Solution:
             # it is genrally saf:e
             # (high+1)+(s-x) < s iff high + 1 < x
             # But x=zero and x=one are not that large
-            mem[s] = (mem[s-zero] + mem[s-one])
+            mem[s] = (mem[s-zero] + mem[s-one]) % M
         # print(mem)
 
         # (high+1-low) <= 10^5
