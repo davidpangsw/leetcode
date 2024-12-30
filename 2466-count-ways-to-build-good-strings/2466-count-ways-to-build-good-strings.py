@@ -5,7 +5,8 @@ class Solution:
         # f(s) = f(s-zero) + f(s-one)
         # f(0) = 1
         # f(s) = 0 for s < 0
-        # result = f(high) - f(low-1)
+        # result = sum(mem[low:high+1])
+        
 
         mem = [0] * (high + 1)
         mem[0] = 1
@@ -14,6 +15,10 @@ class Solution:
             # it is genrally saf:e
             # (high+1)+(s-x) < s iff high + 1 < x
             # But x=zero and x=one are not that large
-            mem[s] = (mem[s-zero] + mem[s-one]) % M
+            mem[s] = (mem[s-zero] + mem[s-one])
         # print(mem)
+
+        # (high+1-low) <= 10^5
+        # the total sum <= 10^5 * M ~= 10**14
+        # (python doesn't have overflow anyway...?)
         return sum(mem[low:high+1]) % M
