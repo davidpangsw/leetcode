@@ -8,8 +8,7 @@ class Solution:
         # result = sum(mem[low:high+1])
         
 
-        mem = [0] * (high + 1)
-        mem[0] = 1
+        mem = [1] + [0] * high
         for s in range(1, high+1):
             # if s-zero is negative, it goings to the end (negative index in python)
             # it is genrally saf:e
