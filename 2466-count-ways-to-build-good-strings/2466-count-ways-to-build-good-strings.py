@@ -20,4 +20,8 @@ class Solution:
         # (high+1-low) <= 10^5
         # the total sum <= 10^5 * M ~= 10**14
         # (python doesn't have overflow anyway...?)
-        return sum(mem[low:high+1]) % M
+        result = 0
+        for i in range(low, high+1):
+            result += mem[i]
+        return result % M
+        # return sum(mem[low:high+1]) % M
