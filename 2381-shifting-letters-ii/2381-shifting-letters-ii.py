@@ -1,3 +1,4 @@
+A = ord('a')
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
         n = len(s)
@@ -12,12 +13,9 @@ class Solution:
 
         cur = 0
         result = ""
-        A = ord('a')
         for i, x in enumerate(s):
             cur += up_downs[i]
-            x = (ord(x) - A + cur) % 26
-            x = chr(x + A)
-            result += x
+            result += chr((ord(x) - A + cur) % 26 + A)
         return result
 
 
