@@ -12,10 +12,10 @@ class Solution:
                 up_downs[end+1] += 1
 
         cur = 0
-        result = ""
+        result = [None for _ in s]
         for i, x in enumerate(s):
             cur += up_downs[i]
-            result += chr((ord(x) - A + cur) % 26 + A)
-        return result
+            result[i] = chr((ord(x) - A + cur) % 26 + A)
+        return ''.join(result)
 
 
