@@ -1,4 +1,5 @@
-A = ord('a')
+# A = ord('a')
+A = 97
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
         up_downs = [0 for _ in s] + [0]
