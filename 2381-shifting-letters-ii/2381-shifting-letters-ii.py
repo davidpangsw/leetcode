@@ -1,7 +1,7 @@
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
         n = len(s)
-        up_downs = [0] * (n+1)
+        up_downs = [0 for _ in s] + [0]
         for start, end, direction in shifts:
             if direction:
                 up_downs[start] += 1
