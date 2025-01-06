@@ -12,7 +12,7 @@ class Solution:
         # print(results)
 
         moves = 0
-        balls = int(boxes[-1]) # accumulated balls
+        balls = 0 if boxes[-1] == "0" else 1
         for i in range(n-2, -1, -1):
             moves += balls
             results[i] += moves
