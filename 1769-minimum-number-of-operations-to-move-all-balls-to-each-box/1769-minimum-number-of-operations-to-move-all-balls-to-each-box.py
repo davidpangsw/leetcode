@@ -1,8 +1,5 @@
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
-        n = len(boxes)
-
-        # answer
         moves = 0
 
         # number of balls on the left / right
