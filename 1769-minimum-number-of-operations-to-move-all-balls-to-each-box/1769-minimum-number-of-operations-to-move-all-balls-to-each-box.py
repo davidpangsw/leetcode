@@ -1,21 +1,27 @@
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
         n = len(boxes)
-        results = [0] * n
 
-        # accumulated balls
-        balls = 0 if boxes[0] == "0" else 1
-        for i in range(1, n):
-            results[i] = results[i-1] + balls
-            if boxes[i] == "1":
-                balls += 1
-        # print(results)
-
+        # answer
         moves = 0
-        balls = 0 if boxes[-1] == "0" else 1
-        for i in range(n-2, -1, -1):
-            moves += balls
-            results[i] += moves
-            if boxes[i] == "1":
-                balls += 1
-        return results
+
+        # number of balls on the left / right
+        left, right = 0, 0
+
+        # calculate for i = 0
+        for i, x in enumerate(boxes):
+            if x == '1':
+                moves += i
+                right += 1
+
+        
+        answer = []
+        
+        for i, x in enumerate(boxes):
+            answer.append(moves)
+            if x == '1':
+                left -= 1
+                right += 1
+            moves = moves - left + right
+
+        return answer
