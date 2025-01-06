@@ -4,7 +4,7 @@ class Solution:
         moves = 0
 
         # number of balls on the left / right
-        left = right = 0
+        left, right = 0, 0
 
         # calculate for i = 0
         for i, x in enumerate(boxes):
