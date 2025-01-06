@@ -13,7 +13,6 @@ class Solution:
             if x == '1':
                 moves += i
                 right += 1
-        print(moves, right)
         
         answer = []
         for i, x in enumerate(boxes):
