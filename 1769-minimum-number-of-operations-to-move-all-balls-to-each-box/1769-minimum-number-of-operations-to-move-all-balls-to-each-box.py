@@ -1,13 +1,20 @@
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
-        ones = []
         n = len(boxes)
         results = [0] * n
-        for i in range(n):
+
+        balls = int(boxes[0]) # accumulated balls
+        for i in range(1, n):
+            results[i] = results[i-1] + balls
             if boxes[i] == "1":
-                ones.append(i)
-        for i in range(n):
-            for j in ones:
-                results[i] += abs(j-i)
-            # print(results)
+                balls += 1
+        # print(results)
+
+        moves = 0
+        balls = 0 # accumulated balls
+        for i in range(n-1, -1, -1):
+            moves += balls
+            results[i] += moves
+            if boxes[i] == "1":
+                balls += 1
         return results
