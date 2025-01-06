@@ -1,9 +1,10 @@
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
+        answer = []
         moves = 0
 
         # number of balls on the left / right
-        left, right = 0, 0
+        left = right = 0
 
         # calculate for i = 0
         for i, x in enumerate(boxes):
@@ -11,7 +12,6 @@ class Solution:
                 moves += i
                 right += 1
         
-        answer = []
         for i, x in enumerate(boxes):
             answer.append(moves)
             if x == '1':
