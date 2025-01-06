@@ -3,7 +3,8 @@ class Solution:
         n = len(boxes)
         results = [0] * n
 
-        balls = int(boxes[0]) # accumulated balls
+        # accumulated balls
+        balls = 0 if boxes[0] == "0" else 1
         for i in range(1, n):
             results[i] = results[i-1] + balls
             if boxes[i] == "1":
