@@ -17,6 +17,6 @@ class Solution:
             if x == '1':
                 left += 1
                 right -= 1
-            moves = moves + left - right
+            moves += (left - right)
 
         return answer
