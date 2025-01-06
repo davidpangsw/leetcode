@@ -11,8 +11,8 @@ class Solution:
         # print(results)
 
         moves = 0
-        balls = 0 # accumulated balls
-        for i in range(n-1, -1, -1):
+        balls = int(boxes[-1]) # accumulated balls
+        for i in range(n-2, -1, -1):
             moves += balls
             results[i] += moves
             if boxes[i] == "1":
