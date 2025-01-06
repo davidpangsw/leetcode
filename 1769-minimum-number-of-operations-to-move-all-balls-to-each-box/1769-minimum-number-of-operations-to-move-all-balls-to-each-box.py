@@ -13,15 +13,14 @@ class Solution:
             if x == '1':
                 moves += i
                 right += 1
-
+        print(moves, right)
         
         answer = []
-        
         for i, x in enumerate(boxes):
             answer.append(moves)
             if x == '1':
-                left -= 1
-                right += 1
-            moves = moves - left + right
+                left += 1
+                right -= 1
+            moves = moves + left - right
 
         return answer
