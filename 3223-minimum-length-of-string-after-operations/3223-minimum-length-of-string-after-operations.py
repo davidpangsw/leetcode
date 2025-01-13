@@ -5,4 +5,4 @@ class Solution:
         # 3 -> 1
         # 4 -> 2
         # 5 -> 1
-        return sum([1 if x % 2 == 1 else 2 for x in Counter(s).values()])
+        return sum([1 if x & 1 == 1 else 2 for x in Counter(s).values()])
