@@ -1,12 +1,11 @@
+maps = [1, 2, 1]
 class Solution:
     def minimumLength(self, s: str) -> int:
-        # 0 -> 0
-        # odd -> 1
-        # even -> 2
-        counts = {}
+        # 0: 0
+        # odd: 1
+        # even: 2
+        # 0 -> 1 -> 2 -> 1 -> ...
+        counts = defaultdict(int)
         for c in s:
-            if c in counts:
-                counts[c] = 3 - counts[c]
-            else:
-                counts[c] = 1
+            counts[c] = maps[counts[c]]
         return sum(counts.values())
