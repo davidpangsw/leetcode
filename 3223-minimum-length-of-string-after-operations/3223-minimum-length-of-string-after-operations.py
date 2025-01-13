@@ -1,3 +1,12 @@
 class Solution:
     def minimumLength(self, s: str) -> int:
-        return sum([2 - (x & 1) for x in Counter(s).values()])
+        # 0 -> 0
+        # odd -> 1
+        # even -> 2
+        counts = {}
+        for c in s:
+            if c in counts:
+                counts[c] = 3 - counts[c]
+            else:
+                counts[c] = 1
+        return sum(counts.values())
