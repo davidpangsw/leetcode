@@ -1,4 +1,5 @@
 maps = [1, 2, 1]
+changes = [1, 1, -1]
 class Solution:
     def minimumLength(self, s: str) -> int:
         # 0: 0
@@ -8,7 +9,7 @@ class Solution:
         result = 0
         counts = defaultdict(int)
         for x in s:
-            change = maps[counts[x]] - counts[x]
-            result += change
-            counts[x] += change
+            c = counts[x]
+            result += changes[c]
+            counts[x] = maps[c]
         return result
