@@ -1,15 +1,12 @@
-maps = [1, 2, 1]
-changes = [1, 1, -1]
 class Solution:
+
     def minimumLength(self, s: str) -> int:
-        # 0: 0
-        # odd: 1
-        # even: 2
-        # 0 -> 1 -> 2 -> 1 -> ...
-        result = 0
-        counts = defaultdict(int)
-        for x in s:
-            c = counts[x]
-            result += changes[c]
-            counts[x] = maps[c]
-        return result
+        s_set = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'}
+        ans = 0
+        for ch in s_set:
+            count = s.count(ch)
+            if count & 1:
+                ans += 1
+            elif count != 0:
+                ans += 2
+        return ans
