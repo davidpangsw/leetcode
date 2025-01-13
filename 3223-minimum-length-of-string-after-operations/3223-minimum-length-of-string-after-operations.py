@@ -7,7 +7,8 @@ class Solution:
         # 0 -> 1 -> 2 -> 1 -> ...
         result = 0
         counts = defaultdict(int)
-        for c in s:
-            result += (maps[counts[c]] - counts[c])
-            counts[c] = maps[counts[c]]
+        for x in s:
+            change = maps[counts[x]] - counts[x]
+            result += change
+            counts[x] += change
         return result
