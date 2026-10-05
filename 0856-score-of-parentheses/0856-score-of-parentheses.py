@@ -8,7 +8,7 @@ class Solution:
             else:
                 count -= 1
                 if (prev == '('):
-                    score += 2**count
+                    score += 1 << count
             prev = c
         return score
         
