@@ -11,4 +11,16 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [3522-find-the-power-of-k-size-subarrays-i](https://github.com/davidpangsw/leetcode/tree/master/3522-find-the-power-of-k-size-subarrays-i) |
+## String
+|  |
+| ------- |
+| [0856-score-of-parentheses](https://github.com/davidpangsw/leetcode/tree/master/0856-score-of-parentheses) |
+## Stack
+|  |
+| ------- |
+| [0856-score-of-parentheses](https://github.com/davidpangsw/leetcode/tree/master/0856-score-of-parentheses) |
+## Bracket Sequences
+|  |
+| ------- |
+| [0856-score-of-parentheses](https://github.com/davidpangsw/leetcode/tree/master/0856-score-of-parentheses) |
 <!---LeetCode Topics End-->
